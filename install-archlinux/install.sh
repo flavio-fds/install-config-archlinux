@@ -51,6 +51,8 @@ echo -e "${VERDE}[INFO] -^^^Insert name device ^^^.${SEM_COR}"
 read NAME_DEVICE
 
 iwctl station $NAME_DEVICE scan
+iwctl station $NAME_DEVICE get-networks
+
 echo -e "${VERDE}[INFO] -^^^Insert network name ^^^.${SEM_COR}"
 read NETWORK_NAME
 
@@ -59,7 +61,7 @@ iwctl station $NAME_DEVICE connect $NETWORK_NAME
 }
 
 check-connectiont(){
-echo -e "${VERDE}Check connection${SEM_COR}"
+echo -e "${VERDE}Check connection...${SEM_COR}"
 if ! ping -c 1 8.8.8.8 -q &> /dev/null; then
   echo -e "${VERMELHO}[ERROR] - Your computer does not have an Internet connection. Check the script with device and network name.${SEM_COR}"
   exit 1
