@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
-echo install with scrip https://github.com/archlinux/archinstall
+#chmod +x auric.sh
+
+echo "install with scrip https://github.com/archlinux/archinstall"
 
 NAME_DEVICE="wlan0"
 NETWORK_NAME="CLARO_2G7DDB3D"
@@ -21,13 +23,13 @@ connect-wifi(){
 #iwctl device list
 #iwctl station <name_device> scan
 #iwctl station <name> connect <network name>
-echo Connect wifi
+echo "Connect wifi"
 
 iwctl station $NAME_DEVICE connect $NETWORK_NAME 
 }
 
 check-connectiont(){
-echo Check connection
+echo "Check connection"
 if ! ping -c 1 8.8.8.8 -q &> /dev/null; then
   echo -e "${VERMELHO}[ERROR] - Seu computador não tem conexão com a Internet. Verifique o script com nome do device e da rede.${SEM_COR}"
   exit 1
@@ -37,9 +39,14 @@ fi
 }
 
 clone-repository(){
-echo Install Git 
-pacman -S git 
+echo "Install Git"
+pacman -S git vim
 git clone "$REPOSITORY_URL"
+
+echo ""
+read VERIFICATION
+if VERIFICATION == "y"
+vim "$DIR_CONFIG/creds.json"
 }
 
 start-install-archinstall(){
