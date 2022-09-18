@@ -1,0 +1,3 @@
+Preset files for archinstall installation
+edit creds file with name and password
+archinstall --config ./config.json --disk-layout ./disk_layout.json --creds ./creds.json
