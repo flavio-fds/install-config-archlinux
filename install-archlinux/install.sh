@@ -43,7 +43,7 @@ git clone "$REPOSITORY_URL"
 }
 
 start-install-archinstall(){
-archinstall --config "$DIR_CONFIG/config.json" --disk-layout "$DIR_CONFIG/layout.json" --creds "$DIR_CONFIG/creds.json"
+archinstall --config "$DIR_CONFIG/config.json" --disk-layout "$DIR_CONFIG/disk_layout.json" --creds "$DIR_CONFIG/creds.json"
 }
 
 connect-wifi
