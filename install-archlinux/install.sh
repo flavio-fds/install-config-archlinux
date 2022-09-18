@@ -21,7 +21,7 @@ echo -e "${VERDE}#####${SEM_COR}"
 start-script(){
   echo -e "${VERDE}start script(y/N)${SEM_COR}"
   read VERIFICATION
-  if VERIFICATION == "y" then
+  if "${VERIFICATION}" == "y" then
     echo -e "${VERDE}script starting${SEM_COR}"
   else
     echo -e "${VERDE}script finished${SEM_COR}"
@@ -91,7 +91,7 @@ git clone "$REPOSITORY_URL"
 echo -e "${VERMELHO}[INFO] - name and password is set to blank.${SEM_COR}"
 echo -e "${VERDE}[INFO] - I would like to edit the archinstall config name and password file(y/N).${SEM_COR}"
   read VERIFICATION
-  if VERIFICATION == "y" then
+  if "${VERIFICATION}" == "y" then
     echo -e "${VERDE}editing creds.json${SEM_COR}"
     vim "$DIR_CONFIG/creds.json"
   else
@@ -102,7 +102,7 @@ echo -e "${VERDE}[INFO] - I would like to edit the archinstall config name and p
 start-install-archinstall(){
   echo -e "${VERDE}[INFO] - start script archinstall(y/N).${SEM_COR}"
   read VERIFICATION
-  if VERIFICATION == "y" then
+  if "${VERIFICATION}" == "y" then
     echo -e "${VERDE}starting archinstall${SEM_COR}" && sleep 2
   else
     exit 1
@@ -116,3 +116,4 @@ check-connectiont
 install-packages
 clone-repository
 start-install-archinstall
+
