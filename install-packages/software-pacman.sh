@@ -7,7 +7,7 @@ Y="y"
 
 echo -e "${VERDE}#############################${SEM_COR}"
 echo -e "${VERDE}###  INSTALL SOFTWARE!!!  ###${SEM_COR}"
-echo -e "${VERDE}#############################${SEM_COR}" && sleep 2
+echo -e "${VERDE}#############################${SEM_COR}" && sleep 1
 
 PKGS=(
 
@@ -107,11 +107,18 @@ PKGS=(
     # VIRTUALIZATION ------------------------------------------------------
 
     'virtualbox'
-    'virtualbox-host-modules-arch'
+)
+
+PKGS-WITH-CONFIRM=(
+
+    # VIRTUALIZATION ------------------------------------------------------
+
+    'virtualbox-host-modules-arch' # to provide host modules: for the linux kernel, choose virtualbox-host-modules-arch
 )
 
 start-script(){
-  read -p "${VERDE}Start script(y/N)${SEM_COR}" VERIFICATION
+    echo -e "${VERDE}start script(y/N)${SEM_COR}"
+  read VERIFICATION
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${VERDE}script starting${SEM_COR}"
   else
@@ -121,7 +128,8 @@ start-script(){
 }
 
 update-packages(){
-  read -p "${VERDE}update packages(y/N)${SEM_COR}" VERIFICATION
+    echo -e "${VERDE}start script(y/N)${SEM_COR}"
+  read VERIFICATION
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${VERDE}Updating packages!!!${SEM_COR}"
     sudo pacman -Syu
@@ -146,6 +154,22 @@ for PKG in "${PKGS[@]}"; do
     if ! pacman -Q "$PKG" &> /dev/null; then
        echo "INSTALLING: ${PKG}"
        sudo pacman -S "$PKG" --noconfirm --needed
+    else
+       echo -e "${VERMELHO}Package [$PKG] already installed${SEM_COR}"
+    fi
+done
+}
+
+install-packages-WITH-CONFIRM(){
+  echo "INSTALL PACKAGES "
+  echo ""
+  echo -e "${VERMELHO}for the linux kernel, choose virtualbox-host-modules-arch${SEM_COR}"
+  echo -e "${VERMELHO}for any other kernel (including linux-lts), choose virtualbox-host-dkms${SEM_COR}"
+  echo ""
+for PKG in "${PKGS-WITH-CONFIRM[@]}"; do
+    if ! pacman -Q "$PKG" &> /dev/null; then
+       echo "INSTALLING: ${PKG}"
+       sudo pacman -S "$PKG" --needed
     else
        echo -e "${VERMELHO}Package [$PKG] already installed${SEM_COR}"
     fi
