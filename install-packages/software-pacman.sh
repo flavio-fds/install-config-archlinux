@@ -36,12 +36,11 @@ PKGS=(
     'wget'                  # Remote content retrieval
     'zsh'                   # ZSH shell - add-on(zsh-autosuggestions, zsh-syntax-highlighting,  spaceship-prompt(AUR))
     'zsh-autosuggestions'   # zsh add-on
-    'zsh-syntax-highlighting'# zsh add-on
+    'zsh-syntax-highlighting' # zsh add-on
     'playerctl'             # Utility controls media players
     'lolcat'                 # Font terminal color
     'less'
     'speedtest-cli'         # Internet speed via terminal
-    'hardinfo'              # Hardware info app
     #'rsync'                 # Remote file sync utility
 
     # DISK UTILITIES ------------------------------------------------------
@@ -77,7 +76,6 @@ PKGS=(
     'chromium'              # Web browser
     'firefox'               # Web browser
     'transmission-gtk'      # Download torrent
-    'flashplugin'           # Flash
 
     # COMMUNICATIONS ------------------------------------------------------
 
@@ -111,9 +109,10 @@ PKGS=(
     'virtualbox-host-modules-arch'
 )
 
+echo "CHECK PACKAGES"
+
 for PKG in "${PKGS[@]}"; do
-    echo "CHECK NAME PACKAGE: ${PKG}"
-    if sudo pacman -Q "$PKG"; then
+    if pacman -Ss "$PKG" &> /dev/null; then
        echo -e "${VERDE}Package [$PKG] OK${SEM_COR}"
     else
        echo -e "${VERMELHO}Package [$PKG] not found${SEM_COR}"
@@ -121,10 +120,14 @@ for PKG in "${PKGS[@]}"; do
     fi
 done
 
-#for PKG in "${PKGS[@]}"; do
-#    echo "INSTALLING: ${PKG}"
-#    sudo pacman -S "$PKG" --noconfirm --needed
-#done
+for PKG in "${PKGS[@]}"; do
+    if ! pacman -Q "$PKG" &> /dev/null; then
+       echo "INSTALLING: ${PKG}"
+       sudo pacman -S "$PKG" --noconfirm --needed
+    else
+       echo -e "${VERMELHO}Package [$PKG] already installed${SEM_COR}"
+    fi
+done
 
 echo
 echo "Done!"
