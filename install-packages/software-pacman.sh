@@ -156,3 +156,8 @@ done
 echo
 echo "Done!"
 echo
+
+start-script
+update-packages
+check-packages
+install-packages
