@@ -16,7 +16,7 @@ echo -e "${VERMELHO}############################################################
 echo -e "${VERMELHO}#######################################################################${SEM_COR}"
 echo -e "${VERDE}##                         1 - connect wifi                          ##${SEM_COR}"
 echo -e "${VERDE}##                       2 - check-connectiont                       ##${SEM_COR}"
-echo -e "${VERDE}##     3 - clone repository file config arch install      ##$DIR_CONFIG${SEM_COR}"
+echo -e "${VERDE}##     3 - clone repository file config arch install      $DIR_CONFIG##${SEM_COR}"
 echo -e "${VERDE}##  4 - install with scrip https://github.com/archlinux/archinstall  ##${SEM_COR}"
 echo -e "${VERMELHO}#######################################################################${SEM_COR}"
 echo -e "${VERMELHO}#######################################################################${SEM_COR}"
