@@ -10,10 +10,16 @@ PKGS=(
 
     # SYSTEM UTILITIES ----------------------------------------------------
 
+    'simple-mtpfs'   #Media Transfer Protocol (MTP) can be used to transfer media files to and from many mobile phones
+
     # TERMINAL UTILITIES --------------------------------------------------
 
+    'spaceship-prompt'          # zsh add-on
+    
     # UTILITIES -----------------------------------------------------------
-
+    
+    'lf'            # Terminal file manager
+    
     # DEVELOPMENT ---------------------------------------------------------
     
     'visual-studio-code-bin'    # Kickass text editor
@@ -29,10 +35,10 @@ PKGS=(
     # COMMUNICATIONS ------------------------------------------------------
 
     'zoom'  # Zoom
-    'slack' # Slack
+    'slack-desktop' # Slack
 
     # THEMES --------------------------------------------------------------
-
+    'nerd-fonts-complete'       #Fonts Nerd
 )
 
 
