@@ -63,7 +63,7 @@ function update {
   echo "update the package $1"
   cd "$AUR_DIR/$1"
   result=$(git pull)
-  echo result
+  echo $result
   if [[ $result == "Already up to date." ]]; then
   exit
   fi
@@ -75,7 +75,7 @@ function update {
 function remove {
   validate_package_not_empty $1
   echo "removing $1"
-  sudo pacman -Rns $1
+  sudo pacman -Rns $1 && exit
   echo "cleaning installation files"
   validate_package_is_fetched $1
   rm -rf "$AUR_DIR/$1" || true

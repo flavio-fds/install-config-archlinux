@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+VERMELHO='\e[1;91m'
+VERDE='\e[1;92m'
+SEM_COR='\e[0m'
+
 echo
 echo "INSTALLING AUR SOFTWARE"
 echo
@@ -22,7 +26,7 @@ PKGS=(
 
     # MEDIA ---------------------------------------------------------------
 
-    'spotify'                   # Music player
+    #'spotify'                   # Music player
 
     # COMMUNICATIONS ------------------------------------------------------
 
@@ -31,7 +35,7 @@ PKGS=(
 
     # THEMES --------------------------------------------------------------
 
-    'nerd-fonts-complete'       #Fonts Nerd
+    #'nerd-fonts-complete'       #Fonts Nerd
 )
 
 chmod +x script-aur.sh
@@ -39,6 +43,17 @@ chmod +x script-aur.sh
 for PKG in "${PKGS[@]}"; do
     ./script-aur.sh $@ $PKG
 done
+
+if [ $@ == "install" ]; then
+    for PKG in "${PKGS[@]}"; do
+        if pacman -Q "$PKG" &> /dev/null; then
+        echo -e "${VERDE}Package [$PKG] already installed${SEM_COR}"
+        else
+        echo -e "${VERMELHO}Error Install Package ${PKG}${SEM_COR}"
+        fi
+    done
+fi
+
 
 echo
 echo "Done!"
