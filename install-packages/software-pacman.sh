@@ -100,7 +100,6 @@ PKGS=(
     # PRODUCTIVITY --------------------------------------------------------
 
     'libreoffice-still'     # Libre office with extra features
-    'gvim'                  # Gvim simple text editor
     'nano'                  # Nano simple text editor
     'evince'                # PDF viewer
 
@@ -109,11 +108,16 @@ PKGS=(
     'virtualbox'
 )
 
-PKGS-WITH-CONFIRM=(
+PKGS_WITH_CONFIRM=(
 
     # VIRTUALIZATION ------------------------------------------------------
-
+  
     'virtualbox-host-modules-arch' # to provide host modules: for the linux kernel, choose virtualbox-host-modules-arch
+  
+    # PRODUCTIVITY --------------------------------------------------------
+  
+    'gvim'                  # Gvim simple text editor
+
 )
 
 start-script(){
@@ -128,7 +132,7 @@ start-script(){
 }
 
 update-packages(){
-    echo -e "${VERDE}start script(y/N)${SEM_COR}"
+    echo -e "${VERDE}Update packages(y/N)${SEM_COR}"
   read VERIFICATION
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${VERDE}Updating packages!!!${SEM_COR}"
@@ -152,7 +156,7 @@ install-packages(){
   echo "INSTALL PACKAGES"
 for PKG in "${PKGS[@]}"; do
     if ! pacman -Q "$PKG" &> /dev/null; then
-       echo "INSTALLING: ${PKG}"
+       echo -e "${VERDE}Installing: ${PKG}${SEM_COR}"
        sudo pacman -S "$PKG" --noconfirm --needed
     else
        echo -e "${VERMELHO}Package [$PKG] already installed${SEM_COR}"
@@ -161,17 +165,17 @@ done
 }
 
 install-packages-WITH-CONFIRM(){
-  echo "INSTALL PACKAGES "
-  echo ""
-  echo -e "${VERMELHO}for the linux kernel, choose virtualbox-host-modules-arch${SEM_COR}"
-  echo -e "${VERMELHO}for any other kernel (including linux-lts), choose virtualbox-host-dkms${SEM_COR}"
-  echo ""
-for PKG in "${PKGS-WITH-CONFIRM[@]}"; do
+echo -e "${VERDE}INSTALL PACKAGES${SEM_COR}"
+echo ""
+echo -e "${VERMELHO}for the linux kernel, choose virtualbox-host-modules-arch${SEM_COR}"
+echo -e "${VERMELHO}for any other kernel (including linux-lts), choose virtualbox-host-dkms${SEM_COR}"
+echo ""
+for PKG in "${PKGS_WITH_CONFIRM[@]}"; do
     if ! pacman -Q "$PKG" &> /dev/null; then
-       echo "INSTALLING: ${PKG}"
-       sudo pacman -S "$PKG" --needed
+      echo -e "${VERDE}Installing: ${PKG}${SEM_COR}"
+      sudo pacman -S "$PKG" --needed
     else
-       echo -e "${VERMELHO}Package [$PKG] already installed${SEM_COR}"
+      echo -e "${VERMELHO}Package [$PKG] already installed${SEM_COR}"
     fi
 done
 }
@@ -180,7 +184,9 @@ start-script
 update-packages
 check-packages
 install-packages
+install-packages-WITH-CONFIRM
 
 echo -e "${VERDE}#################${SEM_COR}"
 echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
 echo -e "${VERDE}#################${SEM_COR}"
+
