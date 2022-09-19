@@ -7,7 +7,7 @@ echo
 PKGS=(
 
     # SYSTEM --------------------------------------------------------------
-
+    'xcompmgr'              # Primitive window transparency (zoom draw scree)
     'intel-gpu-tools'
     'brightnessctl'         # Screen brightness control
     'lm_sensors'            # Sensors hardware
@@ -17,7 +17,7 @@ PKGS=(
     'translate-shell'
     'make'
     'man-db'
-    #'gnome-keyring'         # System password storage
+    'gnome-keyring'         # System password storage
     'alacritty'             # Terminal emulator
     'bc'                    # Precision calculator language
     'calc'                  # Precision calculator language
@@ -31,8 +31,9 @@ PKGS=(
     'zip'                   # Zip compression program
     'wget'                  # Remote content retrieval
     'zsh'                   # ZSH shell
-    'zsh-autosuggestions'
-    'zsh-syntax-highlighting'
+    'zsh-autosuggestions'   # zsh add-on
+    'zsh-syntax-highlighting'# zsh add-on
+    # spaceship-prompt      # zsh add-on 'AUR'
     'playerctl'             # Utility controls media players
     'lolcat'                 # Font terminal color
     'less'
@@ -66,7 +67,6 @@ PKGS=(
     'clang'                 # C Lang compiler
     'gcc'                   # C/C++ compiler
     'glibc'                 # C libraries
-    'mariadb'               # Drop-in replacement for MySQL
     'php'                   # Web application scripting language
     'go'                    # Scripting language
     'python'                # Scripting language
@@ -95,7 +95,8 @@ PKGS=(
     'inkscape'              # Vector image creation app
     'imagemagick'           # Command line image manipulation tool
     'pngcrush'              # Tools for optimizing PNG images
-'noto-fonts-emoji'
+    'noto-fonts-emoji'
+    'ttf-ubuntu-font-family'
 
     # PRODUCTIVITY --------------------------------------------------------
 
