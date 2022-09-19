@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+VERMELHO='\e[1;91m'
+VERDE='\e[1;92m'
+SEM_COR='\e[0m'
+
 echo
 echo "INSTALLING SOFTWARE"
 echo
@@ -30,19 +34,15 @@ PKGS=(
     'unzip'                 # Zip compression program
     'zip'                   # Zip compression program
     'wget'                  # Remote content retrieval
-    'zsh'                   # ZSH shell
+    'zsh'                   # ZSH shell - add-on(zsh-autosuggestions, zsh-syntax-highlighting,  spaceship-prompt(AUR))
     'zsh-autosuggestions'   # zsh add-on
     'zsh-syntax-highlighting'# zsh add-on
-    # spaceship-prompt      # zsh add-on 'AUR'
     'playerctl'             # Utility controls media players
     'lolcat'                 # Font terminal color
     'less'
     'speedtest-cli'         # Internet speed via terminal
-    #'hardinfo'              # Hardware info app
+    'hardinfo'              # Hardware info app
     #'rsync'                 # Remote file sync utility
-    #'openssh'               # SSH connectivity tools
-    #'file-roller'           # Archive utility
-
 
     # DISK UTILITIES ------------------------------------------------------
 
@@ -112,9 +112,19 @@ PKGS=(
 )
 
 for PKG in "${PKGS[@]}"; do
-    echo "INSTALLING: ${PKG}"
-    sudo pacman -S "$PKG" --noconfirm --needed
+    echo "CHECK NAME PACKAGE: ${PKG}"
+    if sudo pacman -Q "$PKG"; then
+       echo -e "${VERDE}Package [$PKG] OK${SEM_COR}"
+    else
+       echo -e "${VERMELHO}Package [$PKG] not found${SEM_COR}"
+       exit 1
+    fi
 done
+
+#for PKG in "${PKGS[@]}"; do
+#    echo "INSTALLING: ${PKG}"
+#    sudo pacman -S "$PKG" --noconfirm --needed
+#done
 
 echo
 echo "Done!"
