@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+VERMELHO='\e[1;91m'
+VERDE='\e[1;92m'
+SEM_COR='\e[0m'
+
 AUR_URL="https://aur.archlinux.org"
 AUR_DIR="$HOME/aur"
 
@@ -45,6 +49,10 @@ function fetch {
 }
 
 function install {
+  if pacman -Q "$1" &> /dev/null; then
+    echo -e "${VERDE}Package [$1] already installed${SEM_COR}"
+    exit
+  fi
   fetch $1
   validate_package_not_empty $1
   validate_package_is_fetched $1
