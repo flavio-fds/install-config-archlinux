@@ -12,14 +12,14 @@ DIR_CONFIG="/root/install-config-archlinux/install-archlinux/configs"
 
 echo ""
 echo ""
-echo -e "${VERMELHO}###############################################################${SEM_COR}"
-echo -e "${VERMELHO}###############################################################${SEM_COR}"
-echo -e "${VERDE}1 - connect wifi${SEM_COR}"
-echo -e "${VERDE}2 - check-connectiont${SEM_COR}"
-echo -e "${VERDE}3 - clone repository file config arch install $DIR_CONFIG${SEM_COR}"
-echo -e "${VERDE}4 - install with scrip https://github.com/archlinux/archinstall${SEM_COR}"
-echo -e "${VERMELHO}###############################################################${SEM_COR}"
-echo -e "${VERMELHO}###############################################################${SEM_COR}"
+echo -e "${VERMELHO}#######################################################################${SEM_COR}"
+echo -e "${VERMELHO}#######################################################################${SEM_COR}"
+echo -e "${VERDE}##                         1 - connect wifi                          ##${SEM_COR}"
+echo -e "${VERDE}##                       2 - check-connectiont                       ##${SEM_COR}"
+echo -e "${VERDE}##     3 - clone repository file config arch install      ##$DIR_CONFIG${SEM_COR}"
+echo -e "${VERDE}##  4 - install with scrip https://github.com/archlinux/archinstall  ##${SEM_COR}"
+echo -e "${VERMELHO}#######################################################################${SEM_COR}"
+echo -e "${VERMELHO}#######################################################################${SEM_COR}"
 
 start-script(){
   echo -e "${VERDE}start script(y/N)${SEM_COR}"
@@ -137,9 +137,9 @@ echo -e "${VERDE}[INFO] - I would like to edit the archinstall config name and p
     echo ""
     echo ""
     echo -e "${VERMELHO}#####################################${SEM_COR}"
-    echo -e "${VERMELHO}#####Remember config User accoun#####${SEM_COR}"
-    echo -e "${VERMELHO}#####Remember config User accoun#####${SEM_COR}"
-    echo -e "${VERMELHO}#####Remember config User accoun#####${SEM_COR}"
+    echo -e "${VERMELHO}###  Remember config User accoun  ###${SEM_COR}"
+    echo -e "${VERMELHO}###  Remember config User accoun  ###${SEM_COR}"
+    echo -e "${VERMELHO}###  Remember config User accoun  ###${SEM_COR}"
     echo -e "${VERMELHO}#####################################${SEM_COR}" && sleep 5
   fi
 }
@@ -157,9 +157,9 @@ start-install-archinstall(){
   echo ""
   echo ""
   echo -e "${VERMELHO}####################################${SEM_COR}"
-  echo -e "${VERMELHO}#####Remember config disklayout#####${SEM_COR}"
-  echo -e "${VERMELHO}#####Remember config disklayout#####${SEM_COR}"
-  echo -e "${VERMELHO}#####Remember config disklayout#####${SEM_COR}"
+  echo -e "${VERMELHO}###  Remember config disklayout  ###${SEM_COR}"
+  echo -e "${VERMELHO}###  Remember config disklayout  ###${SEM_COR}"
+  echo -e "${VERMELHO}###  Remember config disklayout  ###${SEM_COR}"
   echo -e "${VERMELHO}####################################${SEM_COR}" && sleep 3
   
   archinstall --config "$DIR_CONFIG/config.json" --creds "$DIR_CONFIG/creds.json"
