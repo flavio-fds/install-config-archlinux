@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+
+echo
+echo "INSTALLING SOFTWARE"
+echo
+
+PKGS=(
+
+    # SYSTEM --------------------------------------------------------------
+
+    'brightnessctl'         # Screen brightness control
+    'lm_sensors'            # Sensors hardware
+
+    # TERMINAL UTILITIES --------------------------------------------------
+
+    #'gnome-keyring'         # System password storage
+    'alacritty'             # Terminal emulator
+    'bc'                    # Precision calculator language
+    'calc'                  # Precision calculator language
+    'curl'                  # Remote content retrieval
+    'feh'                   # Terminal-based image viewer/manipulator
+    'htop'                  # Process viewer
+    'neofetch'              # Shows system info when you launch terminal
+    'numlockx'              # Turns on numlock in X11
+    'unrar'                 # RAR compression program
+    'unzip'                 # Zip compression program
+    'zip'                   # Zip compression program
+    'wget'                  # Remote content retrieval
+    'zsh'                   # ZSH shell
+    'playerctl'             # Utility controls media players
+    'lolcat'                 # Font terminal color
+    'less'
+    'speedtest-cli'         # Internet speed via terminal
+    #'hardinfo'              # Hardware info app
+    #'rsync'                 # Remote file sync utility
+    #'openssh'               # SSH connectivity tools
+    #'file-roller'           # Archive utility
+
+
+    # DISK UTILITIES ------------------------------------------------------
+
+    'ntfs-3g'               # Open source implementation of NTFS file system
+    'dosfstools'            # 
+    'os-prober'             # 
+    'mtools'                #
+
+    # GENERAL UTILITIES ---------------------------------------------------
+
+    'scrot'                 # Screen capture.
+    'rofi'                  # Application launcher
+    'thunar'                  # Filesystem browser
+    'catfish'               # Filesystem search
+
+    # DEVELOPMENT ---------------------------------------------------------
+
+    'git'                   # Version control system
+    'clang'                 # C Lang compiler
+    'gcc'                   # C/C++ compiler
+    'glibc'                 # C libraries
+    'mariadb'               # Drop-in replacement for MySQL
+    'php'                   # Web application scripting language
+    'go'                    # Scripting language
+    'python'                # Scripting language
+    'yarn'                  # Dependency management (Hyper needs this)
+
+    # WEB TOOLS -----------------------------------------------------------
+
+    'chromium'              # Web browser
+    'firefox'               # Web browser
+    'transmission-gtk'      # Download torrent
+    'flashplugin'           # Flash
+
+    # COMMUNICATIONS ------------------------------------------------------
+
+    # MEDIA ---------------------------------------------------------------
+
+    'alsa-utils'            # Command line utilities for the ALSA project
+    'pavucontrol'           # Volume control tool
+    'vlc'                   # Video player
+    'obs'                   # Record your screen
+    'lollypop'              # Music player
+
+    # GRAPHICS AND DESIGN -------------------------------------------------
+
+    'gimp'                  # GNU Image Manipulation Program
+    'inkscape'              # Vector image creation app
+    'imagemagick'           # Command line image manipulation tool
+    'pngcrush'              # Tools for optimizing PNG images
+
+    # PRODUCTIVITY --------------------------------------------------------
+
+    'libreoffice-fresh'     # Libre office with extra features
+    'gvim'                  # Gvim simple text editor
+    'nano'                  # Nano simple text editor
+    'evince'                # PDF viewer
+
+    # VIRTUALIZATION ------------------------------------------------------
+
+    'virtualbox'
+    'virtualbox-host-modules-arch'
+)
+
+for PKG in "${PKGS[@]}"; do
+    echo "INSTALLING: ${PKG}"
+    sudo pacman -S "$PKG" --noconfirm --needed
+done
+
+echo
+echo "Done!"
+echo
