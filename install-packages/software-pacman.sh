@@ -3,10 +3,11 @@
 VERMELHO='\e[1;91m'
 VERDE='\e[1;92m'
 SEM_COR='\e[0m'
+Y="y"
 
-echo -e "${VERMELHO}#############################${SEM_COR}"
-echo -e "${VERMELHO}###  INSTALL SOFTWARE!!!  ###${SEM_COR}"
-echo -e "${VERMELHO}#############################${SEM_COR}" && sleep 2
+echo -e "${VERDE}#############################${SEM_COR}"
+echo -e "${VERDE}###  INSTALL SOFTWARE!!!  ###${SEM_COR}"
+echo -e "${VERDE}#############################${SEM_COR}" && sleep 2
 
 PKGS=(
 
@@ -110,8 +111,7 @@ PKGS=(
 )
 
 start-script(){
-  echo -e "${VERDE}Start script(y/N)${SEM_COR}"
-  read VERIFICATION
+  read -p "${VERDE}Start script(y/N)${SEM_COR}" VERIFICATION
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${VERDE}script starting${SEM_COR}"
   else
@@ -121,8 +121,7 @@ start-script(){
 }
 
 update-packages(){
-  echo -e "${VERDE}update packages(y/N)${SEM_COR}"
-  read VERIFICATION
+  read -p "${VERDE}update packages(y/N)${SEM_COR}" VERIFICATION
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${VERDE}Updating packages!!!${SEM_COR}"
     sudo pacman -Syu
@@ -153,11 +152,11 @@ for PKG in "${PKGS[@]}"; do
 done
 }
 
-echo
-echo "Done!"
-echo
-
 start-script
 update-packages
 check-packages
 install-packages
+
+echo -e "${VERDE}#################${SEM_COR}"
+echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+echo -e "${VERDE}#################${SEM_COR}"
