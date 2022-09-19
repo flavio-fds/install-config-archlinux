@@ -4,9 +4,9 @@ VERMELHO='\e[1;91m'
 VERDE='\e[1;92m'
 SEM_COR='\e[0m'
 
-echo
-echo "INSTALLING SOFTWARE"
-echo
+echo -e "${VERMELHO}#############################${SEM_COR}"
+echo -e "${VERMELHO}###  INSTALL SOFTWARE!!!  ###${SEM_COR}"
+echo -e "${VERMELHO}#############################${SEM_COR}" && sleep 2
 
 PKGS=(
 
@@ -84,7 +84,7 @@ PKGS=(
     'alsa-utils'            # Command line utilities for the ALSA project
     'pavucontrol'           # Volume control tool
     'vlc'                   # Video player
-    'obs'                   # Record your screen
+    'obs-studio'                   # Record your screen
     'lollypop'              # Music player
 
     # GRAPHICS AND DESIGN -------------------------------------------------
@@ -109,17 +109,40 @@ PKGS=(
     'virtualbox-host-modules-arch'
 )
 
-echo "CHECK PACKAGES"
+start-script(){
+  echo -e "${VERDE}Start script(y/N)${SEM_COR}"
+  read VERIFICATION
+  if [ ${VERIFICATION} = $Y ]; then
+    echo -e "${VERDE}script starting${SEM_COR}"
+  else
+    echo -e "${VERMELHO}script finished${SEM_COR}"
+    exit 1
+  fi
+}
 
-for PKG in "${PKGS[@]}"; do
+update-packages(){
+  echo -e "${VERDE}update packages(y/N)${SEM_COR}"
+  read VERIFICATION
+  if [ ${VERIFICATION} = $Y ]; then
+    echo -e "${VERDE}Updating packages!!!${SEM_COR}"
+    sudo pacman -Syu
+  fi
+}
+
+check-packages(){
+  echo "CHECK PACKAGES"
+  for PKG in "${PKGS[@]}"; do
     if pacman -Ss "$PKG" &> /dev/null; then
        echo -e "${VERDE}Package [$PKG] OK${SEM_COR}"
     else
        echo -e "${VERMELHO}Package [$PKG] not found${SEM_COR}"
        exit 1
     fi
-done
+ done
+}
 
+install-packages(){
+  echo "INSTALL PACKAGES"
 for PKG in "${PKGS[@]}"; do
     if ! pacman -Q "$PKG" &> /dev/null; then
        echo "INSTALLING: ${PKG}"
@@ -128,6 +151,7 @@ for PKG in "${PKGS[@]}"; do
        echo -e "${VERMELHO}Package [$PKG] already installed${SEM_COR}"
     fi
 done
+}
 
 echo
 echo "Done!"
