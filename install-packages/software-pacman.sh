@@ -8,11 +8,15 @@ PKGS=(
 
     # SYSTEM --------------------------------------------------------------
 
+    'intel-gpu-tools'
     'brightnessctl'         # Screen brightness control
     'lm_sensors'            # Sensors hardware
 
     # TERMINAL UTILITIES --------------------------------------------------
 
+    'translate-shell'
+    'make'
+    'man-db'
     #'gnome-keyring'         # System password storage
     'alacritty'             # Terminal emulator
     'bc'                    # Precision calculator language
@@ -27,6 +31,8 @@ PKGS=(
     'zip'                   # Zip compression program
     'wget'                  # Remote content retrieval
     'zsh'                   # ZSH shell
+    'zsh-autosuggestions'
+    'zsh-syntax-highlighting'
     'playerctl'             # Utility controls media players
     'lolcat'                 # Font terminal color
     'less'
@@ -52,7 +58,10 @@ PKGS=(
     'catfish'               # Filesystem search
 
     # DEVELOPMENT ---------------------------------------------------------
-
+    
+    'mysql-workbench'
+    'httpie'
+    'docker'
     'git'                   # Version control system
     'clang'                 # C Lang compiler
     'gcc'                   # C/C++ compiler
@@ -86,10 +95,11 @@ PKGS=(
     'inkscape'              # Vector image creation app
     'imagemagick'           # Command line image manipulation tool
     'pngcrush'              # Tools for optimizing PNG images
+'noto-fonts-emoji'
 
     # PRODUCTIVITY --------------------------------------------------------
 
-    'libreoffice-fresh'     # Libre office with extra features
+    'libreoffice-still'     # Libre office with extra features
     'gvim'                  # Gvim simple text editor
     'nano'                  # Nano simple text editor
     'evince'                # PDF viewer
