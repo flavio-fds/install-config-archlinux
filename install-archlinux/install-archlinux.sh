@@ -134,7 +134,7 @@ echo -e "${VERDE}[INFO] - I would like to edit the archinstall config name and p
     echo -e "${VERMELHO}###  Remember config User accoun  ###${SEM_COR}"
     echo -e "${VERMELHO}###  Remember config User accoun  ###${SEM_COR}"
     echo -e "${VERMELHO}###  Remember config User accoun  ###${SEM_COR}"
-    echo -e "${VERMELHO}#####################################${SEM_COR}" && sleep 5
+    echo -e "${VERMELHO}#####################################${SEM_COR}" && sleep 1
   fi
 }
 
@@ -153,7 +153,7 @@ start-install-archinstall(){
   echo -e "${VERMELHO}###  Remember config disklayout  ###${SEM_COR}"
   echo -e "${VERMELHO}###  Remember config disklayout  ###${SEM_COR}"
   echo -e "${VERMELHO}###  Remember config disklayout  ###${SEM_COR}"
-  echo -e "${VERMELHO}####################################${SEM_COR}" && sleep 3
+  echo -e "${VERMELHO}####################################${SEM_COR}" && sleep 1
   
   archinstall --config "$DIR_CONFIG/config.json" --creds "$DIR_CONFIG/creds.json"
 
