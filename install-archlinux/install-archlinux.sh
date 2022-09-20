@@ -10,16 +10,19 @@ Y="y"
 REPOSITORY_URL="https://github.com/flavio-fds/install-config-archlinux.git"
 DIR_CONFIG="/root/install-config-archlinux/install-archlinux/configs"
 
-echo ""
-echo ""
-echo -e "${VERMELHO}#######################################################################${SEM_COR}"
-echo -e "${VERMELHO}#######################################################################${SEM_COR}"
-echo -e "${VERDE}##                         1 - connect wifi                          ##${SEM_COR}"
-echo -e "${VERDE}##                       2 - check-connectiont                       ##${SEM_COR}"
-echo -e "${VERDE}##     3 - clone repository file config arch install      $DIR_CONFIG##${SEM_COR}"
-echo -e "${VERDE}##  4 - install with scrip https://github.com/archlinux/archinstall  ##${SEM_COR}"
-echo -e "${VERMELHO}#######################################################################${SEM_COR}"
-echo -e "${VERMELHO}#######################################################################${SEM_COR}"
+echo
+echo
+echo -e "${VERDE}#########################################################${SEM_COR}"
+echo -e "${VERDE}#########################################################${SEM_COR}"
+echo -e "${VERDE}##                     1 - Set keyboar                 ##${SEM_COR}"
+echo -e "${VERDE}##                    2 - connect wifi                 ##${SEM_COR}"
+echo -e "${VERDE}##                 3 - Install package                 ##${SEM_COR}"
+echo -e "${VERDE}##      4 - clone repository file config archinstall   ##${SEM_COR}"
+echo -e "${VERDE}##          5 - install with scrip Archinstall         ##${SEM_COR}"
+echo -e "${VERDE}#########################################################${SEM_COR}"
+echo -e "${VERDE}#########################################################${SEM_COR}"
+echo
+echo
 
 start-script(){
   echo -e "${VERDE}start script(y/N)${SEM_COR}"
@@ -29,13 +32,21 @@ start-script(){
 }
 
 set-layout-keyboard(){
-loadkeys br-abnt2
+  echo
+  echo -e "${VERDE}Set keyboard!!!${SEM_COR}"
+  loadkeys br-abnt2
+  echo
 }
 
 connect-wifi(){
+  echo
+  echo -e "${VERDE}Connect wifi!!!${SEM_COR}"
+  echo
+
   echo -e "${VERDE}Check connection...${SEM_COR}"
   if ping -c 1 8.8.8.8 -q &> /dev/null; then
     echo -e "${VERDE}[INFO] - Internet connection working normally.${SEM_COR}"
+    echo
     return 1
   fi
 ###Connect wifi###
@@ -51,9 +62,9 @@ connect-wifi(){
 #iwctl device list
 #iwctl station <name_device> scan
 #iwctl station <name> connect <network name>
-
-echo -e "${VERDE}[INFO] - Connect wifi.${SEM_COR}" && sleep 2
-
+echo
+echo -e "${VERDE}[INFO] - Connecting wifi...${SEM_COR}" && sleep 2
+echo
 iwctl device list
 echo -e "${VERDE}[INFO] -^^^Insert name device ^^^.${SEM_COR}"
 read NAME_DEVICE
@@ -66,7 +77,7 @@ read NETWORK_NAME
 
 
 iwctl station $NAME_DEVICE connect $NETWORK_NAME 
-
+echo
 echo -e "${VERDE}Check connection...${SEM_COR}" && sleep 3
 
 if ! ping -c 1 8.8.8.8 -q &> /dev/null; then
@@ -79,47 +90,52 @@ fi
 }
 
 install-packages(){
+  echo
+  echo -e "${VERDE}Install-packages!!!${SEM_COR}"
+  echo
   if pacman -Q git && pacman -Q vim; then
-  echo -e "${VERDE}packages already installed${SEM_COR}"
-  return 1
-fi
+    echo -e "${VERDE}packages already installed${SEM_COR}"
+    return 1
+  fi
 
-echo -e "${VERDE}[INFO] - Install Git and VIM.${SEM_COR}"
-pacman -S git vim
+  echo -e "${VERDE}[INFO] - Installing Git and VIM.${SEM_COR}"
+  pacman -S git vim
 
-sleep 1
+  sleep 1
 
-if ! pacman -Q git; then
-  echo -e "${VERMELHO}error install git${SEM_COR}"
-  exit 1
-fi
+  if ! pacman -Q git; then
+    echo -e "${VERMELHO}error install git${SEM_COR}"
+    exit 1
+  fi
 
-if ! pacman -Q vim; then
-  echo -e "${VERMELHO}error install vim${SEM_COR}"
-  exit 1
-fi
+  if ! pacman -Q vim; then
+    echo -e "${VERMELHO}error install vim${SEM_COR}"
+    exit 1
+  fi
 }
 
 clone-repository(){
-echo -e "${VERDE}[INFO] - Cloning repository!!!${SEM_COR}"
+  echo
+  echo -e "${VERDE}[INFO] - Cloning repository!!!${SEM_COR}"
+  echo
+  if [ ! -d "/root/install-config-archlinux" ]; then
+    git clone "$REPOSITORY_URL" /root/install-config-archlinux
+  else
+    echo -e "${VERDE}[INFO] - Repository already cloned!!!${SEM_COR}"
+    return 1
+  fi
 
-if [ ! -d "/root/install-config-archlinux" ]; then
-  git clone "$REPOSITORY_URL" /root/install-config-archlinux
-else
-  echo -e "${VERDE}[INFO] - Repository already cloned!!!${SEM_COR}"
-  return 1
-fi
-
-if [ ! -d "/root/install-config-archlinux" ]; then
-  echo -e "${VERDE}[VERMELHO] - Repository clone error!!!${SEM_COR}"
-  exit 1
-else
-  echo -e "${VERDE}[INFO] - Cloned repository!!!${SEM_COR}"
-fi
+  if [ ! -d "/root/install-config-archlinux" ]; then
+    echo -e "${VERDE}[VERMELHO] - Repository clone error!!!${SEM_COR}"
+    exit 1
+  else
+    echo -e "${VERDE}[INFO] - Cloned repository!!!${SEM_COR}"
+  fi
 
 }
 
 edit-name-password(){
+echo
 echo -e "${VERMELHO}[INFO] - name and password is set to blank.${SEM_COR}"
 echo -e "${VERDE}[INFO] - I would like to edit the archinstall config name and password file(y/N).${SEM_COR}"
   read VERIFICATION
@@ -139,23 +155,18 @@ echo -e "${VERDE}[INFO] - I would like to edit the archinstall config name and p
 }
 
 start-install-archinstall(){
-  echo -e "${VERDE}[INFO] - start script archinstall(y/N).${SEM_COR}"
-  read VERIFICATION
-
-  [ -z "$VERIFICATION" ] || [ $VERIFICATION != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ $VERIFICATION = $Y ] && echo -e "${VERDE}starting archinstall${SEM_COR}" && sleep 2
-
-  echo "archinstall --config "$DIR_CONFIG/config.json" --disk-layout "$DIR_CONFIG/disk_layout.json" --creds "$DIR_CONFIG/creds.json""
-  ##archinstall --config "$DIR_CONFIG/config.json" --disk-layout "$DIR_CONFIG/disk_layout.json" --creds "$DIR_CONFIG/creds.json"
-  echo ""
-  echo ""
+  echo 
+  echo -e "${VERDE}[INFO] - Start script archinstall.${SEM_COR}"
+  echo 
   echo -e "${VERMELHO}#####################################${SEM_COR}"
   echo -e "${VERMELHO}###  Remember config disklayout  ####${SEM_COR}"
   echo -e "${VERMELHO}###  Remember Set Root password  ####${SEM_COR}"
   echo -e "${VERMELHO}###  Remember config User accoun ####${SEM_COR}"
-  echo -e "${VERMELHO}####################################${SEM_COR}" && sleep 1
+  echo -e "${VERMELHO}#####################################${SEM_COR}" && sleep 1
+  echo
   
-  archinstall --config "$DIR_CONFIG/config.json" --creds "$DIR_CONFIG/creds.json"
+  echo "archinstall --config $DIR_CONFIG/config.json --creds $DIR_CONFIG/creds.json --disk-layout $DIR_CONFIG/disk_layout.json "
+  #archinstall --config "$DIR_CONFIG/config.json" --creds "$DIR_CONFIG/creds.json"
 
 }
 
