@@ -5,11 +5,11 @@ VERDE='\e[1;92m'
 SEM_COR='\e[0m'
 
 Y="y"
-
+echo
 echo -e "${VERDE}##########################${SEM_COR}"
 echo -e "${VERDE}###  CONFIG DOCKER!!!  ###${SEM_COR}"
 echo -e "${VERDE}##########################${SEM_COR}"
-
+echo
 function help {
   echo "
   Insert valid argument
