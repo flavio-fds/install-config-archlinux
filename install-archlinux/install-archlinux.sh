@@ -149,10 +149,10 @@ start-install-archinstall(){
   ##archinstall --config "$DIR_CONFIG/config.json" --disk-layout "$DIR_CONFIG/disk_layout.json" --creds "$DIR_CONFIG/creds.json"
   echo ""
   echo ""
-  echo -e "${VERMELHO}####################################${SEM_COR}"
-  echo -e "${VERMELHO}###  Remember config disklayout  ###${SEM_COR}"
-  echo -e "${VERMELHO}###  Remember config disklayout  ###${SEM_COR}"
-  echo -e "${VERMELHO}###  Remember config disklayout  ###${SEM_COR}"
+  echo -e "${VERMELHO}#####################################${SEM_COR}"
+  echo -e "${VERMELHO}###  Remember config disklayout  ####${SEM_COR}"
+  echo -e "${VERMELHO}###  Remember Set Root password  ####${SEM_COR}"
+  echo -e "${VERMELHO}###  Remember config User accoun ####${SEM_COR}"
   echo -e "${VERMELHO}####################################${SEM_COR}" && sleep 1
   
   archinstall --config "$DIR_CONFIG/config.json" --creds "$DIR_CONFIG/creds.json"
