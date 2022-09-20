@@ -35,7 +35,7 @@ PKGS=(
 
     # THEMES --------------------------------------------------------------
 
-    #'nerd-fonts-complete'       #Fonts Nerd
+    'nerd-fonts-complete'       #Fonts Nerd
 )
 
 chmod +x script-aur.sh
