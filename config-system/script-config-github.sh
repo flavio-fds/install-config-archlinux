@@ -54,8 +54,8 @@ config-github(){
     cat $HOME/.ssh/id_rsa.pub # Show key public
 
     echo
-    xdg-open https://github.com/settings/ssh/new
-    
+    echo -e "${VERMELHO}https://github.com/settings/ssh/new${SEM_COR}"
+    echo
     echo -e "${VERMELHO}After adding key type OK ${SEM_COR}"
     read ok
     echo $ok
