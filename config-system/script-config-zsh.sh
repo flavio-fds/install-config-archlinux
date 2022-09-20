@@ -5,11 +5,11 @@ VERDE='\e[1;92m'
 SEM_COR='\e[0m'
 
 Y="y"
-
+echo
 echo -e "${VERDE}##############################${SEM_COR}"
 echo -e "${VERDE}###  CONFIG ZSH PLUGIN!!!  ###${SEM_COR}"
 echo -e "${VERDE}##############################${SEM_COR}"
-
+echo
 config-zsh-plugin(){
   echo -e "${VERDE}Starting config github${SEM_COR}"
 
@@ -61,6 +61,9 @@ config-zsh-plugin(){
     #: \${ZSH_HIGHLIGHT_STYLES[path]:=underline}"
     echo
     code /usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 start-script(){
@@ -70,8 +73,8 @@ start-script(){
     echo -e "${VERDE}script config zsh plugin starting${SEM_COR}"
     config-zsh-plugin
   else
-    echo -e "${VERDE}script finished${SEM_COR}"
-    exit 1
+    echo -e "${VERMELHO}script finished${SEM_COR}"
+    return 1
   fi
 }
 

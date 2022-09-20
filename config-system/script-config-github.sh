@@ -5,11 +5,11 @@ VERDE='\e[1;92m'
 SEM_COR='\e[0m'
 
 Y="y"
-
+echo
 echo -e "${VERDE}######################################${SEM_COR}"
 echo -e "${VERDE}###  CONFIG GITHUB AND KEY SSH!!!  ###${SEM_COR}"
 echo -e "${VERDE}######################################${SEM_COR}"
-
+echo
 config-github(){
     echo -e "${VERDE}Starting config github${SEM_COR}"
 
@@ -59,6 +59,9 @@ config-github(){
     echo -e "${VERMELHO}After adding key type OK ${SEM_COR}"
     read ok
     echo $ok
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 start-script(){
@@ -68,8 +71,8 @@ start-script(){
     echo -e "${VERDE}script github and SSH config starting${SEM_COR}" && sleep 2
     config-github
   else
-    echo -e "${VERDE}script finished${SEM_COR}"
-    exit 1
+    echo -e "${VERMELHO}script finished${SEM_COR}"
+    return 1
   fi
 }
 

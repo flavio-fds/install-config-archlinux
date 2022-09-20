@@ -88,14 +88,14 @@ function main {
 }
 
 start-script(){
-  echo -e "${VERDE}start script config(y/N)${SEM_COR}"
+  echo -e "${VERDE}start script install packages AUR(y/N)${SEM_COR}"
   read VERIFICATION
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${VERDE}script starting${SEM_COR}"
     chmod +x script-aur.sh
   else
-    echo -e "${VERDE}script finished${SEM_COR}"
-    exit 1
+    echo -e "${VERMELHO}script finished${SEM_COR}"
+    return 1
   fi
 
   echo "

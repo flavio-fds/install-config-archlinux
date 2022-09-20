@@ -4,11 +4,11 @@ VERMELHO='\e[1;91m'
 VERDE='\e[1;92m'
 SEM_COR='\e[0m'
 Y="y"
-
-echo -e "${VERDE}#############################${SEM_COR}"
-echo -e "${VERDE}###  INSTALL SOFTWARE!!!  ###${SEM_COR}"
-echo -e "${VERDE}#############################${SEM_COR}" && sleep 1
-
+echo
+echo -e "${VERDE}#########################################${SEM_COR}"
+echo -e "${VERDE}###  INSTALL SOFTWARE BASE PACMAN!!!  ###${SEM_COR}"
+echo -e "${VERDE}#########################################${SEM_COR}"
+echo
 PKGS=(
     # SYSTEM --------------------------------------------------------------
     'alacritty'
@@ -120,13 +120,13 @@ PKGS=(
 #)
 
 start-script(){
-    echo -e "${VERDE}start script(y/N)${SEM_COR}"
+    echo -e "${VERDE}start script install packages pacman(y/N)${SEM_COR}"
   read VERIFICATION
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${VERDE}script starting${SEM_COR}"
   else
     echo -e "${VERMELHO}script finished${SEM_COR}"
-    exit 1
+    return 1
   fi
 }
 

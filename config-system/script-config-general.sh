@@ -5,11 +5,11 @@ VERDE='\e[1;92m'
 SEM_COR='\e[0m'
 
 Y="y"
-
+echo
 echo -e "${VERDE}##########################${SEM_COR}"
 echo -e "${VERDE}###  CONFIG SYSTEM!!!  ###${SEM_COR}"
 echo -e "${VERDE}##########################${SEM_COR}"
-
+echo
 function help {
   echo "
   Insert valid argument
@@ -36,12 +36,18 @@ config-i3(){
     mkdir -p $HOME/.config/i3
     echo "copying i3 config file to $HOME/.config/i3/config directory"
     cp -f ./files-config/i3-config $HOME/.config/i3/config
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 config-i3status(){
     echo -e "${VERDE}Starting config i3status${SEM_COR}"
     echo "copying .i3status.conf file to $HOME/ directory"
     cp -f ./files-config/i3status.conf $HOME/.i3status.conf
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 config-alacritty(){
@@ -50,6 +56,9 @@ config-alacritty(){
     mkdir -p $HOME/.config/alacritty
     echo "copying alacritty.yml file to $HOME/.config/alacritty/ directory"
     cp -f ./files-config/alacritty.yml $HOME/.config/alacritty/alacritty.yml
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 config-lf(){
@@ -58,6 +67,9 @@ config-lf(){
     mkdir -p $HOME/.config/lf
     echo "copying lfrc file to $HOME/.config/lf/ directory"
     cp -f ./files-config/lfrc $HOME/.config/lf/lfrc
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 config-theme-rofi(){
@@ -68,36 +80,54 @@ config-theme-rofi(){
     sudo cp -f ./files-config/theme-rofi.rasi /usr/share/rofi/themes/theme-rofi-flavio.rasi
     echo "copying config.rasi file to $HOME/.config/rofi/ directory"
     cp -f ./files-config/config-rofi.rasi $HOME/.config/rofi/config.rasi
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 config-net-speed(){
     echo -e "${VERDE}Starting config net-speed.sh${SEM_COR}"
     echo "copying .net-speed.sh file to $HOME/ directory"
     cp ./files-config/net-speed.sh $HOME/.net-speed.sh
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 config-vimrc(){
     echo -e "${VERDE}Starting config vim${SEM_COR}"
     echo "copying .vimrc file to $HOME/ directory"
     cp ./files-config/vimrc $HOME/.vimrc
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 config-bashrc(){
     echo -e "${VERDE}Starting config bash${SEM_COR}"
     echo "copying .bashrc file to $HOME/ directory"
     cp ./files-config/bashrc $HOME/.bashrc
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 config-zshrc(){
     echo -e "${VERDE}Starting config zshrc${SEM_COR}"
     echo "copying .zshrc file to $HOME/ directory"
     cp ./files-config/zshrc $HOME/.zshrc
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 config-dockercompose(){
     echo -e "${VERDE}Starting config docker-compose${SEM_COR}"
     sudo curl -L "https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose # download and install docker-compose
     sudo chmod +x /usr/local/bin/docker-compose # permission exec 
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 config-touchpad(){
@@ -106,6 +136,9 @@ config-touchpad(){
     echo -e "${VERDE}Dependency xf86-input-libinput${SEM_COR}"
     echo -e "${VERDE}Reboot system${SEM_COR}" && sleep 3
     sudo cp -f ./files-config/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 function all {
@@ -147,8 +180,8 @@ start-script(){
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${VERDE}script starting${SEM_COR}"
   else
-    echo -e "${VERDE}script finished${SEM_COR}"
-    exit 1
+    echo -e "${VERMELHO}script finished${SEM_COR}"
+    return 1
   fi
 
   echo "

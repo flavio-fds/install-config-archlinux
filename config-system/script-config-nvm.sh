@@ -5,11 +5,11 @@ VERDE='\e[1;92m'
 SEM_COR='\e[0m'
 
 Y="y"
-
+echo
 echo -e "${VERDE}##########################${SEM_COR}"
 echo -e "${VERDE}###  CONFIG NVM!!!  ###${SEM_COR}"
 echo -e "${VERDE}##########################${SEM_COR}"
-
+echo
 function help {
   echo "
   Insert valid argument
@@ -26,6 +26,9 @@ config-node(){
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | zsh
     echo -e "${VERDE}Run node-restart after reboot${SEM_COR}" && sleep 3
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 function node-restart {
@@ -33,6 +36,9 @@ function node-restart {
     nvm install 16
     node -v
     nvm list
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 function main {
@@ -50,8 +56,8 @@ start-script(){
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${VERDE}script NVM config starting${SEM_COR}"
   else
-    echo -e "${VERDE}script finished${SEM_COR}"
-    exit 1
+    echo -e "${VERMELHO}script finished${SEM_COR}"
+    return 1
   fi
 
   echo "

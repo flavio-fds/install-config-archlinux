@@ -25,6 +25,9 @@ config-docker(){
     sudo groupadd docker # cria um grupo chamado docker
     sudo usermod -aG docker $USER # adiciona seu usuário a este novo grupo
     echo -e "${VERDE}Reboot system and exec command (newgrp docker)${SEM_COR}" && sleep 3
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
 }
 
 #Run script after initial config and reboot system
@@ -35,6 +38,9 @@ config-docker-after-reboot(){
     echo -e "${VERDE}sudo systemctl status docker - check status no systemd${SEM_COR}"
     echo -e "${VERDE}sudo systemctl start docker.service -> start docker daemon systemd${SEM_COR}"
     echo -e "${VERDE}sudo systemctl enable docker -> start docker boot daemon systemd${SEM_COR}" && sleep 3
+    echo
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
     echo
 }
 
@@ -53,8 +59,8 @@ start-script(){
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${VERDE}script starting${SEM_COR}"
   else
-    echo -e "${VERDE}script finished${SEM_COR}"
-    exit 1
+    echo -e "${VERMELHO}script finished${SEM_COR}"
+    return 1
   fi
 
   echo "
