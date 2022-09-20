@@ -164,7 +164,7 @@ start-install-archinstall(){
   echo -e "${VERMELHO}###  Remember config User accoun ####${SEM_COR}"
   echo -e "${VERMELHO}#####################################${SEM_COR}" && sleep 1
   echo
-  
+  echo "Type command in terminal to launch archinstall script"
   echo "archinstall --config $DIR_CONFIG/config.json --creds $DIR_CONFIG/creds.json --disk-layout $DIR_CONFIG/disk_layout.json "
   #archinstall --config "$DIR_CONFIG/config.json" --creds "$DIR_CONFIG/creds.json"
 
