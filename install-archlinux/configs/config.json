@@ -33,7 +33,8 @@
     },
     "packages": [
         "firefox",
-        "chromium"
+        "chromium",
+        "git"
     ],
     "plugin": null,
     "profile": {
