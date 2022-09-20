@@ -4,6 +4,8 @@ VERMELHO='\e[1;91m'
 VERDE='\e[1;92m'
 SEM_COR='\e[0m'
 
+Y="y"
+
 echo
 echo -e "${VERDE}####################################${SEM_COR}"
 echo -e "${VERDE}###  INSTALLING AUR SOFTWARE!!!  ###${SEM_COR}"
