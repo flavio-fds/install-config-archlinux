@@ -130,14 +130,9 @@ start-script(){
   title
   echo -e "${VERDE}start script(y/N)${SEM_COR}"
   read VERIFICATION
-  [ -z "$VERIFICATION" ] && exit 
-  if [ ${VERIFICATION} = $Y ]; then
-    echo -e "${VERDE}script starting${SEM_COR}"
-    execute-permission
-  else
-    echo -e "${VERDE}script finished${SEM_COR}"
-    exit
-  fi
+
+  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script starting${SEM_COR}" && execute-permission
 
   echo "
 
