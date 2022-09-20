@@ -24,8 +24,8 @@ echo -e "${VERMELHO}############################################################
 start-script(){
   echo -e "${VERDE}start script(y/N)${SEM_COR}"
   read VERIFICATION
-  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script starting${SEM_COR}"
+  [ -z "$VERIFICATION" ] || [ $VERIFICATION != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+  [ $VERIFICATION = $Y ] && echo -e "${VERDE}script starting${SEM_COR}"
 }
 
 set-layout-keyboard(){
@@ -145,8 +145,8 @@ start-install-archinstall(){
   echo -e "${VERDE}[INFO] - start script archinstall(y/N).${SEM_COR}"
   read VERIFICATION
 
-  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}starting archinstall${SEM_COR}" && sleep 2
+  [ -z "$VERIFICATION" ] || [ $VERIFICATION != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+  [ $VERIFICATION = $Y ] && echo -e "${VERDE}starting archinstall${SEM_COR}" && sleep 2
 
   echo "archinstall --config "$DIR_CONFIG/config.json" --disk-layout "$DIR_CONFIG/disk_layout.json" --creds "$DIR_CONFIG/creds.json""
   ##archinstall --config "$DIR_CONFIG/config.json" --disk-layout "$DIR_CONFIG/disk_layout.json" --creds "$DIR_CONFIG/creds.json"
