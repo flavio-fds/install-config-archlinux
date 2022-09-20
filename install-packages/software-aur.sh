@@ -46,10 +46,11 @@ function help {
   echo "
   Insert valid argument
 
-       help      shows help
-       install   installs a package
-       update    update a package
-       remove    removes installed package via pacman
+       4 - help      shows help
+       1 - install   installs a package
+       2 - update    update a package
+       3 - remove    removes installed package via pacman
+       5 - exit
     "
     start-script
 }
@@ -79,10 +80,11 @@ function msg-done {
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] && help       && exit
-  [ "$1" == "install" ]             && script-aur "install" && check-package-installed && msg-done && exit
-  [ "$1" == "update" ]              && script-aur "update" && msg-done && exit
-  [ "$1" == "remove" ]              && script-aur "remove" && msg-done && exit
+  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "4" ] && help       && exit
+  [ "$1" == "install" ] || [ "$1" == "1" ] && script-aur "install" && check-package-installed && msg-done && exit
+  [ "$1" == "update" ] || [ "$1" == "2" ] && script-aur "update" && msg-done && exit
+  [ "$1" == "remove" ] || [ "$1" == "3" ] && script-aur "remove" && msg-done && exit
+  [ "$1" == "exit" ] || [ "$1" == "5" ] && exit
 
   echo "wrong argument: $1"
 }
@@ -90,20 +92,16 @@ function main {
 start-script(){
   echo -e "${VERDE}start script install packages AUR(y/N)${SEM_COR}"
   read VERIFICATION
-  if [ ${VERIFICATION} = $Y ]; then
-    echo -e "${VERDE}script starting${SEM_COR}"
-    chmod +x script-aur.sh
-  else
-    echo -e "${VERMELHO}script finished${SEM_COR}"
-    return 1
-  fi
+  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script starting${SEM_COR}" && chmod +x script-aur.sh
 
   echo "
 
-    install
-    update
-    remove
-    help
+    1 - install
+    2 - update
+    3 - remove
+    4 - help
+    5 - exit
 
   Insert option:"
     read option

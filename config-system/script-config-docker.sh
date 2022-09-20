@@ -14,8 +14,8 @@ function help {
   echo "
   Insert valid argument
 
-    docker -> Start initial config docker
-    docker-restart -> Run script after initial config and reboot system
+    1 - docker -> Start initial config docker
+    2 - docker-restart -> Run script after initial config and reboot system
     "
     start-script
 }
@@ -45,9 +45,9 @@ config-docker-after-reboot(){
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] && help       && exit
-  [ "$1" == "docker" ]               && config-docker && exit
-  [ "$1" == "docker-restart" ]               && config-docker-after-reboot && exit
+  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "3" ] && help       && exit
+  [ "$1" == "docker" ] || [ "$1" == "1" ] && config-docker && exit
+  [ "$1" == "docker-restart" ] || [ "$1" == "2" ] && config-docker-after-reboot && exit
 
 
   echo "wrong argument: $1"
@@ -56,18 +56,15 @@ function main {
 start-script(){
   echo -e "${VERDE}start script config(y/N)${SEM_COR}"
   read VERIFICATION
-  if [ ${VERIFICATION} = $Y ]; then
-    echo -e "${VERDE}script starting${SEM_COR}"
-  else
-    echo -e "${VERMELHO}script finished${SEM_COR}"
-    return 1
-  fi
+
+  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script docker starting${SEM_COR}"
 
   echo "
 
-    docker
-    docker-restart -> Run script after initial config and reboot system
-    help
+    1 - docker
+    2 - docker-restart -> Run script after initial config and reboot system
+    3 - help
 
     Insert option:"
     read option

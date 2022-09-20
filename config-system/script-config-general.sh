@@ -6,26 +6,27 @@ SEM_COR='\e[0m'
 
 Y="y"
 echo
-echo -e "${VERDE}##########################${SEM_COR}"
-echo -e "${VERDE}###  CONFIG SYSTEM!!!  ###${SEM_COR}"
-echo -e "${VERDE}##########################${SEM_COR}"
-echo
+echo -e "${VERDE}####################################################${SEM_COR}"
+echo -e "${VERDE}############  CONFIG GENERAL SYSTEM!!!  ############${SEM_COR}"
+echo -e "${VERDE}####################################################${SEM_COR}"
+echo -e "${VERMELHO}i3, Alacritty, lf, Rofi, vim, bash, zsh, docker, touchpad${SEM_COR}"
 function help {
   echo "
   Insert valid argument
 
-    i3
-    i3status
-    alacritty
-    lf
-    theme-rofi
-    net-speed
-    vim
-    bash
-    zsh
-    dockercompose
-    touchpad
-    all
+    1 - i3
+    2 - i3status
+    3 - alacritty
+    4 - lf
+    5 - theme-rofi
+    6 - net-speed
+    7 - vim
+    8 - bash
+    9 - zsh
+    10 - dockercompose
+    11 - touchpad
+    12 - all
+    14 - exit
     "
     start-script
 }
@@ -156,19 +157,20 @@ config-touchpad
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] && help       && exit
-  [ "$1" == "i3" ]             && config-i3 && exit
-  [ "$1" == "i3status" ]              && config-i3status && exit
-  [ "$1" == "alacritty" ]               && config-alacritty && exit
-  [ "$1" == "lf" ]               && config-lf && exit
-  [ "$1" == "theme-rofi" ]               && config-theme-rofi && exit
-  [ "$1" == "net-speed" ]               && config-net-speed && exit
-  [ "$1" == "vim" ]               && config-vimrc && exit
-  [ "$1" == "bash" ]               && config-bashrc && exit
-  [ "$1" == "zsh" ]               && config-zshrc && exit
-  [ "$1" == "dockercompose" ]               && config-dockercompose && exit
-  [ "$1" == "touchpad" ]               && config-touchpad && exit
-  [ "$1" == "all" ]               && all && exit
+  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "13" ] && help       && exit
+  [ "$1" == "i3" ] || [ "$1" == "1" ] && config-i3 && exit
+  [ "$1" == "i3status" ] || [ "$1" == "2" ] && config-i3status && exit
+  [ "$1" == "alacritty" ] || [ "$1" == "3" ] && config-alacritty && exit
+  [ "$1" == "lf" ] || [ "$1" == "4" ] && config-lf && exit
+  [ "$1" == "theme-rofi" ] || [ "$1" == "5" ] && config-theme-rofi && exit
+  [ "$1" == "net-speed" ] || [ "$1" == "6" ] && config-net-speed && exit
+  [ "$1" == "vim" ] || [ "$1" == "7" ] && config-vimrc && exit
+  [ "$1" == "bash" ] || [ "$1" == "8" ] && config-bashrc && exit
+  [ "$1" == "zsh" ] || [ "$1" == "9" ] && config-zshrc && exit
+  [ "$1" == "dockercompose" ] || [ "$1" == "10" ] && config-dockercompose && exit
+  [ "$1" == "touchpad" ] || [ "$1" == "11" ] && config-touchpad && exit
+  [ "$1" == "all" ] || [ "$1" == "12" ] && all && exit
+  [ "$1" == "exit" ] || [ "$1" == "14" ] && exit
 
 
   echo "wrong argument: $1"
@@ -177,28 +179,26 @@ function main {
 start-script(){
   echo -e "${VERDE}start script config(y/N)${SEM_COR}"
   read VERIFICATION
-  if [ ${VERIFICATION} = $Y ]; then
-    echo -e "${VERDE}script starting${SEM_COR}"
-  else
-    echo -e "${VERMELHO}script finished${SEM_COR}"
-    return 1
-  fi
+
+  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script general starting${SEM_COR}"
 
   echo "
 
-    i3
-    i3status
-    alacritty
-    lf
-    theme-rofi
-    net-speed
-    vim
-    bash
-    zsh
-    dockercompose
-    touchpad
-    all
-    help
+    1 - i3
+    2 - i3status
+    3 - alacritty
+    4 - lf
+    5 - theme-rofi
+    6 - net-speed
+    7 - vim
+    8 - bash
+    9 - zsh
+    10 - dockercompose
+    11 - touchpad
+    12 - all
+    13 - help
+    14 - exit
 
   Insert option:"
     read option

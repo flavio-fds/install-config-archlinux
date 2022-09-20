@@ -24,12 +24,8 @@ echo -e "${VERMELHO}############################################################
 start-script(){
   echo -e "${VERDE}start script(y/N)${SEM_COR}"
   read VERIFICATION
-  if [ ${VERIFICATION} = $Y ]; then
-    echo -e "${VERDE}script starting${SEM_COR}"
-  else
-    echo -e "${VERDE}script finished${SEM_COR}"
-    exit 1
-  fi
+  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script starting${SEM_COR}"
 }
 
 set-layout-keyboard(){
@@ -130,6 +126,7 @@ edit-name-password(){
 echo -e "${VERMELHO}[INFO] - name and password is set to blank.${SEM_COR}"
 echo -e "${VERDE}[INFO] - I would like to edit the archinstall config name and password file(y/N).${SEM_COR}"
   read VERIFICATION
+  echo
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${VERDE}editing creds.json${SEM_COR}"
     vim "$DIR_CONFIG/creds.json"
@@ -147,11 +144,10 @@ echo -e "${VERDE}[INFO] - I would like to edit the archinstall config name and p
 start-install-archinstall(){
   echo -e "${VERDE}[INFO] - start script archinstall(y/N).${SEM_COR}"
   read VERIFICATION
-  if [ ${VERIFICATION} = $Y ]; then
-    echo -e "${VERDE}starting archinstall${SEM_COR}" && sleep 2
-  else
-    exit 1
-  fi
+
+  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}starting archinstall${SEM_COR}" && sleep 2
+
   echo "archinstall --config "$DIR_CONFIG/config.json" --disk-layout "$DIR_CONFIG/disk_layout.json" --creds "$DIR_CONFIG/creds.json""
   ##archinstall --config "$DIR_CONFIG/config.json" --disk-layout "$DIR_CONFIG/disk_layout.json" --creds "$DIR_CONFIG/creds.json"
   echo ""

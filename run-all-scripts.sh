@@ -19,14 +19,17 @@ function help {
   echo "
   Insert valid argument
 
-        install-pacman -> installs a package with pacman
-        install-aur -> installs a package with AUR
-        config-docker -> Config Docker
-        config-general -> Config i3, i3status, alacritty, lf, theme-rofi, net-speed, vim, bash, zsh, dockercompose, touchpad
-        config-github -> Config git and github and create new key SSH
-        config-nvm -> Install and config nvm e node
-        config-zsh -> Config plugins spaceship-prompt, zsh-autosuggestions, zsh-syntax-highlighting
-        all -> Run all scripts
+        1 - install-pacman -> installs a package with pacman
+        2 - install-aur -> installs a package with AUR
+        3 - config-docker -> Config Docker
+        4 - config-general -> Config i3, i3status, alacritty, lf, theme-rofi, net-speed, vim, bash, zsh, dockercompose, touchpad
+        5 - config-github -> Config git and github and create new key SSH
+        6 - config-nvm -> Install and config nvm e node
+        7 - config-zsh -> Config plugins spaceship-prompt, zsh-autosuggestions, zsh-syntax-highlighting
+        8 - all -> Run all scripts
+            9 - final-config   -> Run script after initial config and reboot system <-
+        10 - help
+        11 - exit
     "
     start-script
 }
@@ -108,15 +111,17 @@ function msg-done {
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] && help       && exit
-  [ "$1" == "install-pacman" ] && install-pacman true && msg-done && exit
-  [ "$1" == "install-aur" ] && install-aur true && msg-done && exit
-  [ "$1" == "config-docker" ] && config-docker true && msg-done && exit
-  [ "$1" == "config-general" ] && config-general true && msg-done && exit
-  [ "$1" == "config-github" ] && config-github true && msg-done && exit
-  [ "$1" == "config-nvm" ] && config-nvm true && msg-done && exit
-  [ "$1" == "config-zsh" ] && config-zsh  true && msg-done && exit
-  [ "$1" == "all" ] && all && msg-done && exit
+  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "10" ] && help       && exit
+  [ "$1" == "install-pacman" ] || [ "$1" == "1" ] && install-pacman true && msg-done && exit
+  [ "$1" == "install-aur" ] || [ "$1" == "2" ] && install-aur true && msg-done && exit
+  [ "$1" == "config-docker" ] || [ "$1" == "3" ] && config-docker true && msg-done && exit
+  [ "$1" == "config-general" ] || [ "$1" == "4" ] && config-general true && msg-done && exit
+  [ "$1" == "config-github" ] || [ "$1" == "5" ] && config-github true && msg-done && exit
+  [ "$1" == "config-nvm" ] || [ "$1" == "6" ] && config-nvm true && msg-done && exit
+  [ "$1" == "config-zsh" ] || [ "$1" == "7" ] && config-zsh  true && msg-done && exit
+  [ "$1" == "all" ] || [ "$1" == "8" ] && all && msg-done && exit
+  [ "$1" == "final-config" ] || [ "$1" == "9" ] && config-nvm true && config-docker true && msg-done && exit
+  [ "$1" == "exit" ] || [ "$1" == "11" ] && exit
 
   echo "wrong argument: $1"
 }
@@ -125,25 +130,28 @@ start-script(){
   title
   echo -e "${VERDE}start script(y/N)${SEM_COR}"
   read VERIFICATION
+  [ -z "$VERIFICATION" ] && exit 
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${VERDE}script starting${SEM_COR}"
     execute-permission
   else
     echo -e "${VERDE}script finished${SEM_COR}"
-    exit 1
+    exit
   fi
 
   echo "
 
-    install-pacman
-    install-aur
-    config-docker
-    config-general
-    config-github
-    config-nvm
-    config-zsh
-    all
-    help
+    1 - install-pacman
+    2 - install-aur
+    3 - config-docker
+    4 - config-general
+    5 - config-github
+    6 - config-nvm
+    7 - config-zsh
+    8 - all
+    9 - final-config   -> Run script after initial config and reboot system <-
+    10 - help
+    11 - exit
 
   Insert option:"
     read option

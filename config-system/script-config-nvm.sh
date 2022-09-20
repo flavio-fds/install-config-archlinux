@@ -14,8 +14,9 @@ function help {
   echo "
   Insert valid argument
 
-    node -> install script nvm
-    node-restart -> check install nvm and install node 16
+    1 - node -> install script nvm
+    2 - node-restart -> check install nvm and install node 16
+    4 - exit
     "
     start-script
 }
@@ -42,9 +43,10 @@ function node-restart {
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] && help       && exit
-  [ "$1" == "node" ]               && config-node && exit
-  [ "$1" == "node-restart" ]               && node-restart && exit
+  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "3" ] && help       && exit
+  [ "$1" == "node" ] || [ "$1" == "1" ] && config-node && exit
+  [ "$1" == "node-restart" ] || [ "$1" == "2" ] && node-restart && exit
+  [ "$1" == "exit" ] || [ "$1" == "4" ] && exit
 
 
   echo "wrong argument: $1"
@@ -53,19 +55,17 @@ function main {
 start-script(){
   echo -e "${VERDE}start script NVM config(y/N)${SEM_COR}"
   read VERIFICATION
-  if [ ${VERIFICATION} = $Y ]; then
-    echo -e "${VERDE}script NVM config starting${SEM_COR}"
-  else
-    echo -e "${VERMELHO}script finished${SEM_COR}"
-    return 1
-  fi
+
+  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script NVM config starting${SEM_COR}"
 
   echo "
   Insert option
 
-    node -> Install script nvm
-    node-restart -> Run script after initial config and reboot system
-    help
+    1 - node -> Install script nvm
+    2 - node-restart -> Run script after initial config and reboot system
+    3 - help
+    4 - exit
 
   Insert option:"
     read option

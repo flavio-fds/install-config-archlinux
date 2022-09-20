@@ -120,14 +120,10 @@ PKGS=(
 #)
 
 start-script(){
-    echo -e "${VERDE}start script install packages pacman(y/N)${SEM_COR}"
+  echo -e "${VERDE}start script install packages pacman(y/N)${SEM_COR}"
   read VERIFICATION
-  if [ ${VERIFICATION} = $Y ]; then
-    echo -e "${VERDE}script starting${SEM_COR}"
-  else
-    echo -e "${VERMELHO}script finished${SEM_COR}"
-    return 1
-  fi
+  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script starting${SEM_COR}"
 }
 
 update-packages(){

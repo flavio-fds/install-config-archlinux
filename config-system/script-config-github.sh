@@ -67,13 +67,10 @@ config-github(){
 start-script(){
   echo -e "${VERDE}start script config github(y/N)${SEM_COR}"
   read VERIFICATION
-  if [ ${VERIFICATION} = $Y ]; then
-    echo -e "${VERDE}script github and SSH config starting${SEM_COR}" && sleep 2
-    config-github
-  else
-    echo -e "${VERMELHO}script finished${SEM_COR}"
-    return 1
-  fi
+
+  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script github and SSH config starting${SEM_COR}" && config-github
+
 }
 
 function check-folder {

@@ -69,13 +69,9 @@ config-zsh-plugin(){
 start-script(){
   echo -e "${VERDE}start script zsh plugin config(y/N)${SEM_COR}"
   read VERIFICATION
-  if [ ${VERIFICATION} = $Y ]; then
-    echo -e "${VERDE}script config zsh plugin starting${SEM_COR}"
-    config-zsh-plugin
-  else
-    echo -e "${VERMELHO}script finished${SEM_COR}"
-    return 1
-  fi
+
+  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}starting archinstall${SEM_COR}" && config-zsh-plugin
 }
 
 function check-folder {
