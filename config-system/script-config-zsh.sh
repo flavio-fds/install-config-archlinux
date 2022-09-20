@@ -54,13 +54,15 @@ config-zsh-plugin(){
     echo
     echo -e "${VERDE}Edit Lines${SEM_COR}"
     echo
-    echo -e "}#: \${ZSH_HIGHLIGHT_STYLES[suffix-alias]:=fg=green,underline}
-    : \${ZSH_HIGHLIGHT_STYLES[suffix-alias]:=fg=green}
-    #: \${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green,underline}
-    : \${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green}
-    #: \${ZSH_HIGHLIGHT_STYLES[path]:=underline}"
+    echo -e "${VERMELHO}Details file ./config-system/files-config/config-zsh-plugin.txt${SEM_COR}"
     echo
-    code /usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh
+    echo -e "${VERMELHO}/usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh${SEM_COR}"
+    echo -e "${VERMELHO}/usr/lib/spaceship-prompt/spaceship.zsh${SEM_COR}"
+    echo
+    code ./config-system/files-config/config-zsh-plugin.txt
+    echo
+    sudo vim /usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh
+    sudo vim /usr/lib/spaceship-prompt/spaceship.zsh
     echo
     echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
     echo

@@ -1,0 +1,14 @@
+-----Change lines-----
+/usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh
+
+#: \${ZSH_HIGHLIGHT_STYLES[suffix-alias]:=fg=green,underline}
+: \${ZSH_HIGHLIGHT_STYLES[suffix-alias]:=fg=green}
+#: \${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green,underline}
+: \${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green}
+#: \${ZSH_HIGHLIGHT_STYLES[path]:=underline}
+
+-----Change lines-----Check fix bug
+/usr/lib/spaceship-prompt/spaceship.zsh
+
+#spaceship::precompile "$0"
+spaceship::precompile "$SPACESHIP_ROOT/$0"
