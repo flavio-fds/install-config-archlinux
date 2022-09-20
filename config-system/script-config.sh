@@ -224,7 +224,7 @@ config-zsh-plugin
 function main {
   [ -z "$1" ] || [ "$1" == "help" ] && help       && exit
   [ "$1" == "i3" ]             && config-i3 && exit
-  [ "$1" == "i3status" ]              && config-i3status $2  && exit
+  [ "$1" == "i3status" ]              && config-i3status && exit
   [ "$1" == "alacritty" ]               && config-alacritty && exit
   [ "$1" == "lf" ]               && config-lf && exit
   [ "$1" == "theme-rofi" ]               && config-theme-rofi && exit
@@ -238,7 +238,7 @@ function main {
   [ "$1" == "touchpad" ]               && config-touchpad && exit
   [ "$1" == "github" ]               && config-github && exit
   [ "$1" == "zsh-plugin" ]               && config-zsh-plugin && exit
-  [ "$1" == "all" ]               && config-zsh-plugin && exit
+  [ "$1" == "all" ]               && all && exit
 
 
   echo "wrong argument: $1"
@@ -275,7 +275,7 @@ start-script(){
     all
     "
     read option
-    main option
+    main $option
 }
 
 start-script
