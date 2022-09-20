@@ -127,7 +127,7 @@ echo -e "${VERMELHO}[INFO] - name and password is set to blank.${SEM_COR}"
 echo -e "${VERDE}[INFO] - I would like to edit the archinstall config name and password file(y/N).${SEM_COR}"
   read VERIFICATION
   echo
-  if ! [[ -z "$VERIFICATION" || ${VERIFICATION} != $Y ]]; then
+  if ! [[ -z "$VERIFICATION" || $VERIFICATION != $Y ]]; then
     echo -e "${VERDE}editing creds.json${SEM_COR}"
     vim "$DIR_CONFIG/creds.json"
   else
