@@ -44,66 +44,66 @@ function execute-permission {
 
 function install-pacman {
     cd install-packages
-    chmod +x ./software-pacman.sh
+    ./software-pacman.sh
     cd ..
 }
 function install-aur {
     cd install-packages
-    chmod +x ./software-aur.sh
+    ./software-aur.sh
     cd ..
 }
 function config-docker {
     cd config-system
-    chmod +x ./script-config-docker.sh
+    ./script-config-docker.sh
     cd ..
 }
 function config-general {
     cdconfig-system
-    chmod +x ./script-config-general.sh
+    ./script-config-general.sh
     cd ..
 }
 function config-github {
     cd config-system
-    chmod +x ./script-config-github.sh
+    ./script-config-github.sh
     cd ..
 }
 function config-nvm {
     cd config-system
-    chmod +x ./script-config-nvm.sh
+    ./script-config-nvm.sh
     cd ..
 }
 function config-zsh {
     cd config-system
-    chmod +x ./script-config-zsh.sh
+    ./script-config-zsh.sh
     cd ..
 }
 function all {
     cd install-packages
-    chmod +x ./software-pacman.sh
+    ./software-pacman.sh
     cd ..
 
     cd install-packages
-    chmod +x ./software-aur.sh
+    ./software-aur.sh
     cd ..
 
-    cdconfig-system
-    chmod +x ./script-config-general.sh
-    cd ..
-
-    cd config-system
-    chmod +x ./script-config-docker.sh
+    cd cdconfig-system
+    ./script-config-general.sh
     cd ..
 
     cd config-system
-    chmod +x ./script-config-github.sh
+    ./script-config-docker.sh
     cd ..
 
     cd config-system
-    chmod +x ./script-config-zsh.sh
+    ./script-config-github.sh
     cd ..
 
     cd config-system
-    chmod +x ./script-config-nvm.sh
+    ./script-config-zsh.sh
+    cd ..
+
+    cd config-system
+    ./script-config-nvm.sh
     cd ..
 }
 
