@@ -96,4 +96,12 @@ function main {
   echo "wrong argument: $1"
 }
 
+function check-folder {
+    if [[ (basename $(pwd)) != "install-packages" ]]; then
+    echo -e "${VERMELHO}Run the script inside your folder${SEM_COR}"
+    exit
+}
+
+check-folder
+
 main "$@"
