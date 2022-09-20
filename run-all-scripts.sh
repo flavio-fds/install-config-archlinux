@@ -93,11 +93,11 @@ function config-zsh {
 function all {
     install-pacman false
     install-aur false
-    config-docker false
     config-general false
+    config-docker false
     config-github false
-    config-nvm false
     config-zsh false
+    config-nvm false
     return 0
 }
 
