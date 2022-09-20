@@ -108,4 +108,12 @@ start-script(){
     main $option
 }
 
+function check-folder {
+    if [[ (basename $(pwd)) != "install-packages" ]]; then
+    echo -e "${VERMELHO}Run the script inside your folder${SEM_COR}"
+    exit
+}
+
+check-folder
+
 start-script
