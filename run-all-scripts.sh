@@ -156,9 +156,10 @@ start-script(){
 }
 
 function check-folder {
-    if [[ (basename $(pwd)) != "install-config-archlinux" ]]; then
+if [[ $(basename $PWD) != "install-config-archlinux" ]]; then
     echo -e "${VERMELHO}Run the script inside your folder${SEM_COR}"
     exit
+fi
 }
 
 check-folder
