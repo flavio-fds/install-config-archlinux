@@ -99,7 +99,7 @@ install-packages(){
   fi
 
   echo -e "${VERDE}[INFO] - Installing Git and VIM.${SEM_COR}"
-  pacman -S git vim
+  pacman -Sy git vim
 
   sleep 1
 
