@@ -3,6 +3,7 @@
 chmod +x ./install-packages/script-aur.sh
 chmod +x ./install-packages/software-pacman-base.sh
 chmod +x ./install-packages/software-pacman.sh
+chmod +x ./install-packages/software-aur.sh
 
 chmod +x ./config-system/script-config-docker.sh
 chmod +x ./config-system/script-config-general.sh
