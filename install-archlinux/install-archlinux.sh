@@ -32,17 +32,12 @@ set-layout-keyboard(){
 loadkeys br-abnt2
 }
 
-check-connectiont(){
-echo -e "${VERDE}Check connection...${SEM_COR}"
-if ! ping -c 1 8.8.8.8 -q &> /dev/null; then
-  echo -e "${VERMELHO}[ERROR] - Your computer does not have an Internet connection. Check the script with device and network name.${SEM_COR}"
-  exit 1
-else
-  echo -e "${VERDE}[INFO] - Internet connection working normally.${SEM_COR}" && sleep 2
-fi
-}
-
 connect-wifi(){
+  echo -e "${VERDE}Check connection...${SEM_COR}"
+  if ping -c 1 8.8.8.8 -q &> /dev/null; then
+    echo -e "${VERDE}[INFO] - Internet connection working normally.${SEM_COR}"
+    return 1
+  fi
 ###Connect wifi###
 
 #iwctl
@@ -56,14 +51,6 @@ connect-wifi(){
 #iwctl device list
 #iwctl station <name_device> scan
 #iwctl station <name> connect <network name>
-
-echo -e "${VERDE}Check connection...${SEM_COR}"
-if ping -c 1 8.8.8.8 -q &> /dev/null; then
-  echo -e "${VERDE}[INFO] - Internet connection working normally.${SEM_COR}" && sleep 2
-  return 1
-else
-  echo -e "${VERDE}[INFO] - Your computer does not have an Internet connection.${SEM_COR}"
-fi
 
 echo -e "${VERDE}[INFO] - Connect wifi.${SEM_COR}" && sleep 2
 
@@ -80,17 +67,27 @@ read NETWORK_NAME
 
 iwctl station $NAME_DEVICE connect $NETWORK_NAME 
 
-check-connection
+echo -e "${VERDE}Check connection...${SEM_COR}" && sleep 3
+
+if ! ping -c 1 8.8.8.8 -q &> /dev/null; then
+  echo -e "${VERMELHO}[ERROR] - Your computer does not have an Internet connection. Check the script with device and network name.${SEM_COR}"
+  exit 1
+else
+  echo -e "${VERDE}[INFO] - Internet connection working normally.${SEM_COR}"
+  return 1
+fi
 }
 
 install-packages(){
   if pacman -Q git && pacman -Q vim; then
-  echo -e "${VERDE}packages already installed${SEM_COR}" && sleep 1
+  echo -e "${VERDE}packages already installed${SEM_COR}"
   return 1
 fi
 
-echo -e "${VERDE}[INFO] - Install Git and VIM.${SEM_COR}" && sleep 3
-pacman -Sy git vim
+echo -e "${VERDE}[INFO] - Install Git and VIM.${SEM_COR}"
+pacman -S git vim
+
+sleep 1
 
 if ! pacman -Q git; then
   echo -e "${VERMELHO}error install git${SEM_COR}"
