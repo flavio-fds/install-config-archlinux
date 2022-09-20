@@ -32,60 +32,60 @@ function help {
 
 config-i3(){
     echo -e "${VERDE}Starting config i3${SEM_COR}"
-        echo "creating folders $HOME/.config/i3/"
-        mkdir -p $HOME/.config/i3
-        echo "copying i3 config file to $HOME/.config/i3/config directory"
-        cp -f ./files-config/i3-config $HOME/.config/i3/config
+    echo "creating folders $HOME/.config/i3/"
+    mkdir -p $HOME/.config/i3
+    echo "copying i3 config file to $HOME/.config/i3/config directory"
+    cp -f ./files-config/i3-config $HOME/.config/i3/config
 }
 
 config-i3status(){
     echo -e "${VERDE}Starting config i3status${SEM_COR}"
-        echo "copying .i3status.conf file to $HOME/ directory"
-        cp -f ./files-config/i3status.conf $HOME/.i3status.conf
+    echo "copying .i3status.conf file to $HOME/ directory"
+    cp -f ./files-config/i3status.conf $HOME/.i3status.conf
 }
 
 config-alacritty(){
     echo -e "${VERDE}Starting config Alacritty${SEM_COR}"
-        echo "creating folders $HOME/.config/alacritty/"
-        mkdir -p $HOME/.config/alacritty
-        echo "copying alacritty.yml file to $HOME/.config/alacritty/ directory"
-        cp -f ./files-config/alacritty.yml $HOME/.config/alacritty/alacritty.yml
+    echo "creating folders $HOME/.config/alacritty/"
+    mkdir -p $HOME/.config/alacritty
+    echo "copying alacritty.yml file to $HOME/.config/alacritty/ directory"
+    cp -f ./files-config/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 }
 
 config-lf(){
     echo -e "${VERDE}Starting config LF${SEM_COR}"
-        echo "creating folders $HOME/.config/lf/"
-        mkdir -p $HOME/.config/lf
-        echo "copying lfrc file to $HOME/.config/lf/ directory"
-        cp -f ./files-config/lfrc $HOME/.config/lf/lfrc
+    echo "creating folders $HOME/.config/lf/"
+    mkdir -p $HOME/.config/lf
+    echo "copying lfrc file to $HOME/.config/lf/ directory"
+    cp -f ./files-config/lfrc $HOME/.config/lf/lfrc
 }
 
 config-theme-rofi(){
     echo -e "${VERDE}Starting config theme rofi${SEM_COR}"
-        echo "creating folders $HOME/.config/rofi/"
-        mkdir -p $HOME/.config/rofi
-        echo "copying theme-rofi-flavio.rasi file to $HOME/.config/rofi/ directory"
-        cp -f ./files-config/theme-rofi.rasi $HOME/.config/rofi/theme-rofi-flavio.rasi
-        echo "copying config.rasi file to $HOME/.config/rofi/ directory"
-        cp -f ./files-config/config-rofi.rasi $HOME/.config/rofi/config.rasi
+    echo "creating folders $HOME/.config/rofi/"
+    mkdir -p $HOME/.config/rofi
+    echo "copying theme-rofi-flavio.rasi file to /usr/share/rofi/themes/ directory"
+    sudo cp -f ./files-config/theme-rofi.rasi /usr/share/rofi/themes/theme-rofi-flavio.rasi
+    echo "copying config.rasi file to $HOME/.config/rofi/ directory"
+    cp -f ./files-config/config-rofi.rasi $HOME/.config/rofi/config.rasi
 }
 
 config-net-speed(){
     echo -e "${VERDE}Starting config net-speed.sh${SEM_COR}"
-        echo "copying .net-speed.sh file to $HOME/ directory"
-        cp ./files-config/net-speed.sh $HOME/.net-speed.sh
+    echo "copying .net-speed.sh file to $HOME/ directory"
+    cp ./files-config/net-speed.sh $HOME/.net-speed.sh
 }
 
 config-vimrc(){
     echo -e "${VERDE}Starting config vim${SEM_COR}"
-        echo "copying .vimrc file to $HOME/ directory"
-        cp ./files-config/vimrc $HOME/.vimrc
+    echo "copying .vimrc file to $HOME/ directory"
+    cp ./files-config/vimrc $HOME/.vimrc
 }
 
 config-bashrc(){
     echo -e "${VERDE}Starting config bash${SEM_COR}"
-        echo "copying .bashrc file to $HOME/ directory"
-        cp ./files-config/bashrc $HOME/.bashrc
+    echo "copying .bashrc file to $HOME/ directory"
+    cp ./files-config/bashrc $HOME/.bashrc
 }
 
 config-zshrc(){
@@ -152,7 +152,6 @@ start-script(){
   fi
 
   echo "
-  Insert option
 
     i3
     i3status
@@ -166,7 +165,9 @@ start-script(){
     dockercompose
     touchpad
     all
-    "
+    help
+
+  Insert option:"
     read option
     main $option
 }

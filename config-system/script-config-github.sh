@@ -19,7 +19,6 @@ config-github(){
     read usernamegit
     git config --global user.name $usernamegit
 
-
     echo -e "${VERMELHO}Type email github${SEM_COR}"
     read emailgit
     git config --global user.email $emailgit  
@@ -31,6 +30,7 @@ config-github(){
     echo -e "${VERDE}Config Key Ssh${SEM_COR}"
     echo
     echo -e "${VERMELHO}Confirm location e add password${SEM_COR}"
+    echo
     ssh-keygen -t rsa -b 4096 -C $emailgit
 
     echo -e "${VERDE}Add Chave ssh-agent${SEM_COR}"

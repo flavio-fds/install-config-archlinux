@@ -14,7 +14,8 @@ function help {
   echo "
   Insert valid argument
 
-    node
+    node -> install script nvm
+    node-restart -> check install nvm and install node 16
     "
     start-script
 }
@@ -24,21 +25,20 @@ config-node(){
     echo -e "${VERDE}https://github.com/nvm-sh/nvm${SEM_COR}"
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | zsh
-    echo -e "${VERDE}nvm -v
-    nvm install 16
-    node -v
-    nvm list${SEM_COR}" 
+    echo -e "${VERDE}Run node-restart after reboot${SEM_COR}" && sleep 3
 }
 
-function all {
-config-node
+function node-restart {
+    echo -e "${VERDE}Starting check install nvm and install node 16${SEM_COR}"
+    nvm install 16
+    node -v
+    nvm list
 }
 
 function main {
   [ -z "$1" ] || [ "$1" == "help" ] && help       && exit
-
   [ "$1" == "node" ]               && config-node && exit
-  [ "$1" == "all" ]               && all && exit
+  [ "$1" == "node-restart" ]               && node-restart && exit
 
 
   echo "wrong argument: $1"
@@ -57,9 +57,11 @@ start-script(){
   echo "
   Insert option
 
-    node
-    all
-    "
+    node -> Install script nvm
+    node-restart -> Run script after initial config and reboot system
+    help
+
+  Insert option:"
     read option
     main $option
 }

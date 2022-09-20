@@ -11,7 +11,29 @@ echo -e "${VERDE}###  CONFIG ZSH PLUGIN!!!  ###${SEM_COR}"
 echo -e "${VERDE}##############################${SEM_COR}"
 
 config-zsh-plugin(){
-    echo -e "${VERDE}Starting config github${SEM_COR}"
+  echo -e "${VERDE}Starting config github${SEM_COR}"
+
+  PKGS=(
+      'spaceship-prompt'
+      'zsh-autosuggestions'
+      'zsh-syntax-highlighting'
+  )
+
+  for PKG in "${PKGS[@]}"; do
+      if pacman -Q "$PKG" &> /dev/null; then
+        echo -e "${VERDE}Package [$PKG] installed${SEM_COR}"
+      else
+        echo -e "${VERMELHO}Package [$PKG] not installed${SEM_COR}"
+      fi
+  done
+
+  for PKG in "${PKGS[@]}"; do
+    if ! pacman -Q "$PKG" &> /dev/null; then
+      echo -e "${VERDE}Install Package not installed ^^^^${SEM_COR}"
+      exit
+    fi
+  done
+
     echo
     echo -e "${VERDE}list shell install${SEM_COR}"
     chsh -l
@@ -32,11 +54,12 @@ config-zsh-plugin(){
     echo
     echo -e "${VERDE}Edit Lines${SEM_COR}"
     echo
-    echo -e "${VERDE}#: \${ZSH_HIGHLIGHT_STYLES[suffix-alias]:=fg=green,underline}
+    echo -e "}#: \${ZSH_HIGHLIGHT_STYLES[suffix-alias]:=fg=green,underline}
     : \${ZSH_HIGHLIGHT_STYLES[suffix-alias]:=fg=green}
     #: \${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green,underline}
     : \${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green}
-    #: \${ZSH_HIGHLIGHT_STYLES[path]:=underline}${SEM_COR}"
+    #: \${ZSH_HIGHLIGHT_STYLES[path]:=underline}"
+    echo
     code /usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh
 }
 

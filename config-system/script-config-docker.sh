@@ -14,8 +14,8 @@ function help {
   echo "
   Insert valid argument
 
-    docker
-    all
+    docker -> Start initial config docker
+    docker-restart -> Run script after initial config and reboot system
     "
     start-script
 }
@@ -24,18 +24,24 @@ config-docker(){
     echo -e "${VERDE}Starting config docker${SEM_COR}"
     sudo groupadd docker # cria um grupo chamado docker
     sudo usermod -aG docker $USER # adiciona seu usuário a este novo grupo
-    echo -e "${VERDE}Reboot system e exec command (newgrp docker)${SEM_COR}" && sleep 3
+    echo -e "${VERDE}Reboot system and exec command (newgrp docker)${SEM_COR}" && sleep 3
 }
 
-function all {
-
-config-docker
+#Run script after initial config and reboot system
+config-docker-after-reboot(){
+    echo -e "${VERDE}Configuring docker after restart${SEM_COR}"
+    sudo newgrp docker # 
+    echo
+    echo -e "${VERDE}sudo systemctl status docker - check status no systemd${SEM_COR}"
+    echo -e "${VERDE}sudo systemctl start docker.service -> start docker daemon systemd${SEM_COR}"
+    echo -e "${VERDE}sudo systemctl enable docker -> start docker boot daemon systemd${SEM_COR}" && sleep 3
+    echo
 }
 
 function main {
   [ -z "$1" ] || [ "$1" == "help" ] && help       && exit
   [ "$1" == "docker" ]               && config-docker && exit
-  [ "$1" == "all" ]               && all && exit
+  [ "$1" == "docker-restart" ]               && config-docker-after-reboot && exit
 
 
   echo "wrong argument: $1"
@@ -52,11 +58,12 @@ start-script(){
   fi
 
   echo "
-  Insert option
 
     docker
-    all
-    "
+    docker-restart -> Run script after initial config and reboot system
+    help
+
+    Insert option:"
     read option
     main $option
 }
