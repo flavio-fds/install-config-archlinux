@@ -82,9 +82,10 @@ function check-folder {
 }
 
 check-folderfunction check-folder {
-    if [[ (basename $(pwd)) != "config-system" ]]; then
-    echo -e "${VERMELHO}Run the script inside your folder${SEM_COR}"
-    exit
+    if [[ $(basename $PWD) != "config-system" ]]; then
+        echo -e "${VERMELHO}Run the script inside your folder${SEM_COR}"
+        exit
+    fi
 }
 
 check-folder
