@@ -54,7 +54,7 @@ config-zsh-plugin(){
     echo
     echo -e "${VERDE}Edit Lines${SEM_COR}"
     echo
-    echo -e "${VERMELHO}Details file ./config-system/files-config/config-zsh-plugin.txt${SEM_COR}"
+    echo -e "${VERMELHO}Open for details edit files ./config-system/files-config/config-zsh-plugin.txt${SEM_COR}"
     echo
     echo -e "${VERMELHO}/usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh${SEM_COR}"
     echo -e "${VERMELHO}/usr/lib/spaceship-prompt/spaceship.zsh${SEM_COR}"
