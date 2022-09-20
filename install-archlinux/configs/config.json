@@ -20,7 +20,7 @@
             "http://linorg.usp.br/archlinux/$repo/os/$arch": true,
             "http://mirror.ufscar.br/archlinux/$repo/os/$arch": true,
             "https://archlinux-br.com.br/archlinux/$repo/os/$arch": true
-        },
+        }
     },
     "mount_point": null,
     "nic": {
