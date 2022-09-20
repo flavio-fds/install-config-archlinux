@@ -86,7 +86,7 @@ function all {
     ./software-aur.sh
     cd ..
 
-    cd cdconfig-system
+    cd config-system
     ./script-config-general.sh
     cd ..
 
