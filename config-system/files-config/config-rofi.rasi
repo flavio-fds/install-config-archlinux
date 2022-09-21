@@ -138,4 +138,4 @@ terminal: "alacritty";
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
-@theme "/home/flavio/.config/rofi/theme/theme-rofi-flavio.rasi"
+@theme "/usr/share/rofi/themes/theme-rofi-flavio.rasi"

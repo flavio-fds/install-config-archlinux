@@ -28,8 +28,9 @@ function help {
         7 - config-zsh -> Config plugins spaceship-prompt, zsh-autosuggestions, zsh-syntax-highlighting
         8 - all -> Run all scripts
             9 - final-config   -> Run script after initial config and reboot system <-
-        10 - help
-        11 - exit
+        10 - install-archlinux
+        11 - help
+        12 - exit
     "
     start-script
 }
@@ -90,6 +91,12 @@ function config-zsh {
     $1 && start-script
 }
 
+function install-archlinux {
+    cd install-archlinux
+    ./install-archlinux.sh
+    cd
+}
+
 function all {
     install-pacman false
     install-aur false
@@ -118,7 +125,7 @@ function msg-done {
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "10" ] && help       && exit
+  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "11" ] && help       && exit
   [ "$1" == "install-pacman" ] || [ "$1" == "1" ] && install-pacman true && msg-done && exit
   [ "$1" == "install-aur" ] || [ "$1" == "2" ] && install-aur true && msg-done && exit
   [ "$1" == "config-docker" ] || [ "$1" == "3" ] && config-docker true && msg-done && exit
@@ -128,7 +135,8 @@ function main {
   [ "$1" == "config-zsh" ] || [ "$1" == "7" ] && config-zsh  true && msg-done && exit
   [ "$1" == "all" ] || [ "$1" == "8" ] && all && msg-done && exit
   [ "$1" == "final-config" ] || [ "$1" == "9" ] && final-config && msg-done && exit
-  [ "$1" == "exit" ] || [ "$1" == "11" ] && exit
+  [ "$1" == "install-archlinux" ] || [ "$1" == "10" ] && install-archlinux && exit
+  [ "$1" == "exit" ] || [ "$1" == "12" ] && exit
 
   echo "wrong argument: $1"
 }
@@ -150,10 +158,11 @@ start-script(){
     5 - config-github
     6 - config-nvm
     7 - config-zsh
-    8 - all
-    9 - final-config   -> Run script after initial config and reboot system <-
-    10 - help
-    11 - exit
+    8 - all ^^^^
+    9 - final-config   -> Run script after initial config and reboot system
+    10 - install-archlinux   -> Run script only in live install archlinux 
+    11 - help
+    12 - exit
 
   Insert option:"
     read option
