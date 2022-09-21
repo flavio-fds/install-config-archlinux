@@ -53,7 +53,7 @@ function fetch {
 }
 
 function install {
-  if pacman -Q "$1" &> /dev/null; then
+  if pacman -Q "$1" &> /dev/null || $2; then
     echo -e "${GREEN}Package [$1] already installed${NO_COLOR}"
     exit
   fi
@@ -72,11 +72,11 @@ function update {
   validate_package_not_empty $1
   validate_package_exists_on_aur $1
   validate_package_is_fetched $1
-  echo "update the package $1"
+  echo -e "${GREEN}update the package $1${NO_COLOR}"
   cd "$AUR_DIR/$1"
   result=$(git pull)
   echo $result
-  if [[ $result == "Already up to date." ]]; then
+  if [[ $result = "Already up to date." ]]; then
   exit
   fi
   validate_package_has_pkgbuild $1
@@ -96,9 +96,9 @@ function remove {
 
 function main {
   [ -z "$1" ] || [ "$1" = "help" ] && help && exit
-  [ "$1" = "install" ] && install $2 && exit
+  [ "$1" = "install" ] && install $2 false && exit
   [ "$1" = "remove" ] && remove $2  && exit
-  [ "$1" = "update" ] && update $2 && install $2 && exit
+  [ "$1" = "update" ] && update $2 && install $2 true && exit
   echo "wrong argument: $1"
 }
 
