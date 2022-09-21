@@ -125,18 +125,18 @@ function msg-done {
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "11" ] && help       && exit
-  [ "$1" == "install-pacman" ] || [ "$1" == "1" ] && install-pacman true && msg-done && exit
-  [ "$1" == "install-aur" ] || [ "$1" == "2" ] && install-aur true && msg-done && exit
-  [ "$1" == "config-docker" ] || [ "$1" == "3" ] && config-docker true && msg-done && exit
-  [ "$1" == "config-general" ] || [ "$1" == "4" ] && config-general true && msg-done && exit
-  [ "$1" == "config-github" ] || [ "$1" == "5" ] && config-github true && msg-done && exit
-  [ "$1" == "config-nvm" ] || [ "$1" == "6" ] && config-nvm true && msg-done && exit
-  [ "$1" == "config-zsh" ] || [ "$1" == "7" ] && config-zsh  true && msg-done && exit
-  [ "$1" == "all" ] || [ "$1" == "8" ] && all && msg-done && exit
-  [ "$1" == "final-config" ] || [ "$1" == "9" ] && final-config && msg-done && exit
-  [ "$1" == "install-archlinux" ] || [ "$1" == "10" ] && install-archlinux && exit
-  [ "$1" == "exit" ] || [ "$1" == "12" ] && exit
+  [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "11" ] && help       && exit
+  [ "$1" = "install-pacman" ] || [ "$1" = "1" ] && install-pacman true && msg-done && exit
+  [ "$1" = "install-aur" ] || [ "$1" = "2" ] && install-aur true && msg-done && exit
+  [ "$1" = "config-docker" ] || [ "$1" = "3" ] && config-docker true && msg-done && exit
+  [ "$1" = "config-general" ] || [ "$1" = "4" ] && config-general true && msg-done && exit
+  [ "$1" = "config-github" ] || [ "$1" = "5" ] && config-github true && msg-done && exit
+  [ "$1" = "config-nvm" ] || [ "$1" = "6" ] && config-nvm true && msg-done && exit
+  [ "$1" = "config-zsh" ] || [ "$1" = "7" ] && config-zsh  true && msg-done && exit
+  [ "$1" = "all" ] || [ "$1" = "8" ] && all && msg-done && exit
+  [ "$1" = "final-config" ] || [ "$1" = "9" ] && final-config && msg-done && exit
+  [ "$1" = "install-archlinux" ] || [ "$1" = "10" ] && install-archlinux && exit
+  [ "$1" = "exit" ] || [ "$1" = "12" ] && exit
 
   echo "wrong argument: $1"
 }
@@ -164,7 +164,7 @@ start-script(){
     11 - help
     12 - exit
 
-  Insert option:"
+Insert option:"
     read option
     main $option
 }

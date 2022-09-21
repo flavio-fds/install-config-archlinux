@@ -86,30 +86,21 @@ function print-key {
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "3" ] && help       && exit
-  [ "$1" == "github-config" ] || [ "$1" == "1" ] && config-github && exit
-  [ "$1" == "copy-key-github" ] || [ "$1" == "2" ] && print-key && exit
-  [ "$1" == "exit" ] || [ "$1" == "4" ] && exit
+  [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "3" ] && help       && exit
+  [ "$1" = "github-config" ] || [ "$1" = "1" ] && config-github && exit
+  [ "$1" = "copy-key-github" ] || [ "$1" = "2" ] && print-key && exit
+  [ "$1" = "exit" ] || [ "$1" = "4" ] && exit
 
 
   echo "wrong argument: $1"
 }
-
-# start-script(){
-#   echo -e "${VERDE}start script config github(y/N)${SEM_COR}"
-#   read VERIFICATION
-
-#   [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-#   [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script github and SSH config starting${SEM_COR}" && config-github
-
-# }
 
 start-script(){
   echo -e "${VERDE}start script NVM config(y/N)${SEM_COR}"
   read VERIFICATION
 
   [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script NVM config starting${SEM_COR}"
+  [ ${VERIFICATION} = $Y ] && echo -e "${VERDE}script NVM config starting${SEM_COR}"
 
   echo "
   Insert option

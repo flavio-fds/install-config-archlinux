@@ -45,9 +45,9 @@ config-docker-after-reboot(){
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "3" ] && help       && exit
-  [ "$1" == "docker" ] || [ "$1" == "1" ] && config-docker && exit
-  [ "$1" == "docker-restart" ] || [ "$1" == "2" ] && config-docker-after-reboot && exit
+  [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "3" ] && help       && exit
+  [ "$1" = "docker" ] || [ "$1" = "1" ] && config-docker && exit
+  [ "$1" = "docker-restart" ] || [ "$1" = "2" ] && config-docker-after-reboot && exit
 
 
   echo "wrong argument: $1"
@@ -58,7 +58,7 @@ start-script(){
   read VERIFICATION
 
   [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script docker starting${SEM_COR}"
+  [ ${VERIFICATION} = $Y ] && echo -e "${VERDE}script docker starting${SEM_COR}"
 
   echo "
 

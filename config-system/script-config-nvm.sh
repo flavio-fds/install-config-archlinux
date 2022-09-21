@@ -49,10 +49,10 @@ function node-restart {
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "3" ] && help       && exit
-  [ "$1" == "node" ] || [ "$1" == "1" ] && config-node && exit
-  [ "$1" == "node-restart" ] || [ "$1" == "2" ] && node-restart && exit
-  [ "$1" == "exit" ] || [ "$1" == "4" ] && exit
+  [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "3" ] && help       && exit
+  [ "$1" = "node" ] || [ "$1" = "1" ] && config-node && exit
+  [ "$1" = "node-restart" ] || [ "$1" = "2" ] && node-restart && exit
+  [ "$1" = "exit" ] || [ "$1" = "4" ] && exit
 
 
   echo "wrong argument: $1"
@@ -63,7 +63,7 @@ start-script(){
   read VERIFICATION
 
   [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script NVM config starting${SEM_COR}"
+  [ ${VERIFICATION} = $Y ] && echo -e "${VERDE}script NVM config starting${SEM_COR}"
 
   echo "
   Insert option

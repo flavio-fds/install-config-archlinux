@@ -93,7 +93,7 @@ start-script(){
   echo -e "${VERDE}start script install packages AUR(y/N)${SEM_COR}"
   read VERIFICATION
   [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script starting${SEM_COR}" && chmod +x script-aur.sh
+  [ ${VERIFICATION} = $Y ] && echo -e "${VERDE}script starting${SEM_COR}" && chmod +x script-aur.sh
 
   echo "
 

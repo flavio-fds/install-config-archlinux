@@ -89,10 +89,10 @@ function remove {
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] && help       && exit
-  [ "$1" == "install" ]             && install $2 && exit
-  [ "$1" == "remove" ]              && remove $2  && exit
-  [ "$1" == "update" ]              && update $2 && install $2 && exit
+  [ -z "$1" ] || [ "$1" = "help" ] && help       && exit
+  [ "$1" = "install" ]             && install $2 && exit
+  [ "$1" = "remove" ]              && remove $2  && exit
+  [ "$1" = "update" ]              && update $2 && install $2 && exit
   echo "wrong argument: $1"
 }
 

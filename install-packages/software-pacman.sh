@@ -124,7 +124,7 @@ start-script(){
   echo -e "${VERDE}start script(y/N)${SEM_COR}"
   read VERIFICATION
   [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script starting${SEM_COR}"
+  [ ${VERIFICATION} = $Y ] && echo -e "${VERDE}script starting${SEM_COR}"
 }
 
 update-packages(){

@@ -157,20 +157,20 @@ config-touchpad
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "13" ] && help       && exit
-  [ "$1" == "i3" ] || [ "$1" == "1" ] && config-i3 && exit
-  [ "$1" == "i3status" ] || [ "$1" == "2" ] && config-i3status && exit
-  [ "$1" == "alacritty" ] || [ "$1" == "3" ] && config-alacritty && exit
-  [ "$1" == "lf" ] || [ "$1" == "4" ] && config-lf && exit
-  [ "$1" == "theme-rofi" ] || [ "$1" == "5" ] && config-theme-rofi && exit
-  [ "$1" == "net-speed" ] || [ "$1" == "6" ] && config-net-speed && exit
-  [ "$1" == "vim" ] || [ "$1" == "7" ] && config-vimrc && exit
-  [ "$1" == "bash" ] || [ "$1" == "8" ] && config-bashrc && exit
-  [ "$1" == "zsh" ] || [ "$1" == "9" ] && config-zshrc && exit
-  [ "$1" == "dockercompose" ] || [ "$1" == "10" ] && config-dockercompose && exit
-  [ "$1" == "touchpad" ] || [ "$1" == "11" ] && config-touchpad && exit
-  [ "$1" == "all" ] || [ "$1" == "12" ] && all && exit
-  [ "$1" == "exit" ] || [ "$1" == "14" ] && exit
+  [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "13" ] && help       && exit
+  [ "$1" = "i3" ] || [ "$1" = "1" ] && config-i3 && exit
+  [ "$1" = "i3status" ] || [ "$1" = "2" ] && config-i3status && exit
+  [ "$1" = "alacritty" ] || [ "$1" = "3" ] && config-alacritty && exit
+  [ "$1" = "lf" ] || [ "$1" = "4" ] && config-lf && exit
+  [ "$1" = "theme-rofi" ] || [ "$1" = "5" ] && config-theme-rofi && exit
+  [ "$1" = "net-speed" ] || [ "$1" = "6" ] && config-net-speed && exit
+  [ "$1" = "vim" ] || [ "$1" = "7" ] && config-vimrc && exit
+  [ "$1" = "bash" ] || [ "$1" = "8" ] && config-bashrc && exit
+  [ "$1" = "zsh" ] || [ "$1" = "9" ] && config-zshrc && exit
+  [ "$1" = "dockercompose" ] || [ "$1" = "10" ] && config-dockercompose && exit
+  [ "$1" = "touchpad" ] || [ "$1" = "11" ] && config-touchpad && exit
+  [ "$1" = "all" ] || [ "$1" = "12" ] && all && exit
+  [ "$1" = "exit" ] || [ "$1" = "14" ] && exit
 
 
   echo "wrong argument: $1"
@@ -181,7 +181,7 @@ start-script(){
   read VERIFICATION
 
   [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script general starting${SEM_COR}"
+  [ ${VERIFICATION} = $Y ] && echo -e "${VERDE}script general starting${SEM_COR}"
 
   echo "
 
