@@ -15,7 +15,6 @@ echo
 echo -e "${GREEN}##########################${NO_COLOR}"
 echo -e "${GREEN}###  CONFIG DOCKER!!!  ###${NO_COLOR}"
 echo -e "${GREEN}##########################${NO_COLOR}"
-echo
 function help {
   echo -e "${PURPLE}
   Insert valid argument
@@ -68,13 +67,12 @@ start-script(){
   # [ ${VERIFICATION} = $Y ] && echo -e "${GREEN}script docker starting${NO_COLOR}"
 
   echo -e "${BLUE}
-
     1 - docker
     2 - docker-restart -> Run script after initial config and reboot system
     3 - help
     4 - exit
 
-    Insert option:${NO_COLOR}"
+Insert option:${NO_COLOR}"
     read option
     main $option
 }

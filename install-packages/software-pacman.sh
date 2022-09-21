@@ -129,7 +129,8 @@ PKGS_WITH_CONFIRM=(
 )
 
 update-packages(){
-    echo -e "${GREEN}Update packages(y/N)${NO_COLOR}"
+  echo
+  echo -e "${PURPLE}Update packages(y/N) ###(pacman -Syu)###${NO_COLOR}"
   read VERIFICATION
   if [ ${VERIFICATION} = $Y ]; then
     echo -e "${GREEN}Updating packages!!!${NO_COLOR}"
@@ -164,8 +165,8 @@ done
 install-packages-WITH-CONFIRM(){
 echo -e "${GREEN}INSTALL PACKAGES${NO_COLOR}"
 echo ""
-echo -e "${RED}for the linux kernel, choose virtualbox-host-modules-arch${NO_COLOR}"
-echo -e "${RED}for any other kernel (including linux-lts), choose virtualbox-host-dkms${NO_COLOR}"
+echo -e "${YELLOW}[INFO] - for the linux kernel, choose virtualbox-host-modules-arch${NO_COLOR}"
+echo -e "${YELLOW}[INFO] - for any other kernel (including linux-lts), choose virtualbox-host-dkms${NO_COLOR}"
 echo ""
 for PKG in "${PKGS_WITH_CONFIRM[@]}"; do
     if ! pacman -Q "$PKG" &> /dev/null; then

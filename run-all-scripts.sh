@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Color font
 BLACK='\033[0;90m'
 RED='\033[0;91m'
 GREEN='\033[0;92m' 
@@ -182,7 +181,11 @@ Insert option:${NO_COLOR}"
 
 function check-folder {
 if [[ $(basename $PWD) != "install-config-archlinux" ]]; then
-    echo -e "${RED}Run the script inside your folder${NO_COLOR}"
+    echo
+    echo -e "${RED}##############################################${NO_COLOR}"
+    echo -e "${RED}###  Run the script inside your folder!!!  ###${NO_COLOR}"
+    echo -e "${RED}##############################################${NO_COLOR}"
+    echo
     exit
 fi
 }

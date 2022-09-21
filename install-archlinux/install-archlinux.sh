@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-#chmod +x auric.sh
-
 BLACK='\033[0;90m'
 RED='\033[0;91m'
 GREEN='\033[0;92m' 
