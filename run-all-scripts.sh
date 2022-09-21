@@ -101,6 +101,13 @@ function all {
     return 0
 }
 
+function final-config {
+    config-nvm false
+    config-github false
+    config-docker false
+    return 0
+}
+
 function msg-done {
     echo
     echo -e "${VERDE}##################${SEM_COR}"
@@ -120,7 +127,7 @@ function main {
   [ "$1" == "config-nvm" ] || [ "$1" == "6" ] && config-nvm true && msg-done && exit
   [ "$1" == "config-zsh" ] || [ "$1" == "7" ] && config-zsh  true && msg-done && exit
   [ "$1" == "all" ] || [ "$1" == "8" ] && all && msg-done && exit
-  [ "$1" == "final-config" ] || [ "$1" == "9" ] && config-nvm true && config-docker true && msg-done && exit
+  [ "$1" == "final-config" ] || [ "$1" == "9" ] && final-config && msg-done && exit
   [ "$1" == "exit" ] || [ "$1" == "11" ] && exit
 
   echo "wrong argument: $1"

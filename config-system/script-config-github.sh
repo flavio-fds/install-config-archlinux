@@ -10,6 +10,18 @@ echo -e "${VERDE}######################################${SEM_COR}"
 echo -e "${VERDE}###  CONFIG GITHUB AND KEY SSH!!!  ###${SEM_COR}"
 echo -e "${VERDE}######################################${SEM_COR}"
 echo
+
+function help {
+  echo "
+  Insert valid argument
+
+    1 - github-config
+    2 - copy-key-github -> copy key for Add Chave ssh-agent github site
+    4 - exit
+    "
+    start-script
+}
+
 config-github(){
     echo -e "${VERDE}Starting config github${SEM_COR}"
 
@@ -37,6 +49,15 @@ config-github(){
 
     eval "$(ssh-agent -s)" # start ssh-agent in background 
     ssh-add ~/.ssh/id_rsa # add key private SSH to the ssh-agent
+    echo -e "${VERDE}Run config-github - copy-key-github after reboot${SEM_COR}" && sleep 3
+    echo
+    echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    echo
+}
+
+function print-key {
+    echo -e "${VERDE}Add Chave ssh-agent${SEM_COR}"
+
     echo "No canto superior direito do GitHub , clique na sua foto de perfil e clique em Settings ;
 
     Na barra lateral esquerda, clique em SSH and GPG keys ;
@@ -64,13 +85,43 @@ config-github(){
     echo
 }
 
+function main {
+  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "3" ] && help       && exit
+  [ "$1" == "github-config" ] || [ "$1" == "1" ] && config-github && exit
+  [ "$1" == "copy-key-github" ] || [ "$1" == "2" ] && print-key && exit
+  [ "$1" == "exit" ] || [ "$1" == "4" ] && exit
+
+
+  echo "wrong argument: $1"
+}
+
+# start-script(){
+#   echo -e "${VERDE}start script config github(y/N)${SEM_COR}"
+#   read VERIFICATION
+
+#   [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
+#   [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script github and SSH config starting${SEM_COR}" && config-github
+
+# }
+
 start-script(){
-  echo -e "${VERDE}start script config github(y/N)${SEM_COR}"
+  echo -e "${VERDE}start script NVM config(y/N)${SEM_COR}"
   read VERIFICATION
 
   [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script github and SSH config starting${SEM_COR}" && config-github
+  [ ${VERIFICATION} == $Y ] && echo -e "${VERDE}script NVM config starting${SEM_COR}"
 
+  echo "
+  Insert option
+
+    1 - github-config
+    2 - copy-key-github
+    3 - help
+    4 - exit
+
+  Insert option:"
+    read option
+    main $option
 }
 
 function check-folder {

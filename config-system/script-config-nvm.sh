@@ -34,9 +34,15 @@ config-node(){
 
 function node-restart {
     echo -e "${VERDE}Starting check install nvm and install node 16${SEM_COR}"
-    nvm install 16
-    node -v
-    nvm list
+
+    echo -e "${VERDE}exec command (nvm install 16)${SEM_COR}"
+    echo -e "${VERDE}exec command (node -v)${SEM_COR}"
+    echo -e "${VERDE}exec command (nvm list)${SEM_COR}"
+    
+    echo
+    echo -e "${VERMELHO}After exec command another terminal OK ${SEM_COR}"
+    read ok
+    echo $ok
     echo
     echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
     echo

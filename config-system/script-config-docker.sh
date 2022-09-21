@@ -33,7 +33,6 @@ config-docker(){
 #Run script after initial config and reboot system
 config-docker-after-reboot(){
     echo -e "${VERDE}Configuring docker after restart${SEM_COR}"
-    newgrp docker # ativa as alterações realizadas nos grupos
     echo
     echo -e "${VERDE}sudo systemctl status docker - check status no systemd${SEM_COR}"
     echo -e "${VERDE}sudo systemctl start docker.service -> start docker daemon systemd${SEM_COR}"
@@ -41,6 +40,7 @@ config-docker-after-reboot(){
     echo
     echo
     echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
+    newgrp docker # ativa as alterações realizadas nos grupos
     echo
 }
 

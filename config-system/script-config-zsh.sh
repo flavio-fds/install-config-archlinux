@@ -59,7 +59,6 @@ config-zsh-plugin(){
     echo -e "${VERMELHO}/usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh${SEM_COR}"
     echo -e "${VERMELHO}/usr/lib/spaceship-prompt/spaceship.zsh${SEM_COR}"
     echo
-    # code ./config-system/files-config/config-zsh-plugin.txt
     echo
     sudo vim /usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh
     sudo vim /usr/lib/spaceship-prompt/spaceship.zsh
