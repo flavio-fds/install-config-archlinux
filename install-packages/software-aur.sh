@@ -1,15 +1,21 @@
 #!/usr/bin/env bash
 
-VERMELHO='\e[1;91m'
-VERDE='\e[1;92m'
-SEM_COR='\e[0m'
+BLACK='\033[0;90m'
+RED='\033[0;91m'
+GREEN='\033[0;92m' 
+YELLOW='\033[0;93m'   
+BLUE='\033[0;94m'      
+PURPLE='\033[0;95m'   
+CYAN='\033[0;96m'     
+WHITE='\033[0;97m'  
+NO_COLOR='\e[0m'
 
 Y="y"
 
 echo
-echo -e "${VERDE}####################################${SEM_COR}"
-echo -e "${VERDE}###  INSTALLING AUR SOFTWARE!!!  ###${SEM_COR}"
-echo -e "${VERDE}####################################${SEM_COR}"
+echo -e "${GREEN}####################################${NO_COLOR}"
+echo -e "${GREEN}###  INSTALLING AUR SOFTWARE!!!  ###${NO_COLOR}"
+echo -e "${GREEN}####################################${NO_COLOR}"
 echo
 
 PKGS=(
@@ -43,7 +49,7 @@ PKGS=(
 )
 
 function help {
-  echo "
+  echo -e "${PURPLE}
   Insert valid argument
 
        4 - help      shows help
@@ -51,7 +57,7 @@ function help {
        2 - update    update a package
        3 - remove    removes installed package via pacman
        5 - exit
-    "
+    ${NO_COLOR}"
     start-script
 }
 
@@ -64,38 +70,38 @@ function script-aur {
 function check-package-installed {
     for PKG in "${PKGS[@]}"; do
         if pacman -Q "$PKG" &> /dev/null; then
-        echo -e "${VERDE}Package [$PKG] already installed${SEM_COR}"
+        echo -e "${GREEN}Package [$PKG] already installed${NO_COLOR}"
         else
-        echo -e "${VERMELHO}Error Install Package ${PKG}${SEM_COR}"
+        echo -e "${RED}Error Install Package ${PKG}${NO_COLOR}"
         fi
     done
 }
 
 function msg-done {
     echo
-    echo -e "${VERDE}##################${SEM_COR}"
-    echo -e "${VERDE}###  Done!!!!  ###${SEM_COR}"
-    echo -e "${VERDE}##################${SEM_COR}"
+    echo -e "${GREEN}##################${NO_COLOR}"
+    echo -e "${GREEN}###  Done!!!!  ###${NO_COLOR}"
+    echo -e "${GREEN}##################${NO_COLOR}"
     echo
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" == "help" ] || [ "$1" == "4" ] && help       && exit
-  [ "$1" == "install" ] || [ "$1" == "1" ] && script-aur "install" && check-package-installed && msg-done && exit
-  [ "$1" == "update" ] || [ "$1" == "2" ] && script-aur "update" && msg-done && exit
-  [ "$1" == "remove" ] || [ "$1" == "3" ] && script-aur "remove" && msg-done && exit
-  [ "$1" == "exit" ] || [ "$1" == "5" ] && exit
+  [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "4" ] && help       && exit
+  [ "$1" = "install" ] || [ "$1" = "1" ] && script-aur "install" && check-package-installed && msg-done && exit
+  [ "$1" = "update" ] || [ "$1" = "2" ] && script-aur "update" && msg-done && exit
+  [ "$1" = "remove" ] || [ "$1" = "3" ] && script-aur "remove" && msg-done && exit
+  [ "$1" = "exit" ] || [ "$1" = "5" ] && exit
 
   echo "wrong argument: $1"
 }
 
 start-script(){
-  echo -e "${VERDE}start script install packages AUR(y/N)${SEM_COR}"
-  read VERIFICATION
-  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ ${VERIFICATION} = $Y ] && echo -e "${VERDE}script starting${SEM_COR}" && chmod +x script-aur.sh
+#   echo -e "${GREEN}start script install packages AUR(y/N)${NO_COLOR}"
+#   read VERIFICATION
+#   [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${RED}script finished${NO_COLOR}" && exit
+#   [ ${VERIFICATION} = $Y ] && echo -e "${GREEN}script starting${NO_COLOR}" && chmod +x script-aur.sh
 
-  echo "
+  echo -e "${BLUE}
 
     1 - install
     2 - update
@@ -103,14 +109,14 @@ start-script(){
     4 - help
     5 - exit
 
-  Insert option:"
+  Insert option:${NO_COLOR}"
     read option
     main $option
 }
 
 function check-folder {
     if [[ $(basename $PWD) != "install-packages" ]]; then
-        echo -e "${VERMELHO}Run the script inside your folder${SEM_COR}"
+        echo -e "${RED}Run the script inside your folder${NO_COLOR}"
         exit
     fi
 }

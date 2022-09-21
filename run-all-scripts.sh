@@ -1,22 +1,29 @@
 #!/usr/bin/env bash
 
-VERMELHO='\e[1;91m'
-VERDE='\e[1;92m'
-SEM_COR='\e[0m'
+# Color font
+BLACK='\033[0;90m'
+RED='\033[0;91m'
+GREEN='\033[0;92m' 
+YELLOW='\033[0;93m'   
+BLUE='\033[0;94m'      
+PURPLE='\033[0;95m'   
+CYAN='\033[0;96m'     
+WHITE='\033[0;97m'  
+NO_COLOR='\e[0m'
+
 
 Y="y"
 
 function title {
 echo
-echo -e "${VERDE}##############################################${SEM_COR}"
-echo -e "${VERDE}###  INSTALLING AND CONFIG ALL SCRIPTS!!!  ###${SEM_COR}"
-echo -e "${VERDE}##############################################${SEM_COR}"
-echo
+echo -e "${GREEN}##############################################${NO_COLOR}"
+echo -e "${GREEN}###  INSTALLING AND CONFIG ALL SCRIPTS!!!  ###${NO_COLOR}"
+echo -e "${GREEN}##############################################${NO_COLOR}"
 }
 
 
 function help {
-  echo "
+  echo -e "${PURPLE}
   Insert valid argument
 
         1 - install-pacman -> installs a package with pacman
@@ -31,7 +38,7 @@ function help {
         10 - install-archlinux
         11 - help
         12 - exit
-    "
+    ${NO_COLOR}"
     start-script
 }
 
@@ -40,11 +47,11 @@ function execute-permission {
     chmod +x ./install-packages/software-pacman-base.sh
     chmod +x ./install-packages/software-pacman.sh
     chmod +x ./install-packages/software-aur.sh
-    chmod +x ./config-system/script-config-docker.sh
-    chmod +x ./config-system/script-config-general.sh
-    chmod +x ./config-system/script-config-github.sh
-    chmod +x ./config-system/script-config-nvm.sh
-    chmod +x ./config-system/script-config-zsh.sh
+    chmod +x ./config-system/config-docker.sh
+    chmod +x ./config-system/config-general.sh
+    chmod +x ./config-system/config-github.sh
+    chmod +x ./config-system/config-nvm.sh
+    chmod +x ./config-system/config-zsh.sh
     chmod +x ./install-archlinux/install-archlinux.sh
 }
 
@@ -62,31 +69,31 @@ function install-aur {
 }
 function config-docker {
     cd config-system
-    ./script-config-docker.sh
+    ./config-docker.sh
     cd ..
     $1 && start-script
 }
 function config-general {
     cd config-system
-    ./script-config-general.sh
+    ./config-general.sh
     cd ..
     $1 && start-script
 }
 function config-github {
     cd config-system
-    ./script-config-github.sh
+    ./config-github.sh
     cd ..
     $1 && start-script
 }
 function config-nvm {
     cd config-system
-    ./script-config-nvm.sh
+    ./config-nvm.sh
     cd ..
     $1 && start-script
 }
 function config-zsh {
     cd config-system
-    ./script-config-zsh.sh
+    ./config-zsh.sh
     cd ..
     $1 && start-script
 }
@@ -117,9 +124,18 @@ function final-config {
 
 function msg-done {
     echo
-    echo -e "${VERDE}##################${SEM_COR}"
-    echo -e "${VERDE}###  Done!!!!  ###${SEM_COR}"
-    echo -e "${VERDE}##################${SEM_COR}"
+    echo -e "${GREEN}##################${NO_COLOR}"
+    echo -e "${GREEN}###  Done!!!!  ###${NO_COLOR}"
+    echo -e "${GREEN}##################${NO_COLOR}"
+    echo
+    return 0
+}
+
+function msg-bye {
+    echo
+    echo -e "${CYAN}##################${NO_COLOR}"
+    echo -e "${CYAN}###   BYE!!!!  ###${NO_COLOR}"
+    echo -e "${CYAN}##################${NO_COLOR}"
     echo
     return 0
 }
@@ -136,25 +152,20 @@ function main {
   [ "$1" = "all" ] || [ "$1" = "8" ] && all && msg-done && exit
   [ "$1" = "final-config" ] || [ "$1" = "9" ] && final-config && msg-done && exit
   [ "$1" = "install-archlinux" ] || [ "$1" = "10" ] && install-archlinux && exit
-  [ "$1" = "exit" ] || [ "$1" = "12" ] && exit
+  [ "$1" = "exit" ] || [ "$1" = "12" ] && msg-bye && exit
 
-  echo "wrong argument: $1"
+  echo -e "${RED}wrong argument: $1 ${NO_COLOR}"
+  start-script
 }
 
 start-script(){
   title
-  echo -e "${VERDE}start script(y/N)${SEM_COR}"
-  read VERIFICATION
 
-  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ ${VERIFICATION} = $Y ] && echo -e "${VERDE}script starting${SEM_COR}" && execute-permission
-
-  echo "
-
+  echo -e "${BLUE}
     1 - install-pacman
     2 - install-aur
     3 - config-docker
-    4 - config-general
+    4 - config-general -> i3, Alacritty, lf, Rofi, vim, bash, zsh, docker, touchpad
     5 - config-github
     6 - config-nvm
     7 - config-zsh
@@ -164,14 +175,14 @@ start-script(){
     11 - help
     12 - exit
 
-Insert option:"
+Insert option:${NO_COLOR}"
     read option
     main $option
 }
 
 function check-folder {
 if [[ $(basename $PWD) != "install-config-archlinux" ]]; then
-    echo -e "${VERMELHO}Run the script inside your folder${SEM_COR}"
+    echo -e "${RED}Run the script inside your folder${NO_COLOR}"
     exit
 fi
 }

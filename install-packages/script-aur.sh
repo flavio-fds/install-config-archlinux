@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 
-VERMELHO='\e[1;91m'
-VERDE='\e[1;92m'
-SEM_COR='\e[0m'
+BLACK='\033[0;90m'
+RED='\033[0;91m'
+GREEN='\033[0;92m' 
+YELLOW='\033[0;93m'   
+BLUE='\033[0;94m'      
+PURPLE='\033[0;95m'   
+CYAN='\033[0;96m'     
+WHITE='\033[0;97m'  
+NO_COLOR='\e[0m'
 
 AUR_URL="https://aur.archlinux.org"
 AUR_DIR="$HOME/aur"
@@ -48,7 +54,7 @@ function fetch {
 
 function install {
   if pacman -Q "$1" &> /dev/null; then
-    echo -e "${VERDE}Package [$1] already installed${SEM_COR}"
+    echo -e "${GREEN}Package [$1] already installed${NO_COLOR}"
     exit
   fi
   fetch $1
@@ -89,16 +95,16 @@ function remove {
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" = "help" ] && help       && exit
-  [ "$1" = "install" ]             && install $2 && exit
-  [ "$1" = "remove" ]              && remove $2  && exit
-  [ "$1" = "update" ]              && update $2 && install $2 && exit
+  [ -z "$1" ] || [ "$1" = "help" ] && help && exit
+  [ "$1" = "install" ] && install $2 && exit
+  [ "$1" = "remove" ] && remove $2  && exit
+  [ "$1" = "update" ] && update $2 && install $2 && exit
   echo "wrong argument: $1"
 }
 
 function check-folder {
     if [[ $(basename $PWD) != "install-packages" ]]; then
-        echo -e "${VERMELHO}Run the script inside your folder${SEM_COR}"
+        echo -e "${RED}Run the script inside your folder${NO_COLOR}"
         exit
     fi
 }

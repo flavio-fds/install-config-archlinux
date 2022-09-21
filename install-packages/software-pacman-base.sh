@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
 
-VERMELHO='\e[1;91m'
-VERDE='\e[1;92m'
-SEM_COR='\e[0m'
+BLACK='\033[0;90m'
+RED='\033[0;91m'
+GREEN='\033[0;92m' 
+YELLOW='\033[0;93m'   
+BLUE='\033[0;94m'      
+PURPLE='\033[0;95m'   
+CYAN='\033[0;96m'     
+WHITE='\033[0;97m'  
+NO_COLOR='\e[0m'
+
 Y="y"
+
 echo
-echo -e "${VERDE}#########################################${SEM_COR}"
-echo -e "${VERDE}###  INSTALL SOFTWARE BASE PACMAN!!!  ###${SEM_COR}"
-echo -e "${VERDE}#########################################${SEM_COR}"
+echo -e "${GREEN}####################################${NO_COLOR}"
+echo -e "${GREEN}###  INSTALL SOFTWARE PACMAN!!!  ###${NO_COLOR}"
+echo -e "${GREEN}####################################${NO_COLOR}"
 echo
 PKGS=(
     # SYSTEM --------------------------------------------------------------
@@ -119,18 +127,11 @@ PKGS=(
 #PKGS_WITH_CONFIRM=(
 #)
 
-start-script(){
-  echo -e "${VERDE}start script install packages pacman(y/N)${SEM_COR}"
-  read VERIFICATION
-  [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${VERMELHO}script finished${SEM_COR}" && exit
-  [ ${VERIFICATION} = $Y ] && echo -e "${VERDE}script starting${SEM_COR}"
-}
-
 update-packages(){
-    echo -e "${VERDE}Update packages(y/N)${SEM_COR}"
+    echo -e "${GREEN}Update packages(y/N)${NO_COLOR}"
   read VERIFICATION
   if [ ${VERIFICATION} = $Y ]; then
-    echo -e "${VERDE}Updating packages!!!${SEM_COR}"
+    echo -e "${GREEN}Updating packages!!!${NO_COLOR}"
     sudo pacman -Syu
   fi
 }
@@ -139,9 +140,9 @@ check-packages(){
   echo "CHECK PACKAGES"
   for PKG in "${PKGS[@]}"; do
     if pacman -Ss "$PKG" &> /dev/null; then
-       echo -e "${VERDE}Package [$PKG] OK${SEM_COR}"
+       echo -e "${GREEN}Package [$PKG] OK${NO_COLOR}"
     else
-       echo -e "${VERMELHO}Package [$PKG] not found${SEM_COR}"
+       echo -e "${RED}Package [$PKG] not found${NO_COLOR}"
        exit 1
     fi
  done
@@ -151,46 +152,73 @@ install-packages(){
   echo "INSTALL PACKAGES"
 for PKG in "${PKGS[@]}"; do
     if ! pacman -Q "$PKG" &> /dev/null; then
-       echo -e "${VERDE}Installing: ${PKG}${SEM_COR}"
+       echo -e "${GREEN}Installing: ${PKG}${NO_COLOR}"
        sudo pacman -S "$PKG" --noconfirm --needed
     else
-       echo -e "${VERMELHO}Package [$PKG] already installed${SEM_COR}"
+       echo -e "${RED}Package [$PKG] already installed${NO_COLOR}"
     fi
 done
 }
 
-#install-packages-WITH-CONFIRM(){
-#echo -e "${VERDE}INSTALL PACKAGES${SEM_COR}"
-#echo ""
-#echo -e "${VERMELHO}for the linux kernel, choose virtualbox-host-modules-arch${SEM_COR}"
-#echo -e "${VERMELHO}for any other kernel (including linux-lts), choose virtualbox-host-dkms${SEM_COR}"
-#echo ""
-#for PKG in "${PKGS_WITH_CONFIRM[@]}"; do
-#    if ! pacman -Q "$PKG" &> /dev/null; then
-#      echo -e "${VERDE}Installing: ${PKG}${SEM_COR}"
-#      sudo pacman -S "$PKG" --needed
-#    else
-#      echo -e "${VERMELHO}Package [$PKG] already installed${SEM_COR}"
-#    fi
-#done
-#}
+install-packages-WITH-CONFIRM(){
+echo -e "${GREEN}INSTALL PACKAGES${NO_COLOR}"
+echo ""
+echo -e "${RED}for the linux kernel, choose virtualbox-host-modules-arch${NO_COLOR}"
+echo -e "${RED}for any other kernel (including linux-lts), choose virtualbox-host-dkms${NO_COLOR}"
+echo ""
+for PKG in "${PKGS_WITH_CONFIRM[@]}"; do
+    if ! pacman -Q "$PKG" &> /dev/null; then
+      echo -e "${GREEN}Installing: ${PKG}${NO_COLOR}"
+      sudo pacman -S "$PKG" --needed
+    else
+      echo -e "${RED}Package [$PKG] already installed${NO_COLOR}"
+    fi
+done
+}
 
 function check-folder {
     if [[ $(basename $PWD) != "install-packages" ]]; then
-        echo -e "${VERMELHO}Run the script inside your folder${SEM_COR}"
+        echo -e "${RED}Run the script inside your folder${NO_COLOR}"
         exit
     fi
 }
 
-check-folder
+function menu {
+echo -e "${BLUE}
+
+    1 - install-package ^^^
+    2 - exit
+
+  Insert option:${NO_COLOR}"
+  
+  read option
+  if [[ "$option" = "install-package" ]] || [[ "$option" = "1" ]]; then
+    check-packages
+    update-packages
+    install-packages
+    # install-packages-WITH-CONFIRM
+    exit
+  fi
+  [ "$option" = "exit" ] || [ "$option" = "2" ] && exit
+  menu
+}
+
+start-script(){
+  check-folder
+  for PKG in "${PKGS[@]}"; do
+       echo -e "${GREEN}${PKG}${NO_COLOR}"
+  done
+  for PKG in "${PKGS_WITH_CONFIRM[@]}"; do
+      echo -e "${GREEN}${PKG}${NO_COLOR}"
+  done
+
+  menu
+}
+
 
 start-script
-update-packages
-check-packages
-install-packages
-#install-packages-WITH-CONFIRM
 
-echo -e "${VERDE}#################${SEM_COR}"
-echo -e "${VERDE}###  DONE!!!  ###${SEM_COR}"
-echo -e "${VERDE}#################${SEM_COR}"
+echo -e "${GREEN}#################${NO_COLOR}"
+echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
+echo -e "${GREEN}#################${NO_COLOR}"
 

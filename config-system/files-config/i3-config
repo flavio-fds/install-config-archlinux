@@ -47,7 +47,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 10%-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-#windows float
+#windows float - Type xprop WM_CLASS in a terminal, the cursor will change, then click on the window of the app and xprop will return the wm class of the app (in the terminal).
 #for_window [class="Galculator" instance="galculator"] floating enable
 
 #screenshots
