@@ -53,7 +53,7 @@ function fetch {
 }
 
 function install {
-  if pacman -Q "$1" &> /dev/null || $2; then
+  if pacman -Q "$1" &> /dev/null && $2; then
     echo -e "${GREEN}Package [$1] already installed${NO_COLOR}"
     exit
   fi
@@ -96,9 +96,9 @@ function remove {
 
 function main {
   [ -z "$1" ] || [ "$1" = "help" ] && help && exit
-  [ "$1" = "install" ] && install $2 false && exit
+  [ "$1" = "install" ] && install $2 true && exit
   [ "$1" = "remove" ] && remove $2  && exit
-  [ "$1" = "update" ] && update $2 && install $2 true && exit
+  [ "$1" = "update" ] && update $2 && install $2 false && exit
   echo "wrong argument: $1"
 }
 
