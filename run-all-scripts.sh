@@ -26,7 +26,7 @@ function help {
   Insert valid argument
 
         1 - install-pacman -> installs a package with pacman
-        2 - install-aur -> installs a package with AUR
+        2 - packages-aur -> installs a package with AUR
         3 - config-docker -> Config Docker
         4 - config-general -> Config i3, i3status, alacritty, lf, theme-rofi, net-speed, vim, bash, zsh, dockercompose, touchpad
         5 - config-github -> Config git and github and create new key SSH
@@ -141,8 +141,8 @@ function msg-bye {
 
 function main {
   [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "11" ] && help       && exit
-  [ "$1" = "install-pacman" ] || [ "$1" = "1" ] && install-pacman true && msg-done && exit
-  [ "$1" = "install-aur" ] || [ "$1" = "2" ] && install-aur true && msg-done && exit
+  [ "$1" = "install-pacman-packages" ] || [ "$1" = "1" ] && install-pacman true && msg-done && exit
+  [ "$1" = "packages-aur" ] || [ "$1" = "2" ] && install-aur true && msg-done && exit
   [ "$1" = "config-docker" ] || [ "$1" = "3" ] && config-docker true && msg-done && exit
   [ "$1" = "config-general" ] || [ "$1" = "4" ] && config-general true && msg-done && exit
   [ "$1" = "config-github" ] || [ "$1" = "5" ] && config-github true && msg-done && exit
@@ -161,8 +161,8 @@ start-script(){
   title
 
   echo -e "${BLUE}
-    1 - install-pacman
-    2 - install-aur
+    1 - install-pacman-packages
+    2 - packages-aur -> install, update, remove
     3 - config-docker
     4 - config-general -> i3, Alacritty, lf, Rofi, vim, bash, zsh, docker, touchpad
     5 - config-github
