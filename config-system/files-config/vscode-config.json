@@ -1,0 +1,7 @@
+// 'home/$USER/.config/Code/User/settings.json'
+
+{
+    "window.zoomLevel": 1,
+    "editor.wordWrap": "on",
+    "editor.fontFamily": "'Hack Nerd Font', 'monospace', monospace"
+}
