@@ -24,6 +24,8 @@ PKGS=(
     'intel-gpu-tools'
     'brightnessctl'         # Screen brightness control
     'lm_sensors'            # Sensors hardware
+    'lxappearance'          #set theme GTK
+    'arc-solid-gtk-theme'   #theme GTK 
 
     # TERMINAL UTILITIES --------------------------------------------------
 
