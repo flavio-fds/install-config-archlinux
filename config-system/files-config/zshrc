@@ -1,4 +1,5 @@
 #ZSH Config
+#~/zshrc
 
 # Enable colors and change prompt:
 autoload -U colors && colors
@@ -27,11 +28,13 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 LS_COLORS=$LS_COLORS:'tw=00;33:ow=01;33:'; export LS_COLORS
 
 #ALIAS
+alias ll='ls -la'
+alias exiti3='3-msg exit'
 alias zoomx='xcompmgr -c -l0 -t0 -r0 -o.00'
-alias dstatus="systemctl status docker.service"
-alias dstop="systemctl stop docker.service"
-alias dstart="systemctl start docker.service"
-alias ls="ls --color=auto"
+alias dstatus='systemctl status docker.service'
+alias dstop='systemctl stop docker.service'
+alias dstart='systemctl start docker.service'
+alias ls='ls --color=auto'
 alias lsl='ls | lolcat'
 alias neo='neofetch'
 alias c='calc'
@@ -66,99 +69,8 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
-# Spaceship Prompt
-#https://spaceship-prompt.sh/options/
-
-SPACESHIP_HG_SHOW=false
-SPACESHIP_PACKAGE_SHOW=false
-SPACESHIP_NODE_SHOW=false
-SPACESHIP_RUBY_SHOW=false
-SPACESHIP_ELM_SHOW=false
-SPACESHIP_ELIXIR_SHOW=false
-SPACESHIP_XCODE_SHOW_LOCAL=false
-SPACESHIP_SWIFT_SHOW_LOCAL=false
-SPACESHIP_GOLANG_SHOW=false
-SPACESHIP_PHP_SHOW=false
-SPACESHIP_RUST_SHOW=false
-SPACESHIP_JULIA_SHOW=false
-SPACESHIP_DOCKER_SHOW=true
-SPACESHIP_DOCKER_CONTEXT_SHOW=true
-SPACESHIP_AWS_SHOW=false
-SPACESHIP_CONDA_SHOW=false
-SPACESHIP_VENV_SHOW=false
-
-#SPACESHIP_PYENV_SHOW=false
-SPACESHIP_PYTHON_SHOW=false
-
-SPACESHIP_DOTNET_SHOW=false
-SPACESHIP_EMBER_SHOW=false
-
-#SPACESHIP_KUBECONTEXT_SHOW=false
-SPACESHIP_KUBECTL_CONTEXT_SHOW=false
-
-SPACESHIP_TERRAFORM_SHOW=false
-SPACESHIP_TERRAFORM_SHOW=false
-SPACESHIP_VI_MODE_SHOW=false
-SPACESHIP_JOBS_SHOW=false
-
-SPACESHIP_PROMPT_SEPARATE_LINE=false
-SPACESHIP_PROMPT_PREFIXES_SHOW=false
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_DIR_LOCK_SYMBOL=" "
-#SPACESHIP_CHAR_SYMBOL=
-SPACESHIP_CHAR_SYMBOL="->"
-SPACESHIP_CHAR_SUFFIX=" "
-SPACESHIP_TIME_SHOW=false
-
-SPACESHIP_DIR_TRUNC=2
-SPACESHIP_DIR_TRUNC_REPO=false
-
-SPACESHIP_GIT_STATUS_PREFIX=" "
-SPACESHIP_GIT_STATUS_SUFFIX=" "
-SPACESHIP_GIT_STATUS_DELETED=✗
-
-SPACESHIP_PROMPT_ORDER=(
-  time          # Time stamps section
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  hg            # Mercurial section (hg_branch  + hg_status)
-  package       # Package version
-#  gradle        # Gradle section
-#  maven         # Maven section
-  node          # Node.js section
-  ruby          # Ruby section
-  elixir        # Elixir section
-  xcode         # Xcode section
-  swift         # Swift section
-  golang        # Go section
-  php           # PHP section
-  rust          # Rust section
-  haskell       # Haskell Stack section
-  julia         # Julia section
-  docker        # Docker section
-  aws           # Amazon Web Services section
-  gcloud        # Google Cloud Platform section
-  venv          # virtualenv section
-  conda         # conda virtualenv section
-#  pyenv         # Pyenv section
-  dotnet        # .NET section
-#  ember         # Ember.js section
-  kubectl       # Kubectl context section
-  terraform     # Terraform workspace section
-  ibmcloud      # IBM Cloud section
-  exec_time     # Execution time
-  line_sep      # Line break
-  battery       # Battery level and status
-#  vi_mode       # Vi-mode indicator
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-)
-
-autoload -U promptinit; promptinit
-prompt spaceship
+#start prompt spaceship
+source /usr/lib/spaceship-prompt/spaceship.zsh
 
 #---Plugin----Themes---#
 #source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh #https://github.com/zsh-users/zsh-autosuggestions
@@ -329,3 +241,7 @@ ex=:\
 *.pdf=:\
 *.nix=:\
 "
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
