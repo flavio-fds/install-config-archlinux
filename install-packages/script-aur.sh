@@ -2,12 +2,12 @@
 
 BLACK='\033[0;90m'
 RED='\033[0;91m'
-GREEN='\033[0;92m' 
-YELLOW='\033[0;93m'   
-BLUE='\033[0;94m'      
-PURPLE='\033[0;95m'   
-CYAN='\033[0;96m'     
-WHITE='\033[0;97m'  
+GREEN='\033[0;92m'
+YELLOW='\033[0;93m'
+BLUE='\033[0;94m'
+PURPLE='\033[0;95m'
+CYAN='\033[0;96m'
+WHITE='\033[0;97m'
 NO_COLOR='\e[0m'
 
 AUR_URL="https://aur.archlinux.org"
@@ -53,7 +53,7 @@ function fetch {
 }
 
 function install {
-  if pacman -Q "$1" &> /dev/null; then
+  if pacman -Q "$1" &>/dev/null; then
     echo -e "${GREEN}Package [$1] already installed${NO_COLOR}"
     exit
   fi
@@ -78,7 +78,7 @@ function update {
   result=$(git pull)
   echo $result
   if [[ $result = "Already up to date." ]]; then
-  exit
+    exit
   fi
   validate_package_has_pkgbuild $1
   makepkg -si
@@ -101,16 +101,16 @@ function main {
   isUpdate=0
   [ -z "$1" ] || [ "$1" = "help" ] && help && exit
   [ "$1" = "install" ] && install $2 && exit
-  [ "$1" = "remove" ] && remove $2  && exit
+  [ "$1" = "remove" ] && remove $2 && exit
   [ "$1" = "update" ] && update $2 && exit
   echo "wrong argument: $1"
 }
 
 function check-folder {
-    if [[ $(basename $PWD) != "install-packages" ]]; then
-        echo -e "${RED}Run the script inside your folder${NO_COLOR}"
-        exit
-    fi
+  if [[ $(basename $PWD) != "install-packages" ]]; then
+    echo -e "${RED}Run the script inside your folder${NO_COLOR}"
+    exit
+  fi
 }
 
 check-folder

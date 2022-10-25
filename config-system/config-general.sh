@@ -2,12 +2,12 @@
 
 BLACK='\033[0;90m'
 RED='\033[0;91m'
-GREEN='\033[0;92m' 
-YELLOW='\033[0;93m'   
-BLUE='\033[0;94m'      
-PURPLE='\033[0;95m'   
-CYAN='\033[0;96m'     
-WHITE='\033[0;97m'  
+GREEN='\033[0;92m'
+YELLOW='\033[0;93m'
+BLUE='\033[0;94m'
+PURPLE='\033[0;95m'
+CYAN='\033[0;96m'
+WHITE='\033[0;97m'
 NO_COLOR='\e[0m'
 
 Y="y"
@@ -16,7 +16,7 @@ echo -e "${GREEN}####################################################${NO_COLOR}
 echo -e "${GREEN}############  CONFIG GENERAL SYSTEM!!!  ############${NO_COLOR}"
 echo -e "${GREEN}####################################################${NO_COLOR}"
 function help {
-  echo -e "${PURPLE}
+    echo -e "${PURPLE}
   Insert valid argument
 
     1 - i3
@@ -36,7 +36,7 @@ function help {
     start-script
 }
 
-config-i3(){
+config-i3() {
     echo -e "${GREEN}Starting config i3${NO_COLOR}"
     echo "creating folders $HOME/.config/i3/"
     mkdir -p $HOME/.config/i3
@@ -47,7 +47,7 @@ config-i3(){
     echo
 }
 
-config-i3status(){
+config-i3status() {
     echo -e "${GREEN}Starting config i3status${NO_COLOR}"
     echo "copying .i3status.conf file to $HOME/ directory"
     cp -f ./files-config/i3status.conf $HOME/.i3status.conf
@@ -56,7 +56,7 @@ config-i3status(){
     echo
 }
 
-config-alacritty(){
+config-alacritty() {
     echo -e "${GREEN}Starting config Alacritty${NO_COLOR}"
     echo "creating folders $HOME/.config/alacritty/"
     mkdir -p $HOME/.config/alacritty
@@ -67,7 +67,7 @@ config-alacritty(){
     echo
 }
 
-config-lf(){
+config-lf() {
     echo -e "${GREEN}Starting config LF${NO_COLOR}"
     echo "creating folders $HOME/.config/lf/"
     mkdir -p $HOME/.config/lf
@@ -78,7 +78,7 @@ config-lf(){
     echo
 }
 
-config-theme-rofi(){
+config-theme-rofi() {
     echo -e "${GREEN}Starting config theme rofi${NO_COLOR}"
     echo "creating folders $HOME/.config/rofi/"
     mkdir -p $HOME/.config/rofi
@@ -91,7 +91,7 @@ config-theme-rofi(){
     echo
 }
 
-config-net-speed(){
+config-net-speed() {
     echo -e "${GREEN}Starting config net-speed.sh${NO_COLOR}"
     echo "copying .net-speed.sh file to $HOME/ directory"
     cp ./files-config/net-speed.sh $HOME/.net-speed.sh
@@ -100,7 +100,7 @@ config-net-speed(){
     echo
 }
 
-config-vimrc(){
+config-vimrc() {
     echo -e "${GREEN}Starting config vim${NO_COLOR}"
     echo "copying .vimrc file to $HOME/ directory"
     cp ./files-config/vimrc $HOME/.vimrc
@@ -109,7 +109,7 @@ config-vimrc(){
     echo
 }
 
-config-bashrc(){
+config-bashrc() {
     echo -e "${GREEN}Starting config bash${NO_COLOR}"
     echo "copying .bashrc file to $HOME/ directory"
     cp ./files-config/bashrc $HOME/.bashrc
@@ -118,7 +118,7 @@ config-bashrc(){
     echo
 }
 
-config-zshrc(){
+config-zshrc() {
     echo -e "${GREEN}Starting config zshrc${NO_COLOR}"
     echo "copying .zshrc file to $HOME/ directory"
     cp ./files-config/zshrc $HOME/.zshrc
@@ -127,16 +127,16 @@ config-zshrc(){
     echo
 }
 
-config-dockercompose(){
+config-dockercompose() {
     echo -e "${GREEN}Starting config docker-compose${NO_COLOR}"
     sudo curl -L "https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose # download and install docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose # permission exec 
+    sudo chmod +x /usr/local/bin/docker-compose                                                                                                       # permission exec
     echo
     echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
     echo
 }
 
-config-touchpad(){
+config-touchpad() {
     echo -e "${GREEN}Starting config touchpad${NO_COLOR}"
     echo -e "${GREEN}Dependency libinput${NO_COLOR}"
     echo -e "${GREEN}Dependency xf86-input-libinput${NO_COLOR}"
@@ -148,47 +148,47 @@ config-touchpad(){
 }
 
 function all {
-config-i3
-config-i3status
-config-alacritty
-config-lf
-config-theme-rofi
-config-net-speed
-config-vimrc
-config-bashrc
-config-zshrc
-config-dockercompose
-config-touchpad
+    config-i3
+    config-i3status
+    config-alacritty
+    config-lf
+    config-theme-rofi
+    config-net-speed
+    config-vimrc
+    config-bashrc
+    config-zshrc
+    config-dockercompose
+    config-touchpad
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "13" ] && help && exit
-  [ "$1" = "i3" ] || [ "$1" = "1" ] && config-i3 && exit
-  [ "$1" = "i3status" ] || [ "$1" = "2" ] && config-i3status && exit
-  [ "$1" = "alacritty" ] || [ "$1" = "3" ] && config-alacritty && exit
-  [ "$1" = "lf" ] || [ "$1" = "4" ] && config-lf && exit
-  [ "$1" = "theme-rofi" ] || [ "$1" = "5" ] && config-theme-rofi && exit
-  [ "$1" = "net-speed" ] || [ "$1" = "6" ] && config-net-speed && exit
-  [ "$1" = "vim" ] || [ "$1" = "7" ] && config-vimrc && exit
-  [ "$1" = "bash" ] || [ "$1" = "8" ] && config-bashrc && exit
-  [ "$1" = "zsh" ] || [ "$1" = "9" ] && config-zshrc && exit
-  [ "$1" = "dockercompose" ] || [ "$1" = "10" ] && config-dockercompose && exit
-  [ "$1" = "touchpad" ] || [ "$1" = "11" ] && config-touchpad && exit
-  [ "$1" = "all" ] || [ "$1" = "12" ] && all && exit
-  [ "$1" = "exit" ] || [ "$1" = "14" ] && exit
+    [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "13" ] && help && exit
+    [ "$1" = "i3" ] || [ "$1" = "1" ] && config-i3 && exit
+    [ "$1" = "i3status" ] || [ "$1" = "2" ] && config-i3status && exit
+    [ "$1" = "alacritty" ] || [ "$1" = "3" ] && config-alacritty && exit
+    [ "$1" = "lf" ] || [ "$1" = "4" ] && config-lf && exit
+    [ "$1" = "theme-rofi" ] || [ "$1" = "5" ] && config-theme-rofi && exit
+    [ "$1" = "net-speed" ] || [ "$1" = "6" ] && config-net-speed && exit
+    [ "$1" = "vim" ] || [ "$1" = "7" ] && config-vimrc && exit
+    [ "$1" = "bash" ] || [ "$1" = "8" ] && config-bashrc && exit
+    [ "$1" = "zsh" ] || [ "$1" = "9" ] && config-zshrc && exit
+    [ "$1" = "dockercompose" ] || [ "$1" = "10" ] && config-dockercompose && exit
+    [ "$1" = "touchpad" ] || [ "$1" = "11" ] && config-touchpad && exit
+    [ "$1" = "all" ] || [ "$1" = "12" ] && all && exit
+    [ "$1" = "exit" ] || [ "$1" = "14" ] && exit
 
-  echo -e "${RED}wrong argument: $1 ${NO_COLOR}"
-  start-script
+    echo -e "${RED}wrong argument: $1 ${NO_COLOR}"
+    start-script
 }
 
-start-script(){
-#   echo -e "${GREEN}start script config(y/N)${NO_COLOR}"
-#   read VERIFICATION
+start-script() {
+    #   echo -e "${GREEN}start script config(y/N)${NO_COLOR}"
+    #   read VERIFICATION
 
-#   [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${RED}script finished${NO_COLOR}" && exit
-#   [ ${VERIFICATION} = $Y ] && echo -e "${GREEN}script general starting${NO_COLOR}"
+    #   [ -z "$VERIFICATION" ] || [ ${VERIFICATION} != $Y ] && echo -e "${RED}script finished${NO_COLOR}" && exit
+    #   [ ${VERIFICATION} = $Y ] && echo -e "${GREEN}script general starting${NO_COLOR}"
 
-  echo -e "${BLUE}
+    echo -e "${BLUE}
     1 - i3
     2 - i3status
     3 - alacritty

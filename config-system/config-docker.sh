@@ -2,12 +2,12 @@
 
 BLACK='\033[0;90m'
 RED='\033[0;91m'
-GREEN='\033[0;92m' 
-YELLOW='\033[0;93m'   
-BLUE='\033[0;94m'      
-PURPLE='\033[0;95m'   
-CYAN='\033[0;96m'     
-WHITE='\033[0;97m'  
+GREEN='\033[0;92m'
+YELLOW='\033[0;93m'
+BLUE='\033[0;94m'
+PURPLE='\033[0;95m'
+CYAN='\033[0;96m'
+WHITE='\033[0;97m'
 NO_COLOR='\e[0m'
 
 Y="y"
@@ -22,35 +22,35 @@ function help {
     1 - docker -> Start initial config docker
     2 - docker-restart -> Run script after initial config and reboot system
     ${NO_COLOR}"
-    start-script
+  start-script
 }
 
-config-docker(){
-    echo -e "${GREEN}Starting config docker${NO_COLOR}"
-    sudo groupadd docker # cria um grupo chamado docker
-    sudo usermod -aG docker $USER # adiciona seu usuário a este novo grupo
-    echo -e "${GREEN}Reboot system and exec command (newgrp docker)${NO_COLOR}" && sleep 3
-    echo
-    echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
-    echo
+config-docker() {
+  echo -e "${GREEN}Starting config docker${NO_COLOR}"
+  sudo groupadd docker          # cria um grupo chamado docker
+  sudo usermod -aG docker $USER # adiciona seu usuário a este novo grupo
+  echo -e "${GREEN}Reboot system and exec command (newgrp docker)${NO_COLOR}" && sleep 3
+  echo
+  echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
+  echo
 }
 
 #Run script after initial config and reboot system
-config-docker-after-reboot(){
-    echo -e "${GREEN}Start configuring docker after restart${NO_COLOR}"
-    echo
-    echo -e "${GREEN}sudo systemctl status docker - check status no systemd${NO_COLOR}"
-    echo -e "${GREEN}sudo systemctl start docker.service -> start docker daemon systemd${NO_COLOR}"
-    echo -e "${GREEN}sudo systemctl enable docker -> start docker boot daemon systemd${NO_COLOR}" && sleep 3
-    echo
-    echo
-    echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
-    newgrp docker # ativa as alterações realizadas nos grupos
-    echo
+config-docker-after-reboot() {
+  echo -e "${GREEN}Start configuring docker after restart${NO_COLOR}"
+  echo
+  echo -e "${GREEN}sudo systemctl status docker - check status no systemd${NO_COLOR}"
+  echo -e "${GREEN}sudo systemctl start docker.service -> start docker daemon systemd${NO_COLOR}"
+  echo -e "${GREEN}sudo systemctl enable docker -> start docker boot daemon systemd${NO_COLOR}" && sleep 3
+  echo
+  echo
+  echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
+  newgrp docker # ativa as alterações realizadas nos grupos
+  echo
 }
 
 function main {
-  [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "3" ] && help       && exit
+  [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "3" ] && help && exit
   [ "$1" = "docker" ] || [ "$1" = "1" ] && config-docker && exit
   [ "$1" = "docker-restart" ] || [ "$1" = "2" ] && config-docker-after-reboot && exit
   [ "$1" = "exit" ] || [ "$1" = "4" ] && exit
@@ -59,7 +59,7 @@ function main {
   start-script
 }
 
-start-script(){
+start-script() {
   # echo -e "${GREEN}start script config(y/N)${NO_COLOR}"
   # read VERIFICATION
 
@@ -73,15 +73,15 @@ start-script(){
     4 - exit
 
 Insert option:${NO_COLOR}"
-    read option
-    main $option
+  read option
+  main $option
 }
 
 function check-folder {
-    if [[ $(basename $PWD) != "config-system" ]]; then
-        echo -e "${RED}Run the script inside your folder${NO_COLOR}"
-        exit
-    fi
+  if [[ $(basename $PWD) != "config-system" ]]; then
+    echo -e "${RED}Run the script inside your folder${NO_COLOR}"
+    exit
+  fi
 }
 
 check-folder
