@@ -122,6 +122,7 @@ config-zshrc() {
     echo -e "${GREEN}Starting config zshrc${NO_COLOR}"
     echo "copying .zshrc file to $HOME/ directory"
     cp ./files-config/zshrc $HOME/.zshrc
+    cp ./files-config/spaceshiprc $HOME/.spaceshiprc.zsh
     echo
     echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
     echo

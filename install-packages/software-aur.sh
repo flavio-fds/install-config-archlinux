@@ -31,7 +31,7 @@ PKGS=(
   'lf'               # Terminal file manager
 
   # DEVELOPMENT ---------------------------------------------------------
-
+  'jdk-lts'
   'visual-studio-code-bin' # Kickass text editor
 
   # MEDIA ---------------------------------------------------------------

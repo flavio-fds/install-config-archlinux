@@ -63,11 +63,9 @@ config-zsh-plugin() {
   echo -e "${RED}Open for details edit files ./config-system/files-config/config-zsh-plugin.txt${NO_COLOR}"
   echo
   echo -e "${RED}/usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh${NO_COLOR}"
-  echo -e "${RED}/usr/lib/spaceship-prompt/spaceship.zsh${NO_COLOR}"
   echo
   echo
   sudo vim /usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh
-  sudo vim /usr/lib/spaceship-prompt/spaceship.zsh
   echo
   echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
   echo

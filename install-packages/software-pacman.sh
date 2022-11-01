@@ -21,88 +21,6 @@ PKGS=(
 
   # SYSTEM BASE --------------------------------------------------------------
 
-  'archlinux-keyring'
-  'i3-wm'
-  'i3blocks'
-  'i3lock'
-  'i3status'
-  'which'
-  'wireless_tools'
-  'network-manager-applet'
-  'networkmanager'
-  'xterm'
-  'python-cachecontrol'
-  'python-certifi'
-  'python-distlib'
-  'python-distro'
-  'python-pep517'
-  'python-platformdirs'
-  'python-resolvelib'
-  'python-tenacity'
-  'python-webencodings'
-  'xorg-server'
-  'xorg-xinit'
-  'xorg-xbacklight'
-  'xorg-xhost'
-  'xorg-xkill'
-  'xorg-xrandr'
-  'xorg-xset'
-  'xorg-bdftopcf'
-  'xorg-font-util'
-  'xorg-mkfontscale'
-  'yar'
-  'arandr'
-  'device-mapper'
-  'cryptsetup'
-  'diffutils'
-  'e2fsprogs'
-  'efibootmgr'
-  'fakeroot'
-  'flex'
-  'gcc'
-  'go'
-  'go-tools'
-  'gparted'
-  'graphviz'
-  'groff'
-  'hwdata'
-  'less'
-  'intel-ucode'
-  'lsof'
-  'lvm2'
-  'm4'
-  'make'
-  'man-db'
-  'mdadm'
-  'mesa'
-  'patch'
-  'perl'
-  'php'
-  'pkgconf'
-  'pkgfile'
-  'python-pip'
-  'python-pyqt5'
-  'python2'
-  'qt5-base'
-  'qt5-translations'
-  'qt5-svg'
-  'qt5-x11extras'
-  'readline'
-  'redland'
-  'rsync'
-  'sudo'
-  'shadow'
-  'sysfsutils'
-  'texinfo'
-  'tree'
-  'util-linux'
-  'vulkan-intel'
-  'which'
-  'woff2'
-  'xbacklight'
-  'xf86-video-intel'
-  'yarn'
-
   # SYSTEM --------------------------------------------------------------
   'xcompmgr' # Primitive window transparency (zoom draw scree)
   'intel-gpu-tools'
@@ -110,6 +28,10 @@ PKGS=(
   'lm_sensors'          # Sensors hardware
   'lxappearance'        #set theme GTK
   'arc-solid-gtk-theme' #theme GTK
+  'tree'
+  'arandr'
+  'pkgfile'
+  'xbacklight'
 
   # TERMINAL UTILITIES --------------------------------------------------
 
@@ -163,8 +85,10 @@ PKGS=(
   'glibc'  # C libraries
   'php'    # Web application scripting language
   'go'     # Scripting language
+  'go-tools'
   'python' # Scripting language
   'yarn'   # Dependency management (Hyper needs this)
+  'python2'
 
   # WEB TOOLS -----------------------------------------------------------
 
