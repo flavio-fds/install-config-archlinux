@@ -50,6 +50,7 @@ PKGS=(
   'unrar'                   # RAR compression program
   'unzip'                   # Zip compression program
   'zip'                     # Zip compression program
+  'tar'
   'wget'                    # Remote content retrieval
   'zsh'                     # ZSH shell - add-on(zsh-autosuggestions, zsh-syntax-highlighting,  spaceship-prompt(AUR))
   'zsh-autosuggestions'     # zsh add-on
@@ -114,6 +115,11 @@ PKGS=(
   'pngcrush'    # Tools for optimizing PNG images
   'noto-fonts-emoji'
   'ttf-ubuntu-font-family'
+  'ttf-dejavu'
+  'ttf-droid'
+  'ttf-inconsolata'
+  'ttf-indic-otf'
+  'ttf-liberation'
 
   # PRODUCTIVITY --------------------------------------------------------
 
@@ -131,9 +137,9 @@ PKGS_WITH_CONFIRM=(
   # VIRTUALIZATION ------------------------------------------------------
 
   'virtualbox-host-modules-arch' # to provide host modules: for the linux kernel, choose virtualbox-host-modules-arch
-
+  'virtualbox-guest-utils'
   # PRODUCTIVITY --------------------------------------------------------
-
+  'vi'
   'gvim' # Gvim simple text editor
 
 )
