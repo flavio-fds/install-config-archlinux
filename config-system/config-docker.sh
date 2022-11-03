@@ -29,7 +29,6 @@ config-docker() {
   echo -e "${GREEN}Starting config docker${NO_COLOR}"
   sudo groupadd docker          # cria um grupo chamado docker
   sudo usermod -aG docker $USER # adiciona seu usuário a este novo grupo
-  echo -e "${GREEN}Reboot system and exec command (newgrp docker)${NO_COLOR}" && sleep 3
   echo
   echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
   echo

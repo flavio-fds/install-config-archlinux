@@ -19,6 +19,11 @@ echo -e "${GREEN}####################################${NO_COLOR}"
 echo
 
 PKGS=(
+  #  'markdown_previewer'
+  #  'lightdm-settings'
+  #  'downgrade'
+  #  'gtksourceview-pkgbuild'
+  #  'wmutils'
 
   # SYSTEM UTILITIES ----------------------------------------------------
   #'hardinfo'              # Hardware info app
