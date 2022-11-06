@@ -54,6 +54,8 @@ floating_modifier $mod
 #windows float type 'xprop WM_CLASS' in a terminal, the cursor will change, then click on the window of the app and xprop will return the wm class of the app (in the terminal).
 for_window [class="Lxappearance" instance="lxappearance"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="Nm-connection-editor" instance="nm-connection-editor"] floating enable
+for_window [class="Arandr" instance="arandr"] floating enable
 
 #screenshots
 bindsym --release Print exec --no-startup-id scrot -s ~/shots/%d-%m_%H:%M:%S.scrot.jpeg
