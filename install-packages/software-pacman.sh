@@ -289,6 +289,8 @@ PKGS_WITH_CONFIRM=(
 
   'virtualbox'
   'virtualbox-guest-utils'
+  'linux-lts-headers' #Para compilar os módulos do VirtualBox fornecidos pelo virtualbox-host-dkms , também será necessário instalar o(s) pacote(s) de cabeçalho apropriado(s) para o(s) kernel(s) instalado(s) (por exemplo , linux-lts-headers para linux-lts ). [1] Quando o VirtualBox ou o kernel for atualizado, os módulos do kernel serão recompilados automaticamente graças ao gancho DKMS pacman .
+  
   # PRODUCTIVITY --------------------------------------------------------
   'vi'
   'gvim' # Gvim simple text editor
