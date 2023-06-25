@@ -56,6 +56,8 @@ alias dockerdbmysql2='docker run -p 3306:3306 --name nomeDoBanco --platform=linu
 
 #Bindkey
 bindkey "^[[3~" delete-char
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
 
 # Use LF to switch directories and bind it to ctrl-o
 lfcd () {
