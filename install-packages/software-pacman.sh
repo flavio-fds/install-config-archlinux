@@ -280,7 +280,12 @@ PKGS=(
   'libreoffice-still' # Libre office with extra features
   'nano'              # Nano simple text editor
   'evince'            # PDF viewer
-
+  
+  # BLUETOOTH --------------------------------------------------------
+  'bluez'
+  'bluez-utils'
+  'blueman'
+  #start app bluetooth systemctl start bluetooth.service
 )
 
 PKGS_WITH_CONFIRM=(
