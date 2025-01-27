@@ -8,16 +8,10 @@
 #Infp System
 #neofetch
 
-alias v='vim'
-alias ..='cd ..'
-alias ll='ls -l'
-alias la='ls -la'
-alias itop='sudo intel_gpu_top'
-alias ls='ls --color=auto'
-alias neo='neofetch'
-alias c='calc'
-alias matrix='cmatrix'
-alias logout='dm-tool switch-to-greeter'
+#ALIAS
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
+fi
 
     #Atributo da fonte
 #00 - Reset (Nenhum)/1-Negrito/4-Sublinhado/5-Piscant/7-Reverso/8-Oculto
@@ -27,9 +21,9 @@ alias logout='dm-tool switch-to-greeter'
 #40-Preto/41 - Vermelho/42-Verde/43-Amarelo/44-Azul/45-Magenta/46-Ciano/47-Branco
 #\[\e[0;30;40m\]   
 
-#PS1='[\u@\h \w]\$ '
+PS1='[\u@\h \W]\$ '
 #PS1='\[\e[1;34m\][ \u\[\e[1;34m\]@\[\e[1;34m\]\h \[\e[1;32m\]\w\[\e[1;34m\]]  \[\e[00;34m\]\[\e[1;37m\]'
-PS1='\[\e[1;34m\][\[\e[1;32m\] \[\e[1;34m\]Flavio\[\e[1;34m\]@\[\e[1;34m\]Arch \[\e[1;32m\]\w\[\e[1;34m\]]  \[\e[00;34m\]\[\e[1;37m\]'
+#PS1='\[\e[1;34m\][\[\e[1;32m\] \[\e[1;34m\]Flavio\[\e[1;34m\]@\[\e[1;34m\]Arch \[\e[1;32m\]\w\[\e[1;34m\]]  \[\e[00;34m\]\[\e[1;37m\]'
 
 #LS_COLORS=$LS_COLORS':no=00'
 #LS_COLORS=$LS_COLORS':di=36;01'
@@ -232,3 +226,6 @@ HISTFILESIZE=2000
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

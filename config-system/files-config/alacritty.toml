@@ -1,0 +1,35 @@
+[colors.normal]
+black = "#353535"
+blue = "#00b8ea"
+cyan = "#00b8ea"
+green = "#68bb59"
+magenta = "#c397d8"
+red = "#ed2939"
+white = "#eaeaea"
+yellow = "#e7c547"
+
+[colors.primary]
+background = "#000000"
+
+[cursor]
+thickness = 0.3
+
+[cursor.style]
+blinking = "On"
+shape = "Underline"
+
+[font]
+builtin_box_drawing = true
+size = 9
+
+[font.bold]
+family = "Hack Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "Sauce Code Pro Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"

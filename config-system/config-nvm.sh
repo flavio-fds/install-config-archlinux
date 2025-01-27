@@ -30,9 +30,22 @@ function help {
 config-node() {
   echo -e "${GREEN}Starting config nvm and node${NO_COLOR}"
   echo -e "${GREEN}https://github.com/nvm-sh/nvm${NO_COLOR}"
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | zsh
-  echo -e "${GREEN}Run node-restart after reboot${NO_COLOR}" && sleep 3
+  latest_version=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+  if [ -z "$latest_version" ]; then
+    echo -e "${RED}Erro: Não foi possível obter a versão mais recente do NVM.${NO_COLOR}"
+    echo -e "${RED}Config NVM não realizada.${NO_COLOR}"
+  else
+    echo "Versão mais recente do NVM encontrada: ${latest_version}"
+    if [ -f "$HOME/.bashrc" ]; then
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${latest_version}/install.sh | bash
+      echo "Instalação Bash."
+    fi
+    if [ -f "$HOME/.zshrc" ]; then
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${latest_version}/install.sh | zsh
+      echo "Instalação Zsh."
+    fi
+    echo -e "${GREEN}Run node-restart after reboot${NO_COLOR}" && sleep 3
+  fi
   echo
   echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
   echo

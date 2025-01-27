@@ -18,274 +18,231 @@ echo -e "${GREEN}###  INSTALL SOFTWARE PACMAN!!!  ###${NO_COLOR}"
 echo -e "${GREEN}####################################${NO_COLOR}"
 echo
 PKGS=(
-
   # SYSTEM BASE --------------------------------------------------------------
+'base'
+'base-devel'
+'linux-firmware'
+'linux-lts'
 
-  # 'cantarell-fonts'
-  # 'coreutils'
-  # 'cryptsetup'
-  # 'device-mapper'
-  # 'diffutils'
-  # 'e2fsprogs'
-  # 'ffmpeg'
-  # 'filesystem'
-  # 'flac'
-  # 'gcc-libs'
-  # 'glibc'
-  # 'gstreamer'
-  # 'iproute2'
-  # 'iputils'
-  # 'licenses'
-  # 'mobile-broadband-provider-info'
-  # 'pciutils'
-  # 'perl'
-  # 'procps-ng'
-  # 'psmisc'
-  # 'shadow'
-  # 'sysfsutils'
-  # 'systemd'
-  # 'systemd-sysvcompat'
-  # 'util-linux'
-  # 'wpa_supplicant'
-  # 'xf86-input-libinput'
-  # 'xz'
-  # 'autoconf'
-  # 'automake'
-  # 'avahi'
-  # 'bison'
-  # 'debugedit'
-  # 'efibootmgr'
-  # 'fakeroot'
-  # 'file'
-  # 'findutils'
-  # 'flex'
-  # 'gawk'
-  # 'gcc'
-  # 'gettext'
-  # 'grep'
-  # 'groff'
-  # 'gst-plugin-pipewire'
-  # 'gzip'
-  # 'intel-media-driver'
-  # 'intel-ucode'
-  # 'iwd'
-  # 'libpulse'
-  # 'libtool'
-  # 'libva-intel-driver'
-  # 'lightdm'
-  # 'lightdm-gtk-greeter'
-  # 'linux-firmware'
-  # 'linux-lts'
-  # 'm4'
-  # 'pacman'
-  # 'patch'
-  # 'pkgconf'
-  # 'sed'
-  # 'smartmontools'
-  # 'sudo'
-  # 'texinfo'
-  # 'wireplumber'
-  # 'zram-generator'
 
   # SYSTEM --------------------------------------------------------------
-  
-  'xorg-xprop'
-  'xdg-utils'
-  'xorg-server'
-  'xorg-xinit'
-  'xorg-xbacklight'
-  'i3-wm'
-  'i3blocks'
-  'i3lock'
-  'i3status'
-  'pipewire'
-  'pipewire-alsa'
-  'pipewire-jack'
-  'pipewire-pulse'
-  'make'
-  'openssh'
-  'vulkan-intel'
-  'wget'
-  'which'
-  'wireless_tools'
-  'dmenu'
-  'bzip2'
-  'archlinux-keyring'
-  'nss-mdns'
-  'pacman-contrib'
-  'xcompmgr' # Primitive window transparency (zoom draw scree)
-  'intel-gpu-tools'
-  'brightnessctl'       # Screen brightness control
-  'lm_sensors'          # Sensors hardware
-  'lxappearance'        #set theme GTK
-  'arc-solid-gtk-theme' #theme GTK
-  'tree'
-  'arandr'
-  'pkgfile'
-  'gcolor2'
-  'gparted'
-  'bluez-utils'
-  'blueman'
-  'networkmanager'
-  'network-manager-applet'
-  'networkmanager-openconnect'
-  'networkmanager-openvpn'
-  'networkmanager-pptp'
-  'networkmanager-vpnc'
-  'alsa-firmware'
-  'alsa-plugins'
-  'xf86-input-elographics'
-  'xf86-input-evdev'
-  'xf86-input-void'
-  'xf86-input-libinput'
-  'xorg-xhost'
-  'xorg-xkill'
-  'dhclient'
-  'dhcpcd'
-  'openresolv'
-  'modemmanager'
-  'nfs-utils' # Network File System 
-  'ntp' #Network Time Protocol Sincronizar relógio do software
-  'xfsprogs' # gerenciamento de sistema de arquivos XFS
-  'btrfs-progs' # Utilitários do sistema de arquivos Btrfs
-  'usbutils' #lsusb
-  'mesa-demos'
-  'libgpod' #Uma biblioteca compartilhada para acessar o conteúdo de um iPod
-  'lxinput' #Programa para configurar teclado e mouse
-  'inetutils' # collection of common network programs
-  'jfsutils'
-  'lib32-flex'
-  'lib32-mesa-demos'
-  'gufw' # 	Uncomplicated way to manage your Linux firewall - sudo gufw
-  'dmidecode' #info hardware
-  'exfatprogs'
-  'f2fs-tools'
+'efibootmgr'
+'htop'
+'intel-media-driver'
+'intel-ucode'
+'iwd'
+'libpulse'
+'libva-intel-driver'
+'lightdm'
+'lightdm-gtk-greeter'
+'network-manager-applet'
+'networkmanager'
+'pipewire'
+'pipewire-alsa'
+'pipewire-jack'
+'pipewire-pulse'
+'smartmontools'
+'vulkan-intel'
+'wget'
+'wireless_tools'
+'wireplumber'
+'xdg-utils'
+'xorg-xinit'
+'xss-lock'
+'xterm'
+'zram-generator'
+'xorg-xprop'
+'xorg-server'
+'xorg-xbacklight'
+'inetutils' # collection of common network programs
+'xfsprogs' # gerenciamento de sistema de arquivos XFS
+'btrfs-progs' # Utilitários do sistema de arquivos Btrfs
+'usbutils' #lsusb
+'mesa-demos'
+'intel-gpu-tools'
+'brightnessctl'       # Screen brightness control
+'lm_sensors'          # Sensors hardware
+'numlockx'    # Turns on numlock in X11
+'less'
+'man-db'
+'ntfs-3g'    # Open source implementation of NTFS file system
+'dosfstools'
+'os-prober'
+'mtools'
+'xorg-xhost'
+'xorg-xkill'
+'nfs-utils' # Network File System 
+'cronie' # agendador de tarefas terminal
+'tar'
+'bzip2'
+'unrar'                   # RAR compression program
+'unzip'                   # Zip compression program
+'zip'                     # Zip compression program
 
-  'gvfs' # sistema de arquivos virtual do GNOME
-  'gvfs-afc'
-  'gvfs-gphoto2'
-  'gvfs-mtp'
-  'gvfs-smb'
-
-  'gst-libav' #Plugin GStreamer
-  'gst-plugins-bad' #Plugin GStreamer
-  'gst-plugins-base' #Plugin GStreamer
-  'gst-plugins-good' #Plugin GStreamer
-  'gst-plugins-ugly' #Plugin GStreamer
-
-#  'xdg-user-dirs' #	Manage user directories like ~/Desktop and ~/Music
-#  'xautolock' 
-#  'wireless-regdb' # https://wiki.archlinux.org/title/Network_configuration/Wireless#Respecting_the_regulatory_domain
-#  'memtest86+' #Ferramenta de diagnóstico de memória avançada versão BIOS legada
-#  'syslog-ng' # Gerenciamento de logs
-#  'logrotate' # Gerenciamento de logs
-#  'dnsmasq'
-
+  # WINDOW MANAGER
+'i3-wm'
+'i3blocks'
+'i3lock'
+'i3status'
 
   # TERMINAL UTILITIES --------------------------------------------------
-  'xterm'
-  'translate-shell'
-  'make'
-  'man-db'
-  'gnome-keyring'           # System password storage
-  'alacritty'               # Terminal emulator
-  'bc'                      # Precision calculator language
-  'calc'                    # Precision calculator language
-  'curl'                    # Remote content retrieval
-  'feh'                     # Terminal-based image viewer/manipulator
-  'htop'                    # Process viewer
-  'neofetch'                # Shows system info when you launch terminal
-  'numlockx'                # Turns on numlock in X11
-  'unrar'                   # RAR compression program
-  'unzip'                   # Zip compression program
-  'zip'                     # Zip compression program
-  'tar'
-  'wget'                    # Remote content retrieval
-  'zsh'                     # ZSH shell - add-on(zsh-autosuggestions, zsh-syntax-highlighting,  spaceship-prompt(AUR))
-  'zsh-autosuggestions'     # zsh add-on
-  'zsh-syntax-highlighting' # zsh add-on
-  'playerctl'               # Utility controls media players
-  'lolcat'                  # Font terminal color
-  'less'
-  'speedtest-cli' # Internet speed via terminal
-  'cronie' # agendador de tarefas terminal
-  'hexchat'
-  'rsync'                 # Remote file sync utility
+'make'
+'which'
+'curl'
 
-  # DISK UTILITIES ------------------------------------------------------
-
-  'ntfs-3g'    # Open source implementation of NTFS file system
-  'dosfstools' #
-  'os-prober'  #
-  'mtools'     #
-
-  # GENERAL UTILITIES ---------------------------------------------------
-
-  'scrot'   # Screen capture.
-  'rofi'    # Application launcher
-  'thunar'  # Filesystem browser
-  'ffmpegthumbnailer' #Programa externo para gerar imagens em miniatura thunar 'complemento tumbler'
-  'tumbler' #complemento ffmpegthumbnailer 
-  'catfish' # Filesystem search
-
-  # DEVELOPMENT ---------------------------------------------------------
-
-  'mysql-workbench'
-  'httpie'
-  'docker'
-  'git'    # Version control system
-  'clang'  # C Lang compiler
-  'gcc'    # C/C++ compiler
-  'glibc'  # C libraries
-  'php'    # Web application scripting language
-  'go'     # Scripting language
-  'go-tools'
-  'python' # Scripting language
-  'yarn'   # Dependency management (Hyper needs this)
-  'ruby'
+'alacritty'
+'arandr'
+'dmenu'
+'git'
+'nano'
+'vim'
 
   # WEB TOOLS -----------------------------------------------------------
+'firefox'         # Web browser
 
-  'chromium'         # Web browser
-  'firefox'          # Web browser
-  'transmission-gtk' # Download torrent
+'lxappearance'        #set theme GTK
+
+  # MEDIA ---------------------------------------------------------------
+
+'tree'
+'pkgfile'
+
+'gparted'
+
+'f2fs-tools'
+
+'translate-shell'
+'gnome-keyring'
+'bc' # Precision calculator language
+'calc' # Precision calculator language
+'feh' # Terminal-based image viewer/manipulator
+  # GENERAL UTILITIES ---------------------------------------------------
+
+  # DEVELOPMENT ---------------------------------------------------------
+'scrot'   # Screen capture.
+'rofi'    # Application launcher
+'thunar'  # Filesystem browser
+'mysql-workbench'
+'httpie'
+'docker'
+'docker-compose'
+'clang'
+'php'
+'go'
+'go-tools'
+'yarn'
+'ruby'
+'python'
+
+'java-runtime-common' #Gerencia Java "pacman -Ss openjdk java" "sudo pacman -S [nome do pacote]" "archlinux-java status"
+'jre17-openjdk'
+
+
+'transmission-gtk' # Download torrent
 
   # COMMUNICATIONS ------------------------------------------------------
 
   # MEDIA ---------------------------------------------------------------
-
-  'alsa-utils'  # Command line utilities for the ALSA project
-  'pavucontrol' # Volume control tool
-  'vlc'         # Video player
-  'obs-studio'  # Record your screen
-  'lollypop'    # Music player
+'alsa-utils'  # Command line utilities for the ALSA project
+'pavucontrol' # Volume control tool
+'vlc'         # Video player
+'obs-studio'  # Record your screen
 
   # GRAPHICS AND DESIGN -------------------------------------------------
 
-  'gimp'        # GNU Image Manipulation Program
-  'inkscape'    # Vector image creation app
-  'imagemagick' # Command line image manipulation tool
-  'pngcrush'    # Tools for optimizing PNG images
-  'noto-fonts-emoji'
-  'ttf-ubuntu-font-family'
-  'ttf-dejavu'
-  'ttf-droid'
-  'ttf-inconsolata'
-  'ttf-indic-otf'
-  'ttf-liberation'
-  'viewnior'
+'gimp'        # GNU Image Manipulation Program
+'inkscape'    # Vector image creation app
+
+'ttf-ubuntu-font-family'
+'noto-fonts-emoji'
+
+'arc-solid-gtk-theme' #theme GTK
 
   # PRODUCTIVITY --------------------------------------------------------
 
-  'libreoffice-still' # Libre office with extra features
-  'nano'              # Nano simple text editor
-  'evince'            # PDF viewer
+'libreoffice-still' # Libre office with extra features
+'evince'            # PDF viewer
+'viewnior'
+
   
   # BLUETOOTH --------------------------------------------------------
-  'bluez'
-  'bluez-utils'
-  'blueman'
+
+'bluez'
+'bluez-utils'
+'blueman'
   #start app bluetooth systemctl start bluetooth.service
+
+'zsh'                     # ZSH shell - add-on(zsh-autosuggestions, zsh-syntax-highlighting,  spaceship-prompt(AUR))
+'zsh-autosuggestions'     # zsh add-on
+'zsh-syntax-highlighting' # zsh add-on
+
+#'sof-firmware' #Caso o som n'ao funcione 
+#'alsa-ucm-conf' #Caso o som n'ao funcione 
+
+#'piper' # GTK application to configure gaming mouse 
+
+  #UNNECESSARY --------------------------------------------------------
+
+#'openssh'
+#'xf86-input-libinput'
+#'gcc'
+#'glibc'
+#'gst-plugin-pipewire'
+#'archlinux-keyring'
+#'nss-mdns'
+#'pacman-contrib'
+#'xcompmgr' # Primitive window transparency (zoom draw scree)
+#'gcolor2'
+#'networkmanager-openconnect'
+#'networkmanager-openvpn'
+#'networkmanager-pptp'
+#'networkmanager-vpnc'
+#'alsa-firmware'
+#'alsa-plugins'
+#'xf86-input-elographics'
+#'xf86-input-evdev'
+#'f86-input-void'
+#'dhclient'
+#'dhcpcd'
+#'openresolv'
+#'modemmanager'
+#'ntp' #Network Time Protocol Sincronizar relógio do software
+#'libgpod' #Uma biblioteca compartilhada para acessar o conteúdo de um iPod
+#'lxinput' #Programa para configurar teclado e mouse
+#'jfsutils'
+#'lib32-flex'
+#'lib32-mesa-demos'
+#'gufw' # 	Uncomplicated way to manage your Linux firewall - sudo gufw
+#'dmidecode' #info hardware
+#'exfatprogs'
+#'gvfs' # sistema de arquivos virtual do GNOME
+#'gvfs-afc'
+#'gvfs-gphoto2'
+#'gvfs-mtp'
+#'gvfs-smb'
+#'playerctl'               # Utility controls media players
+#'lolcat'                  # Font terminal color
+#'hexchat'
+#'rsync'
+#'ffmpegthumbnailer'
+#'tumbler' #complemento ffmpegthumbnailer 
+#'catfish'
+#'chromium'
+#'lollypop'
+#'imagemagick'
+#'pngcrush'
+#'noto-fonts-emoji'
+#'ttf-dejavu'
+#'ttf-droid'
+#'ttf-inconsolata'
+#'ttf-indic-otf'
+#'xdg-user-dirs' #	Manage user directories like ~/Desktop and ~/Music
+#'xautolock' 
+#'wireless-regdb' # https://wiki.archlinux.org/title/Network_configuration/Wireless#Respecting_the_regulatory_domain
+#'memtest86+' #Ferramenta de diagnóstico de memória avançada versão BIOS legada
+#'syslog-ng' # Gerenciamento de logs
+#'logrotate' # Gerenciamento de logs
+#'dnsmasq'
 )
 
 PKGS_WITH_CONFIRM=(

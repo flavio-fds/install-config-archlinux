@@ -36,7 +36,7 @@ PKGS=(
   'lf'               # Terminal file manager
 
   # DEVELOPMENT ---------------------------------------------------------
-  'jdk-lts'
+  #'jdk-lts'
   'visual-studio-code-bin' # Kickass text editor
 
   # MEDIA ---------------------------------------------------------------
@@ -44,9 +44,11 @@ PKGS=(
   #'spotify'                   # Music player
 
   # COMMUNICATIONS ------------------------------------------------------
-
+  'vmware-keymaps'
+  'vmware-horizon-client'
   'zoom'          # Zoom
   'slack-desktop' # Slack
+  'freedownloadmanager' # Free Download Manager -> is a powerful modern download accelerator and organizer.
 
   # THEMES --------------------------------------------------------------
 

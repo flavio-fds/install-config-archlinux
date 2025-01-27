@@ -3,5 +3,5 @@
 {
     "window.zoomLevel": 1,
     "editor.wordWrap": "on",
-    "editor.fontFamily": "'Hack Nerd Font', 'monospace', monospace"
+    "editor.fontFamily": "'Ubuntu Nerd Font', monospace"
 }

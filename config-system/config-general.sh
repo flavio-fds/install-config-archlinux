@@ -28,10 +28,9 @@ function help {
     7 - vim
     8 - bash
     9 - zsh
-    10 - dockercompose
-    11 - touchpad
-    12 - all
-    14 - exit
+    10 - touchpad
+    11 - all
+    13 - exit
     ${NO_COLOR}"
     start-script
 }
@@ -40,8 +39,15 @@ config-i3() {
     echo -e "${GREEN}Starting config i3${NO_COLOR}"
     echo "creating folders $HOME/.config/i3/"
     mkdir -p $HOME/.config/i3
+    mkdir -p $HOME/.config/scripts
     echo "copying i3 config file to $HOME/.config/i3/config directory"
+    if [ -f "$HOME/.config/i3/config" ]; then
+        cp -f $HOME/.config/i3/config $HOME/.config/i3/_config
+        echo "backup i3config: $HOME/.config/i3/_config"
+    fi
     cp -f ./files-config/i3-config $HOME/.config/i3/config
+    cp -rf ./files-config/scripts $HOME/.config/
+    chmod +x $HOME/.config/screenlayout.sh
     echo
     echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
     echo
@@ -50,7 +56,9 @@ config-i3() {
 config-i3status() {
     echo -e "${GREEN}Starting config i3status${NO_COLOR}"
     echo "copying .i3status.conf file to $HOME/ directory"
-    cp -f ./files-config/i3status.conf $HOME/.i3status.conf
+    mkdir -p $HOME/.config/i3status/
+    cp -f ./files-config/i3status.conf $HOME/.config/i3status/config
+    cp -f ./files-config/brightness $HOME/.config/i3status/brightness
     echo
     echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
     echo
@@ -61,7 +69,7 @@ config-alacritty() {
     echo "creating folders $HOME/.config/alacritty/"
     mkdir -p $HOME/.config/alacritty
     echo "copying alacritty.yml file to $HOME/.config/alacritty/ directory"
-    cp -f ./files-config/alacritty.yml $HOME/.config/alacritty/alacritty.yml
+    cp -f ./files-config/alacritty.toml $HOME/.config/alacritty/alacritty.toml
     echo
     echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
     echo
@@ -94,7 +102,7 @@ config-theme-rofi() {
 config-net-speed() {
     echo -e "${GREEN}Starting config net-speed.sh${NO_COLOR}"
     echo "copying .net-speed.sh file to $HOME/ directory"
-    cp ./files-config/net-speed.sh $HOME/.net-speed.sh
+    cp ./files-config/net-speed.sh $HOME/.config/i3status/.net-speed.sh
     echo
     echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
     echo
@@ -113,6 +121,7 @@ config-bashrc() {
     echo -e "${GREEN}Starting config bash${NO_COLOR}"
     echo "copying .bashrc file to $HOME/ directory"
     cp ./files-config/bashrc $HOME/.bashrc
+    cp ./files-config/aliases $HOME/.aliases
     echo
     echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
     echo
@@ -122,16 +131,8 @@ config-zshrc() {
     echo -e "${GREEN}Starting config zshrc${NO_COLOR}"
     echo "copying .zshrc file to $HOME/ directory"
     cp ./files-config/zshrc $HOME/.zshrc
+    cp ./files-config/aliases $HOME/.aliases
     cp ./files-config/spaceshiprc $HOME/.spaceshiprc.zsh
-    echo
-    echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
-    echo
-}
-
-config-dockercompose() {
-    echo -e "${GREEN}Starting config docker-compose${NO_COLOR}"
-    sudo curl -L "https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose # download and install docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose                                                                                                       # permission exec
     echo
     echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
     echo
@@ -158,12 +159,11 @@ function all {
     config-vimrc
     config-bashrc
     config-zshrc
-    config-dockercompose
     config-touchpad
 }
 
 function main {
-    [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "13" ] && help && exit
+    [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "12" ] && help && exit
     [ "$1" = "i3" ] || [ "$1" = "1" ] && config-i3 && exit
     [ "$1" = "i3status" ] || [ "$1" = "2" ] && config-i3status && exit
     [ "$1" = "alacritty" ] || [ "$1" = "3" ] && config-alacritty && exit
@@ -173,10 +173,9 @@ function main {
     [ "$1" = "vim" ] || [ "$1" = "7" ] && config-vimrc && exit
     [ "$1" = "bash" ] || [ "$1" = "8" ] && config-bashrc && exit
     [ "$1" = "zsh" ] || [ "$1" = "9" ] && config-zshrc && exit
-    [ "$1" = "dockercompose" ] || [ "$1" = "10" ] && config-dockercompose && exit
-    [ "$1" = "touchpad" ] || [ "$1" = "11" ] && config-touchpad && exit
-    [ "$1" = "all" ] || [ "$1" = "12" ] && all && exit
-    [ "$1" = "exit" ] || [ "$1" = "14" ] && exit
+    [ "$1" = "touchpad" ] || [ "$1" = "10" ] && config-touchpad && exit
+    [ "$1" = "all" ] || [ "$1" = "11" ] && all && exit
+    [ "$1" = "exit" ] || [ "$1" = "13" ] && exit
 
     echo -e "${RED}wrong argument: $1 ${NO_COLOR}"
     start-script
@@ -199,11 +198,10 @@ start-script() {
     7 - vim
     8 - bash
     9 - zsh
-    10 - dockercompose
-    11 - touchpad
-    12 - all
-    13 - help
-    14 - exit
+    10 - touchpad
+    11 - all
+    12 - help
+    13 - exit
 
   Insert option:${NO_COLOR}"
     read option

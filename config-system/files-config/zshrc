@@ -28,31 +28,9 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 LS_COLORS=$LS_COLORS:'tw=00;33:ow=01;33:'; export LS_COLORS
 
 #ALIAS
-alias ll='ls -la'
-alias exiti3='3-msg exit'
-alias zoomx='xcompmgr -c -l0 -t0 -r0 -o.00'
-alias dstatus='systemctl status docker.service'
-alias dstop='systemctl stop docker.service'
-alias dstart='systemctl start docker.service'
-alias ls='ls --color=auto'
-alias lsl='ls | lolcat'
-alias neo='neofetch'
-alias c='calc'
-alias matrix='cmatrix'
-alias v='vim'
-alias ..='cd ..'
-alias matrix='cmatrix'
-alias pt='trans -b :pt'
-alias en='trans -b :en'
-alias dpt='trans -d :pt'
-alias den='trans -d :en'
-alias tela='xrandr --auto'
-alias tela1off='xrandr --output eDP-1 --off'
-alias tela2off='xrandr --output HDMI-1 --off'
-alias tela2r='xrandr --output HDMI-1 --auto --right-of eDP-1'
-alias tela2l='xrandr --output HDMI-1 --auto --left-of eDP-1'
-alias dockerdbmysql='docker container run --name db-mysql -e MYSQL_ROOT_PASSWORD=password -p 3306:3306 -d -it mysql'
-alias dockerdbmysql2='docker run -p 3306:3306 --name nomeDoBanco --platform=linux/x86_64 -e MYSQL_ROOT_PASSWORD=example -d mysql:5.7 mysqld --default-authentication-plugin=mysql_native_password'
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
+fi
 
 #Bindkey
 bindkey "^[[3~" delete-char
