@@ -44,6 +44,7 @@ PKGS=(
   #'spotify'                   # Music player
 
   # COMMUNICATIONS ------------------------------------------------------
+  'google-chrome'
   'vmware-keymaps'
   'vmware-horizon-client'
   'zoom'          # Zoom
