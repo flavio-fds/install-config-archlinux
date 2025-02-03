@@ -30,9 +30,9 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=000000
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=495561
 #lock screen
-bindsym $mod+x exec i3lock --nofork --color=000000
+bindsym $mod+x exec i3lock --nofork --color=495561
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -89,7 +89,7 @@ for_window [class="Vmware-view"] move container to workspace $ws10; workspace $w
 bindsym $mod+Return exec --no-startup-id alacritty
 
 # start a browser
-bindsym $mod+b exec --no-startup-id chromium
+bindsym $mod+b exec --no-startup-id google-chrome-stable
 bindsym $mod+n exec --no-startup-id firefox
 
 # kill focused window
@@ -196,7 +196,6 @@ bindsym $mod+Shift+0 move container to workspace number $ws10; workspace $ws10
 bindsym $mod+Shift+greater move container to output right
 bindsym $mod+Shift+less move container to output left
 
-# move focused workspace between monitors
 bindsym $mod+Shift+Control+greater move workspace to output right
 bindsym $mod+Shift+Control+less move workspace to output left
 
@@ -268,7 +267,7 @@ bar {
         #     urgent_workspace   #2f343a #900000 #ffffff
         #     binding_mode       #2f343a #900000 #ffffff
         # }
-        #font pango:Ubuntu Nerd Font 10
+        font pango:Ubuntu Nerd Font 10
         #separator_symbol "|"
         #position top
         # position bottom
