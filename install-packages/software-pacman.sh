@@ -120,6 +120,7 @@ PKGS=(
 
   # DEVELOPMENT ---------------------------------------------------------
 'scrot'   # Screen capture.
+'flameshot'   # Screen capture.
 'rofi'    # Application launcher
 'thunar'  # Filesystem browser
 'mysql-workbench'

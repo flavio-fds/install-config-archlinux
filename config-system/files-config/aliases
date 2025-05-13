@@ -33,6 +33,8 @@ alias ls='ls --color=auto'
 alias c='calc'
 alias logout='dm-tool switch-to-greeter'
 alias grep='grep --color=auto'
+alias brilhod='brighmonitor HDMI-1'
+alias brilhoe='brighmonitor DP-1-1'
 brighmonitor() {
     if [ "$#" -ne 2 ]; then
         echo -n "Telas: "; xrandr --listmonitors | awk 'NR>1 {printf "%s ", $4}'
