@@ -257,7 +257,10 @@ PKGS_WITH_CONFIRM=(
   # PRODUCTIVITY --------------------------------------------------------
   'vi'
   'gvim' # Gvim simple text editor
-
+ # print --------------------------------------------------------
+ # 'ghostscript'
+ # 'cups'
+ # 'system-config-printer'
 )
 
 update-packages() {
