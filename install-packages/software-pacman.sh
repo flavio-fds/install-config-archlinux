@@ -164,13 +164,14 @@ PKGS=(
 'libreoffice-still' # Libre office with extra features
 'evince'            # PDF viewer
 'viewnior'
-
+'imagemagick'       # Create pdf convert 000.jpg  001.jpg  002.jpg  003.jpg  004.jpg Livro.pdf
   
   # BLUETOOTH --------------------------------------------------------
 
 'bluez'
 'bluez-utils'
 'blueman'
+#'bluetui' #https://github.com/pythops/bluetui
   #start app bluetooth systemctl start bluetooth.service
 
 'zsh'                     # ZSH shell - add-on(zsh-autosuggestions, zsh-syntax-highlighting,  spaceship-prompt(AUR))

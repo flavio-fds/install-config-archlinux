@@ -58,6 +58,7 @@ PKGS=(
   # PRINT  --------------------------------------------------------------
   #'pson-inkjet-printer-filter' #https://aur.archlinux.org/epson-inkjet-printer-filter.git epson L355
   #'epson-inkjet-printer-201207w' #https://aur.archlinux.org/epson-inkjet-printer-201207w.git epson L355
+  #'epson-printer-utility'  # https://aur.archlinux.org/epson-printer-utility.git not work exec systemctl status ecbd.service
   
 )
 
