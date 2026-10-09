@@ -33,7 +33,6 @@ PKGS=(
   # TERMINAL UTILITIES --------------------------------------------------
 
   'spaceship-prompt' # zsh add-on
-  'lf'               # Terminal file manager
 
   # DEVELOPMENT ---------------------------------------------------------
   #'jdk-lts'
@@ -47,13 +46,15 @@ PKGS=(
   'google-chrome'
   'vmware-keymaps'
   'vmware-horizon-client'
+  'vmware-workstation' # virtualização (substitui o VirtualBox)
   'zoom'          # Zoom
   'slack-desktop' # Slack
   'freedownloadmanager' # Free Download Manager -> is a powerful modern download accelerator and organizer.
 
   # THEMES --------------------------------------------------------------
 
-  'nerd-fonts-complete' #Fonts Nerd
+  #'nerd-fonts-complete' #Fonts Nerd -> removido do AUR; ttf-*-nerd no software-pacman.sh
+  'arc-solid-gtk-theme' #theme GTK
 
   # PRINT  --------------------------------------------------------------
   #'pson-inkjet-printer-filter' #https://aur.archlinux.org/epson-inkjet-printer-filter.git epson L355
@@ -91,6 +92,17 @@ function check-package-installed {
   done
 }
 
+# Serviços do VMware ficam desabilitados de propósito; só avisa o que habilitar
+function note-services {
+  if pacman -Q vmware-workstation &>/dev/null; then
+    echo
+    echo -e "${YELLOW}[INFO] - VMware services NOT enabled by this script. Without them VMs have no network/USB:${NO_COLOR}"
+    echo -e "${YELLOW}         sudo modprobe -a vmw_vmci vmmon${NO_COLOR}"
+    echo -e "${YELLOW}         sudo systemctl enable --now vmware-networks.service vmware-usbarbitrator.service${NO_COLOR}"
+    echo
+  fi
+}
+
 function msg-done {
   echo
   echo -e "${GREEN}##################${NO_COLOR}"
@@ -101,7 +113,7 @@ function msg-done {
 
 function main {
   [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "4" ] && help && exit
-  [ "$1" = "install" ] || [ "$1" = "1" ] && script-aur "install" && check-package-installed && msg-done && exit
+  [ "$1" = "install" ] || [ "$1" = "1" ] && script-aur "install" && check-package-installed && note-services && msg-done && exit
   [ "$1" = "update" ] || [ "$1" = "2" ] && script-aur "update" && msg-done && exit
   [ "$1" = "remove" ] || [ "$1" = "3" ] && script-aur "remove" && msg-done && exit
   [ "$1" = "exit" ] || [ "$1" = "5" ] && exit

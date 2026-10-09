@@ -41,9 +41,9 @@ function help {
 
 function execute-permission {
   chmod +x ./install-packages/script-aur.sh
-  chmod +x ./install-packages/software-pacman-base.sh
   chmod +x ./install-packages/software-pacman.sh
   chmod +x ./install-packages/software-aur.sh
+  chmod +x ./install-packages/check-packages.sh
   chmod +x ./config-system/config-docker.sh
   chmod +x ./config-system/config-general.sh
   chmod +x ./config-system/config-github.sh

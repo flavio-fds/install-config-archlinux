@@ -47,6 +47,7 @@ PKGS=(
 'wireless_tools'
 'wireplumber'
 'xdg-utils'
+'xclip'     # clipboard do X pelo terminal (alias copy)
 'xorg-xinit'
 'xss-lock'
 'xterm'
@@ -67,6 +68,7 @@ PKGS=(
 'man-db'
 'ntfs-3g'    # Open source implementation of NTFS file system
 'dosfstools'
+'exfatprogs' # exFAT (pen drives, cartões SD)
 'os-prober'
 'mtools'
 'xorg-xhost'
@@ -78,6 +80,7 @@ PKGS=(
 'unrar'                   # RAR compression program
 'unzip'                   # Zip compression program
 'zip'                     # Zip compression program
+'7zip'                    # 7z compression program
 
   # WINDOW MANAGER
 'i3-wm'
@@ -96,6 +99,7 @@ PKGS=(
 'git'
 'nano'
 'vim'
+'lf'      # Terminal file manager
 
   # WEB TOOLS -----------------------------------------------------------
 'firefox'         # Web browser
@@ -134,6 +138,10 @@ PKGS=(
 'yarn'
 'ruby'
 'python'
+'bun'     # JavaScript runtime/bundler
+'cmake'
+'ninja'   # build system
+'maven'   # Java build tool
 
 'java-runtime-common' #Gerencia Java "pacman -Ss openjdk java" "sudo pacman -S [nome do pacote]" "archlinux-java status"
 'jre17-openjdk'
@@ -147,6 +155,7 @@ PKGS=(
 'alsa-utils'  # Command line utilities for the ALSA project
 'pavucontrol' # Volume control tool
 'vlc'         # Video player
+'vlc-plugins-all' # codecs/plugins do vlc (vlc vem sem plugins)
 'obs-studio'  # Record your screen
 
   # GRAPHICS AND DESIGN -------------------------------------------------
@@ -155,9 +164,13 @@ PKGS=(
 'inkscape'    # Vector image creation app
 
 'ttf-ubuntu-font-family'
+'noto-fonts'
 'noto-fonts-emoji'
+'ttf-nerd-fonts-symbols' # ícones (lf, spaceship)
+'ttf-hack-nerd'          # Hack Nerd Font (alacritty)
+'ttf-sourcecodepro-nerd' # Sauce Code Pro Nerd Font (alacritty)
 
-'arc-solid-gtk-theme' #theme GTK
+#'arc-solid-gtk-theme' #theme GTK -> movido para o AUR (software-aur.sh)
 
   # PRODUCTIVITY --------------------------------------------------------
 
@@ -178,7 +191,7 @@ PKGS=(
 'zsh-autosuggestions'     # zsh add-on
 'zsh-syntax-highlighting' # zsh add-on
 
-#'sof-firmware' #Caso o som n'ao funcione 
+'sof-firmware' # firmware de áudio Intel (sem ele o som pode não funcionar)
 #'alsa-ucm-conf' #Caso o som n'ao funcione 
 
 #'piper' # GTK application to configure gaming mouse 
@@ -216,7 +229,6 @@ PKGS=(
 #'lib32-mesa-demos'
 #'gufw' # 	Uncomplicated way to manage your Linux firewall - sudo gufw
 #'dmidecode' #info hardware
-#'exfatprogs'
 #'gvfs' # sistema de arquivos virtual do GNOME
 #'gvfs-afc'
 #'gvfs-gphoto2'
@@ -251,12 +263,16 @@ PKGS_WITH_CONFIRM=(
 
   # VIRTUALIZATION ------------------------------------------------------
 
-  'virtualbox'
-  'virtualbox-guest-utils'
-  'linux-lts-headers' #Para compilar os módulos do VirtualBox fornecidos pelo virtualbox-host-dkms , também será necessário instalar o(s) pacote(s) de cabeçalho apropriado(s) para o(s) kernel(s) instalado(s) (por exemplo , linux-lts-headers para linux-lts ). [1] Quando o VirtualBox ou o kernel for atualizado, os módulos do kernel serão recompilados automaticamente graças ao gancho DKMS pacman .
+  #'virtualbox'             # substituido pelo VMware Workstation (software-aur.sh)
+  #'virtualbox-guest-utils'
+  'qemu-full'     # QEMU/KVM (grande, ~1GB)
+  'libvirt'       # gerenciador de VMs usado pelo virt-manager
+  'virt-manager'  # GUI para VMs QEMU/KVM
+  'virglrenderer' # aceleração 3D em VMs
+  'linux-lts-headers' # headers do kernel lts: o DKMS precisa deles para compilar os módulos do VMware (vmmon/vmnet)
   
   # PRODUCTIVITY --------------------------------------------------------
-  'vi'
+  'ex-vi-compat' # fornece o comando vi (o pacote vi saiu dos repositorios)
   'gvim' # Gvim simple text editor
  # print --------------------------------------------------------
  # 'ghostscript'
@@ -268,7 +284,7 @@ update-packages() {
   echo
   echo -e "${PURPLE}Update packages(y/N) ###(pacman -Syu)###${NO_COLOR}"
   read VERIFICATION
-  if [ ${VERIFICATION} = $Y ]; then
+  if [ "$VERIFICATION" = "$Y" ]; then
     echo -e "${GREEN}Updating packages!!!${NO_COLOR}"
     sudo pacman -Syu
   fi
@@ -301,8 +317,7 @@ install-packages() {
 install-packages-WITH-CONFIRM() {
   echo -e "${GREEN}INSTALL PACKAGES${NO_COLOR}"
   echo ""
-  echo -e "${YELLOW}[INFO] - for the linux kernel, choose virtualbox-host-modules-arch${NO_COLOR}"
-  echo -e "${YELLOW}[INFO] - for any other kernel (including linux-lts), choose virtualbox-host-dkms${NO_COLOR}"
+  echo -e "${YELLOW}[INFO] - VMware Workstation is installed from AUR (software-aur.sh); linux-lts-headers is needed for its modules${NO_COLOR}"
   echo ""
   for PKG in "${PKGS_WITH_CONFIRM[@]}"; do
     if ! pacman -Q "$PKG" &>/dev/null; then
@@ -312,6 +327,14 @@ install-packages-WITH-CONFIRM() {
       echo -e "${RED}Package [$PKG] already installed${NO_COLOR}"
     fi
   done
+}
+
+# Serviços ficam desabilitados de propósito; só avisa o que habilitar quando precisar
+note-services() {
+  echo
+  echo -e "${YELLOW}[INFO] - Services NOT enabled by this script. Enable when needed:${NO_COLOR}"
+  echo -e "${YELLOW}         sudo systemctl enable --now bluetooth.service   # bluez/blueman${NO_COLOR}"
+  echo
 }
 
 function check-folder {
@@ -335,6 +358,7 @@ function menu {
     update-packages
     install-packages
     install-packages-WITH-CONFIRM
+    note-services
     exit
   fi
   [ "$option" = "exit" ] || [ "$option" = "2" ] && exit

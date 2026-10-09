@@ -89,10 +89,9 @@ function update {
 function remove {
   validate_package_not_empty $1
   echo "removing $1"
-  sudo pacman -Rns $1 && exit
+  sudo pacman -Rns "$1" || exit 1
   echo "cleaning installation files"
-  validate_package_is_fetched $1
-  rm -rf "$AUR_DIR/$1" || true
+  [ -d "$AUR_DIR/$1" ] && rm -rf "$AUR_DIR/$1"
   echo "done"
   return 0
 }
