@@ -47,7 +47,9 @@ config-i3() {
     fi
     cp -f ./files-config/i3-config $HOME/.config/i3/config
     cp -rf ./files-config/scripts $HOME/.config/
-    chmod +x $HOME/.config/screenlayout.sh
+    chmod +x $HOME/.config/scripts/*.sh
+    # pasta usada pelos atalhos de print (scrot) do i3
+    mkdir -p $HOME/shots
     echo
     echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
     echo
@@ -59,6 +61,9 @@ config-i3status() {
     mkdir -p $HOME/.config/i3status/
     cp -f ./files-config/i3status.conf $HOME/.config/i3status/config
     cp -f ./files-config/brightness $HOME/.config/i3status/brightness
+    echo "copying battery-alert.sh file to $HOME/.config/i3status/ directory"
+    cp -f ./files-config/battery-alert.sh $HOME/.config/i3status/battery-alert.sh
+    chmod +x $HOME/.config/i3status/battery-alert.sh
     echo
     echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
     echo
@@ -102,7 +107,9 @@ config-theme-rofi() {
 config-net-speed() {
     echo -e "${GREEN}Starting config net-speed.sh${NO_COLOR}"
     echo "copying .net-speed.sh file to $HOME/ directory"
+    mkdir -p $HOME/.config/i3status
     cp ./files-config/net-speed.sh $HOME/.config/i3status/.net-speed.sh
+    chmod +x $HOME/.config/i3status/.net-speed.sh
     echo
     echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
     echo

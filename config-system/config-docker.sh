@@ -27,8 +27,9 @@ function help {
 
 config-docker() {
   echo -e "${GREEN}Starting config docker${NO_COLOR}"
-  sudo groupadd docker          # cria um grupo chamado docker
-  sudo usermod -aG docker $USER # adiciona seu usuário a este novo grupo
+  getent group docker >/dev/null || sudo groupadd docker # cria o grupo docker (o pacote normalmente já cria)
+  sudo usermod -aG docker "$USER"                         # adiciona seu usuário ao grupo
+  echo -e "${YELLOW}Log out/in (or reboot) for the docker group to take effect${NO_COLOR}"
   echo
   echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
   echo
@@ -38,13 +39,17 @@ config-docker() {
 config-docker-after-reboot() {
   echo -e "${GREEN}Start configuring docker after restart${NO_COLOR}"
   echo
-  echo -e "${GREEN}sudo systemctl status docker - check status no systemd${NO_COLOR}"
-  echo -e "${GREEN}sudo systemctl start docker.service -> start docker daemon systemd${NO_COLOR}"
-  echo -e "${GREEN}sudo systemctl enable docker -> start docker boot daemon systemd${NO_COLOR}" && sleep 3
+  echo -e "${GREEN}Enabling and starting docker.service${NO_COLOR}"
+  sudo systemctl enable --now docker.service
+  systemctl --no-pager status docker.service | head -n 5
   echo
+  if id -nG "$USER" | grep -qw docker; then
+    echo -e "${GREEN}User $USER is in the docker group${NO_COLOR}"
+  else
+    echo -e "${RED}User $USER is NOT in the docker group yet: run option 1 and log out/in${NO_COLOR}"
+  fi
   echo
   echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
-  newgrp docker # ativa as alterações realizadas nos grupos
   echo
 }
 

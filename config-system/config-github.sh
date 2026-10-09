@@ -35,11 +35,11 @@ config-github() {
 
   echo -e "${RED}Type user name Example: Joaquin Pereira${NO_COLOR}"
   read usernamegit
-  git config --global user.name $usernamegit
+  git config --global user.name "$usernamegit"
 
   echo -e "${RED}Type email github${NO_COLOR}"
   read emailgit
-  git config --global user.email $emailgit
+  git config --global user.email "$emailgit"
 
   git config --list
 
@@ -49,7 +49,7 @@ config-github() {
   echo
   echo -e "${RED}Confirm location e add password${NO_COLOR}"
   echo
-  ssh-keygen -t rsa -b 4096 -C $emailgit
+  ssh-keygen -t rsa -b 4096 -C "$emailgit"
 
   echo -e "${GREEN}Add Chave ssh-agent${NO_COLOR}"
 

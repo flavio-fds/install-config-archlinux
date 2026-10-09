@@ -17,7 +17,7 @@ echo -e "${GREEN}###  CONFIG ZSH PLUGIN!!!  ###${NO_COLOR}"
 echo -e "${GREEN}##############################${NO_COLOR}"
 echo
 config-zsh-plugin() {
-  echo -e "${GREEN}Starting config github${NO_COLOR}"
+  echo -e "${GREEN}Starting config zsh plugins${NO_COLOR}"
 
   PKGS=(
     'spaceship-prompt'
@@ -58,21 +58,15 @@ config-zsh-plugin() {
     https://github.com/zsh-users/zsh-syntax-highlighting${NO_COLOR}"
   echo
   echo
-  echo -e "${GREEN}Edit Lines${NO_COLOR}"
-  echo
-  echo -e "${RED}Open for details edit files ./config-system/files-config/config-zsh-plugin.txt${NO_COLOR}"
-  echo
-  echo -e "${RED}/usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh${NO_COLOR}"
-  echo
-  echo
-  sudo vim /usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh
+  echo -e "${GREEN}Highlight styles are set in ~/.zshrc (ZSH_HIGHLIGHT_STYLES)${NO_COLOR}"
+  echo -e "${GREEN}Run config-general -> zsh to copy zshrc, aliases and spaceshiprc${NO_COLOR}"
   echo
   echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
   echo
 }
 
 function main {
-  [ "$1" = "node" ] || [ "$1" = "1" ] && config-zsh-plugin && exit
+  [ "$1" = "config-zsh" ] || [ "$1" = "1" ] && config-zsh-plugin && exit
   [ "$1" = "exit" ] || [ "$1" = "2" ] && exit
 
   echo -e "${RED}wrong argument: $1 ${NO_COLOR}"

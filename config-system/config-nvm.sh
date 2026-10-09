@@ -21,7 +21,7 @@ function help {
   Insert valid argument
 
     1 - node -> install script nvm
-    2 - node-restart -> check install nvm and install node 16
+    2 - node-restart -> check install nvm and install node LTS
     4 - exit
     ${NO_COLOR}"
   start-script
@@ -36,14 +36,8 @@ config-node() {
     echo -e "${RED}Config NVM não realizada.${NO_COLOR}"
   else
     echo "Versão mais recente do NVM encontrada: ${latest_version}"
-    if [ -f "$HOME/.bashrc" ]; then
-      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${latest_version}/install.sh | bash
-      echo "Instalação Bash."
-    fi
-    if [ -f "$HOME/.zshrc" ]; then
-      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${latest_version}/install.sh | zsh
-      echo "Instalação Zsh."
-    fi
+    # O instalador é bash; o bashrc e o zshrc do repo já carregam o nvm
+    curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/${latest_version}/install.sh" | bash
     echo -e "${GREEN}Run node-restart after reboot${NO_COLOR}" && sleep 3
   fi
   echo
@@ -52,9 +46,9 @@ config-node() {
 }
 
 function node-restart {
-  echo -e "${GREEN}Starting check install nvm and install node 16${NO_COLOR}"
+  echo -e "${GREEN}Starting check install nvm and install node LTS${NO_COLOR}"
 
-  echo -e "${GREEN}exec command (nvm install 16)${NO_COLOR}"
+  echo -e "${GREEN}exec command (nvm install --lts)${NO_COLOR}"
   echo -e "${GREEN}exec command (node -v)${NO_COLOR}"
   echo -e "${GREEN}exec command (nvm list)${NO_COLOR}"
 
