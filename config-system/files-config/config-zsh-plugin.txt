@@ -1,8 +1,4 @@
------Change lines-----
+Os estilos do zsh-syntax-highlighting agora ficam no zshrc (ZSH_HIGHLIGHT_STYLES),
+logo depois do source do plugin. Não edite mais
 /usr/share/zsh/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh
-
-#: \${ZSH_HIGHLIGHT_STYLES[suffix-alias]:=fg=green,underline}
-: \${ZSH_HIGHLIGHT_STYLES[suffix-alias]:=fg=green}
-#: \${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green,underline}
-: \${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green}
-#: \${ZSH_HIGHLIGHT_STYLES[path]:=underline}
+(o pacman sobrescreve esse arquivo a cada atualização).

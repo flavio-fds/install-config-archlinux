@@ -16,4 +16,4 @@ elif [[ "$monitores" == *"DP-1-1"* ]]; then
     xrandr --output HDMI-1 --brightness 0.6
 fi
 
-exit 1
+exit 0

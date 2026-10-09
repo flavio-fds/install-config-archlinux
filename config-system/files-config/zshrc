@@ -56,8 +56,13 @@ source /usr/lib/spaceship-prompt/spaceship.zsh
 #source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh #https://github.com/zsh-users/zsh-autosuggestions
 #source /home/flavio/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh #https://github.com/zsh-users/zsh-syntax-highlighting
 #source /home/flavio/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# zsh-syntax-highlighting deve ser o último plugin carregado
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Estilos (antes editados direto no main-highlighter.zsh, que o pacman sobrescreve)
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=green'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=green'
+ZSH_HIGHLIGHT_STYLES[path]='none'
 
 export LF_ICONS="\
 tw=:\
@@ -225,3 +230,9 @@ ex=:\
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export CHROME_EXECUTABLE='/usr/bin/google-chrome-stable'
+
+# Load Angular CLI autocompletion.
+# source <(ng completion script)
+export PATH="$HOME/.local/bin:$PATH"
