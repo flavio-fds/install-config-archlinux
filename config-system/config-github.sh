@@ -23,9 +23,37 @@ function help {
 
     1 - github-config
     2 - copy-key-github -> copy key for Add Chave ssh-agent github site
+    3 - help
     4 - exit
+    5 - ssh-agent -> persistent ssh-agent (password asked once per boot)
     ${NO_COLOR}"
   start-script
+}
+
+# ssh-agent persistente: pede a senha da chave uma vez e mantém até desligar o PC
+config-ssh-agent() {
+  echo -e "${GREEN}Config persistent ssh-agent (systemd user socket)${NO_COLOR}"
+
+  # 1. ~/.ssh/config: guarda a chave no agente no primeiro uso
+  mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
+  if ! grep -q "^Host github.com" "$HOME/.ssh/config" 2>/dev/null; then
+    printf 'Host github.com\n    User git\n    IdentityFile ~/.ssh/id_rsa\n    AddKeysToAgent yes\n' >>"$HOME/.ssh/config"
+    echo "added github.com block to $HOME/.ssh/config"
+  else
+    echo "github.com block already in $HOME/.ssh/config"
+  fi
+  chmod 600 "$HOME/.ssh/config"
+
+  # 2. agente do systemd, ativado sob demanda pelo socket
+  systemctl --user enable --now ssh-agent.socket
+
+  # 3. todos os shells usam esse agente
+  if ! grep -q "SSH_AUTH_SOCK" "$HOME/.zshenv" 2>/dev/null; then
+    printf '\n# Usa o ssh-agent persistente do systemd (socket ativado sob demanda).\nexport SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"\n' >>"$HOME/.zshenv"
+    echo "added SSH_AUTH_SOCK to $HOME/.zshenv"
+  fi
+  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+  echo
 }
 
 config-github() {
@@ -51,10 +79,10 @@ config-github() {
   echo
   ssh-keygen -t rsa -b 4096 -C "$emailgit"
 
-  echo -e "${GREEN}Add Chave ssh-agent${NO_COLOR}"
+  config-ssh-agent
 
-  eval "$(ssh-agent -s)" # start ssh-agent in background
-  ssh-add ~/.ssh/id_rsa  # add key private SSH to the ssh-agent
+  echo -e "${GREEN}Add Chave ssh-agent${NO_COLOR}"
+  ssh-add ~/.ssh/id_rsa # add key private SSH to the ssh-agent
   echo -e "${GREEN}Run config-github - copy-key-github after reboot${NO_COLOR}" && sleep 3
   echo
   echo -e "${GREEN}###  DONE!!!  ###${NO_COLOR}"
@@ -96,6 +124,7 @@ function main {
   [ "$1" = "github-config" ] || [ "$1" = "1" ] && config-github && exit
   [ "$1" = "copy-key-github" ] || [ "$1" = "2" ] && print-key && exit
   [ "$1" = "exit" ] || [ "$1" = "4" ] && exit
+  [ "$1" = "ssh-agent" ] || [ "$1" = "5" ] && config-ssh-agent && exit
 
   echo -e "${RED}wrong argument: $1 ${NO_COLOR}"
   start-script
@@ -115,6 +144,7 @@ start-script() {
     2 - copy-key-github
     3 - help
     4 - exit
+    5 - ssh-agent
 
   Insert option:${NO_COLOR}"
   read option
